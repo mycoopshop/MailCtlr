@@ -1,0 +1,42 @@
+<div class="h70px">
+
+	<nav 	
+		data-spy="affix" 
+		data-offset-top="10" 
+		class="navbar navbar-default" 
+		role="navigation" 
+		>
+
+		<div class="container">
+
+			<div class="navbar-header">    
+				<span class="navbar-brand nav-bar-title" ><?=@$data->title ?></span>
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#toolbar-nav">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button> 
+			</div>
+                    <?php if ($app->testAcl('insert-func',$this->acl)){ ?>
+			<div class="navbar-content collapse navbar-collapse">		
+				<ul class="nav navbar-nav pull-right">
+					<li>
+						<button 
+							type="button" 
+							data-placement="bottom" 
+							data-toggle="modal" 
+							data-target="#modal-create"
+							class="navbar-btn btn btn-default"
+                                                        >
+							 <span class="glyphicon glyphicon-plus"></span> Nuovo
+						</button>
+					</li>
+				</ul>
+			</div>
+                    <?php } ?>
+
+		</div>
+
+	</nav> 
+
+</div>	

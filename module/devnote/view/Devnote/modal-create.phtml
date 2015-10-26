@@ -1,0 +1,21 @@
+<div class="modal fade " id="modal-create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog"> 
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">
+					Nuova Segnalazione
+				</h4>
+			</div>
+			<div class="modal-body">
+				<?php include(__DIR__.'/form.phtml') ?>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
+				<a id="confirm-save" href="javascript:;" onclick="$('form#item').submit();" class="btn btn-success">
+					<i class="glyphicon glyphicon-check"></i> 
+					Inserisci
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

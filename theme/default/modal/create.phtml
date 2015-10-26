@@ -1,0 +1,58 @@
+<div 
+	class="modal fade "
+	id="modal-create"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="myModalLabel"
+	aria-hidden="true"
+	>
+	
+	<div class="modal-dialog modal-lg"> 
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">
+					Aggiungi
+				</h4>
+			</div>
+			<div class="modal-body">
+				<div id="modal-item">
+				</div>	
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+				<button onclick="$('#modal-item form').submit()" type="button" class="btn btn-default btn-primary">Salva & Seleziona</button>				
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var modal_create_config = null;
+	var modal_create_sender = null;
+	$("#modal-create").on("show.bs.modal", function(e){
+		modal_create_sender = $(e.relatedTarget);
+		modal_create_config = $ui.getConfig(modal_create_sender,"data-render-modal");
+		$("#modal-create .modal-title").html(modal_create_config.title);
+		$("#modal-item").load($ws.base+"/"+modal_create_config.source,function(){
+			$ui.refresh();			
+		});	
+	});	
+	
+	function testModalSave() {
+		var data = $ui.getValues('#modal-item form');
+		
+		$ws.req(modal_create_config.submit,data,function(resp){
+			console.log("a",resp);
+			if (modal_create_config.target === ":prev") {
+				modal_create_config.target = modal_create_sender.prev();
+			} else if (modal_create_config.target === ":prev(2)") {
+				modal_create_config.target = modal_create_sender.prev().prev();				
+			}
+			$(modal_create_config.target).val(resp.id);
+			$(modal_create_config.target).change();
+			$("#modal-create").modal("hide");
+			setTimeout("modal_create_sender.blur();",1000);
+		});
+				
+		return false;
+	}
+</script>	

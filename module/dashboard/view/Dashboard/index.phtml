@@ -1,0 +1,38 @@
+<div class="row">
+
+	<?php foreach($app->getMenu('dashboard') as $i => $panel) { ?>
+	
+		<div class="col-md-4" id="<?=$panel['id']?>" >
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<?=$panel['label']?>
+				</div>
+				<div class="panel-body">
+					<ul>
+						<?php foreach($panel['children'] as $item) { ?>
+							<li>
+								<a href="<?=$item['link']?>"><?=$item['label']?></a>
+							</li>	
+						<?php } ?>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+  
+	<?php if ($i>0 && $i % 2 == 0) echo "</div> <div class='row'>";
+    } ?>
+</div>
+
+<div class="row">
+    <?php foreach($app->getMenu('dashboard-button') as $buttons) { ?>
+        <?php foreach($buttons['children'] as $button) { ?>
+            <div class="col-md-4 col-sm-4">
+                <a href="<?=$button['link']?>" type="button" class="btn-block btn <?=$button['type']?> btn-lg"><span class="<?=$button['icon']?>" aria-hidden="true"></span> &nbsp; <?=$button['label']?></a>
+            </div>
+        <?php } ?>
+	<?php } ?>    
+</div>
+<br />
+

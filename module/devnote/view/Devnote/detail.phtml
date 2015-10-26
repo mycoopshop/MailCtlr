@@ -1,0 +1,16 @@
+<?php include(__THEME__.'/nav-modify.phtml') ?>
+<?php include(__DIR__.'/form.phtml') ?>
+<script type="text/javascript">
+	make_form_readonly("form#item");
+</script>
+
+
+
+<h4>Sistema di commenti??<br />Forse &egrave; sbagliato com impostazione :D :P</h4>
+<br /><br />
+<?php
+print_r($data->commets);
+?>
+<br /><br />
+<?php include(__DIR__.'/form_comment.phtml') ?>
+  

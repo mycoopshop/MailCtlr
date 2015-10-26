@@ -1,0 +1,38 @@
+<form 
+	id="item"
+	action="<?=__HOME__?>/devnote/save" 
+	method="POST"
+	data-ui-validate="success:'<?=$data->modal?'testModalSave':''?>'"	
+	class="border-light"
+	>
+	<input type="hidden" name="id" value="<?=@$data->item->id?>" />
+        <input type="hidden" name="user" value="<?=@$data->item->user?>" /> <!-- COME PRENDO L'ID DELL'UTENTE ATTUALMENTE LOGGATO? -->
+        
+	<div class="form-group">
+		<div class="col-sm-12">
+			<label for="subject">Oggetto *</label>				
+			<input 
+				type="text"
+				class="form-control"
+				id="subject"
+				name="subject" 
+				value="<?=@$data->item->subject?>"
+				data-ui-testing="required"
+				/>
+			<div data-ui-message="error:subject:required" class="alert alert-danger alert-dismissable">
+				Inserisci l'oggetto del ticket
+			</div>                        
+		</div> 
+	</div>
+        <div class="form-group">
+		<div class="col-sm-12">
+			<label for="description">Descrizione *</label>				
+                        <textarea rows="10" class="form-control" id="description" name="description" ><?=@$data->item->description?></textarea>
+			<div data-ui-message="error:description:required" class="alert alert-danger alert-dismissable">
+				Inserisci la descrizione
+			</div>                        
+		</div> 
+	</div>
+        
+	<div style="clear:both"></div>
+</form>	

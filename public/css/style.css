@@ -1,0 +1,35 @@
+* {
+font-family: monospace;	
+font-size: 14px;
+font-weight: normal;
+}
+
+body {
+padding:0;
+margin:0;
+background:#323232;
+color:#dddddd; 
+}
+
+#spacejs {
+	margin:15px;
+	padding:15px;
+	border:2px solid #000;	
+}
+
+#spacejs div.spacejs-mount {
+	padding:15px;
+	border:2px solid red;		
+}
+
+#spacejs div.spacejs-mount .spacejs-label {
+	display: inline-block;
+	margin-top:-25px;
+	border:1px solid red;
+	background:#666;
+}
+
+.desc-hack{
+    font-size:11px !important;
+    overflow: auto;
+}

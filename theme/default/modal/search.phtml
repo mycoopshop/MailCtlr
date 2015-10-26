@@ -1,0 +1,48 @@
+<div 
+	class="modal fade " 
+	id="modal-search"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="myModalLabel" 
+	aria-hidden="true"
+	>
+	
+	<div class="modal-dialog modal-lg"> 
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">
+					Cerca
+				</h4>
+			</div>
+			<div class="modal-body">
+				<div id="grid">
+					
+				</div>				
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var modal_search_sender = null;
+	var modal_search_config = null;
+	$("#modal-search").on("show.bs.modal", function(e){
+      	modal_search_sender = $(e.relatedTarget);
+		modal_search_config = $ui.getConfig(modal_search_sender,"data-render-modal");
+		if (typeof modal_search_config.title === "string") {
+			$("#modal-search .modal-title").html(modal_search_config.title);
+		}
+		$("#modal-search #grid").load($ws.base+"/"+modal_search_config.source,function(){
+			
+		});	
+	});
+	$(document).on("click","[data-select-id]",function(e){
+		var id = $(this).attr("data-select-id");		
+		if (modal_search_config.target === ":prev") {
+			modal_search_config.target = modal_search_sender.prev();
+		}
+		$(modal_search_config.target).val(id);			
+		$(modal_search_config.target).change();		
+		$("#modal-search").modal("hide");		
+		setTimeout("modal_search_sender.blur();",1000);
+	});
+</script>	

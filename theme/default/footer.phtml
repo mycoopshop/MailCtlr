@@ -1,0 +1,17 @@
+<div class="container">
+<footer>
+	<p>
+        <br />
+        &copy; 2015 ctlr | <a href="http://www.ctlr.it" target="_blank">ctlr.it</a> - <a href="mailto:info@ctlr.it">info@ctlr.it</a> - +39 0924 19 10 468 
+		
+		<?php foreach($app->getMenu('footer-link') as $item) { ?>			
+		 	-
+			<a href="<?=$item['link']?>" id="<?=$item['id']?>">
+				<?=$item['label']?>
+			</a>
+		<?php } ?>			
+	</p>
+</footer>
+</div>
+</body>
+</html>

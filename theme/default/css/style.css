@@ -1,0 +1,119 @@
+.starter-template {
+	padding-top: 70px;
+}
+
+.tab-content {
+	padding-top: 10px;
+	padding-bottom: 3px;	
+}
+
+.border-light {
+	border: 1px solid #ddd;
+	
+}
+
+.tab-content.border-light {
+	border-top:none;
+	border-radius: 0 0 5px 5px;
+}
+
+.mt20px {
+	margin-top: 20px;
+}
+
+.navbar .container {
+	padding-left:0;
+	padding-right:0;
+}
+
+.navbar.affix {
+	z-index: 100;
+	top:51px;
+	left:0;
+	border:none;
+	width:100%;
+	border-bottom: 1px solid #e7e7e7; 
+	border-color: #e7e7e7;
+}
+
+.navbar>.container .navbar-brand, 
+.navbar>.container-fluid .navbar-brand {
+	margin-left: 0;
+}
+
+.navbar-content {
+	padding-right: 40px;	
+}
+
+.navbar.affix .navbar-content {
+	padding-right: 15px;
+}
+
+.h100px {
+	height:100px;
+}
+
+.h70px {
+	height:70px;
+}
+
+form.border-light {
+	padding: 15px 0px 15px 0px;
+	border: 1px solid #ddd;
+	border-radius: 5px;	
+}
+
+.form-group {
+	margin-bottom: 15px;
+	overflow: hidden;
+}
+
+.form-legend {
+	display: block;
+	width: 100%;
+	padding:5px 0 0 0;
+	margin-right: 15px;
+	margin-left: 15px;
+	margin-bottom: 20px;
+	font-size: 21px;
+	line-height: inherit;
+	color: #333;
+	border: 0;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+span.form-control {
+	background:#f7f7f7;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+table.table-compact th {
+	padding:3px !important;
+	font-size: 12px !important;
+}
+
+table.table-compact td {
+	padding:3px !important;
+	font-size: 12px !important;
+}
+
+table.table-compact input {
+	padding:1px 3px !important;
+}
+
+.input-group .form-control {
+	z-index: 0;
+}
+
+.desc-hack-1{
+    //margin-top: 3px !important;
+    font-size: 10px !important;
+    //border-top: 0px white none !important;
+    
+}
+
+desc-hack{
+    //border-bottom: 0px white none !important;
+    
+}

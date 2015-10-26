@@ -1,0 +1,18 @@
+<table>
+        <thead>
+                <?php $r=0; foreach($grid->getColumns() as $column) {?>			
+                        <th ><?=$column->getLabel();?></th>
+                <?php $r++;} ?>			
+        </thead>	
+        <tfoot>
+        </tfoot>
+        <tbody>
+                <?php /*for ($i=0;$i<=$r;$i++){
+                    echo "<tr>";
+                            foreach($data as $row) { array_map('htmlentities', $row);?>			
+                                <td><?=implode('</td><td>', $row);?></td>
+                <?php       }
+                    echo "</tr>";
+                        }*/ ?>
+        </tbody>
+</table>

@@ -1,0 +1,30 @@
+<div class="tab-pane fade in active" id="tab1">
+	<div id="t_general" class="tab">
+		<div class="form-group">
+			<div class="col-sm-12">
+				<legend>Dati generali</legend>                    
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-6" class="form-control">
+				<label >Nome</label>
+				<input type="text" class="form-control" name="nome" value="<?=$data->item->nome?>"/>                  
+			</div>
+             <div class="col-sm-6" class="form-control">
+				<label >Creata</label>
+                <input readonly="readonly" type="text" class="form-control" name="creata" value="<?=$data->item->creata?>"/>                  
+			</div>
+        </div>
+        
+        <div class="form-group">
+			<div class="col-sm-12" class="form-control">
+				<label >Server Host</label>
+                <textarea class="form-control" name="descrizione"><?=$data->item->descrizione?></textarea>                
+			</div>
+        </div>
+        
+        
+	</div>
+</div>
+
+

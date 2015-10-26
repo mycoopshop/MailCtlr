@@ -1,0 +1,82 @@
+.ui-widget-header {
+	border-color: #e7e7e7;
+	background: #f8f8f8;
+	color: #5e5e5e;
+}
+.ui-widget-header label {
+	margin-bottom: 0;
+	font-weight: normal;
+}
+
+.dataTables_wrapper .ui-toolbar {
+	padding:5px 15px;
+}
+
+.ui-state-default, 
+.ui-widget-content .ui-state-default, 
+.ui-widget-header .ui-state-default {
+	background: #f8f8f8;
+}
+
+.table-bordered.dataTable {
+	border-top:none;
+	border-bottom:none;
+}
+
+.table-bordered {
+	border-color:#e7e7e7;
+}
+
+.dataTables_info {
+	padding-top:0px;
+}
+
+.table-bordered.dataTable>thead>tr>th, 
+.table-bordered.dataTable>thead>tr>td {
+	border-width: 1px;
+	border-color: #e7e7e7;
+}
+
+.table.dataTable {
+	margin-bottom: 0;
+}
+
+tr.odd {
+	background: #ffffff;
+}
+
+tr.even {
+	background: #fafaff;
+}
+
+tr.odd td.sorting_1 {
+	background: #f6f6ff;
+}
+
+tr.even td.sorting_1 {
+	background: #f2f2ff;
+}
+
+.table-bordered.dataTable>thead>tr>th, 
+.table-bordered.dataTable>tbody>tr>th, 
+.table-bordered.dataTable>tfoot>tr>th, 
+.table-bordered.dataTable>thead>tr>td, 
+.table-bordered.dataTable>tbody>tr>td, 
+.table-bordered.dataTable>tfoot>tr>td {
+	padding:2px 15px 2px 15px;
+	border-color: #e7e7e7;
+}
+
+.table-bordered.dataTable>thead>tr>th {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+form {
+	margin-bottom:30px;
+}
+
+.input-group-btn>.btn+.btn {
+	margin-left: -4px;
+	border-left: none;
+}

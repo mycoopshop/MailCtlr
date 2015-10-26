@@ -1,0 +1,111 @@
+<?php if (!isset($gridHandler))  $gridHandler = 'gridTable'; ?>
+<div id="<?php echo $gridHandler ?>-wrapper">
+	<div id="tasto-cancella-ricerca" style="display:none; text-align: center; padding:2px;">
+		<button 
+			type="button" 
+			class="btn btn-warning"
+			onclick="fix_datagrid_cancella_ricerca()"
+			>
+			Cancella ricerca
+		</button>
+	</div>
+	<table id="<?php echo $gridHandler; ?>" class="table table-condensed table-bordered">
+		<thead>
+			<?php foreach($grid->getColumns() as $column) {?>			
+				<th ><?=$column->getLabel();?></th>
+			<?php } ?>			
+		</thead>	
+		<tfoot>
+		</tfoot>
+		<tbody>
+		</tbody>
+	</table>		
+</div>
+<script>
+	var <?=$gridHandler?> = null;
+	jQuery(document).ready(function() {
+		// grid init
+		<?=$gridHandler?> = jQuery('#<?=$gridHandler?>').dataTable({
+			bFilter: true,
+			bJQueryUI: true,
+			sServerMethod: "POST",
+		    bServerSide: true,
+    		bProcessing: true,
+			bStateSave: false,
+			iDisplayLength: 25,
+			sAjaxSource: '<?=$grid->getService();?>',
+			fnServerParams: function ( aoData ) {
+					
+				var data = {};	
+		
+				jQuery("[data-grid-input]").each(function(){
+					var name = jQuery(this).attr("name");
+					data[name] = jQuery(this).val();
+				});
+		
+				aoData.push({ 
+					"name": "gridTable", 
+					"value": JSON.stringify(data) 
+				});
+			},
+			aoColumns: <?=$grid->getColumnsDefinition();?>,
+			aaSorting: <?=$grid->getDefaultSortOrder()?>,
+			"oLanguage": {
+				"sEmptyTable":     "Nessun dato presente nella tabella",
+				"sInfo":           "Vista da _START_ a _END_ di _TOTAL_ elementi",
+				"sInfoEmpty":      "Vista da 0 a 0 di 0 elementi",
+				"sInfoFiltered":   "(filtrati da _MAX_ elementi totali)",
+				"sInfoPostFix":    "",
+				"sInfoThousands":  ",",
+				"sLengthMenu":     "Visualizza _MENU_ elementi",
+				"sLoadingRecords": "Caricamento...",
+				"sProcessing":     "Elaborazione...",
+				"sSearch":         "Cerca:",
+				"sZeroRecords":    "La ricerca non ha portato alcun risultato.",
+				"oPaginate": {
+					"sFirst":      "Inizio",
+					"sPrevious":   "Precedente",
+					"sNext":       "Successivo",
+					"sLast":       "Fine"
+				},
+				"oAria": {
+					"sSortAscending":  ": attiva per ordinare la colonna in ordine crescente",
+					"sSortDescending": ": attiva per ordinare la colonna in ordine decrescente"
+				}
+			},
+            
+		});
+		// grid sort		
+		jQuery('#grid_filter').hide();		
+	});	
+	jQuery(window).resize(function(){
+		jQuery("#<?=$gridHandler?>").css('width', '100%');				
+	});
+	jQuery("html>head").append('<style>#gridTable tbody tr{cursor:pointer;}</style>');				
+	jQuery(document).on("click","#gridTable tbody tr",function(e){
+		var po = gridTable.fnGetPosition(this); 
+		var id = gridTable.fnGetData(po)[0];
+		<?=@$grid->ClientEvents['row.click']?>
+    });
+	jQuery(document).ready(function(){
+		setTimeout('fix_datagrid_questions();',100);		
+	});
+	function fix_datagrid_questions() {
+		
+		var f = jQuery('#gridTable_filter input').first();
+		
+		if (!!f.val()) {
+			jQuery("#tasto-cancella-ricerca").show();
+			f.select();
+			f.focus();
+		}		
+		
+	}
+	function fix_datagrid_cancella_ricerca() {
+		jQuery("#tasto-cancella-ricerca").hide();
+		var f = jQuery('#gridTable_filter input').first();
+		f.val('');
+		f.trigger(jQuery.Event('change', {which: 13}));;		
+	}
+	// internationalization url: http://datatables.net/plug-ins/i18n 
+</script>

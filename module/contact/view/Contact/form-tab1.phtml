@@ -1,0 +1,93 @@
+<div class="tab-pane fade in active" id="tab1">
+	<div id="t_general" class="tab">
+		<div class="form-group">
+			<div class="col-sm-12">
+				<legend>Contatto</legend>                    
+			</div>
+		</div>
+        
+        <div class="form-group">
+            <div class="col-sm-8" class="form-control">
+                <label>Azienda</label>
+                <input type="text" class="form-control" name="azienda" value="<?=$data->item->azienda?>"/>
+            </div>
+            <div class="col-sm-4" class="form-control">
+                <label>P.Iva</label>
+                <input type="text" class="form-control" name="piva" value="<?=$data->item->piva?>"/>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-sm-2" class="form-control">
+                <label>CAP</label>
+                <input type="text" class="form-control" name="cap" value="<?=$data->item->cap?>"/>
+            </div>
+            <div class="col-sm-4" class="form-control">
+                <label>Indirizzo</label>
+                <input type="text" class="form-control" name="indirizzo" value="<?=$data->item->indirizzo?>"/>
+            </div>
+            <div class="col-sm-2" class="form-control">
+                <label>Provincia</label>
+                <input type="text" class="form-control" name="provincia" value="<?=$data->item->provincia?>"/>
+            </div>
+            <div class="col-sm-4" class="form-control">
+                <label>Citt&agrave;</label>
+                <input type="text" class="form-control" name="citta" value="<?=$data->item->citta?>"/>
+            </div>
+        </div>
+        
+        
+        
+		<div class="form-group">
+			<div class="col-sm-4" class="form-control">
+				<label >Nome</label>
+				<input type="text" class="form-control" name="nome" value="<?=$data->item->nome?>"/>                  
+			</div>
+            <div class="col-sm-4" class=" form-control">
+				<label >Cognome</label>
+                <input type="text" class="form-control" name="cognome" value="<?=$data->item->cognome?>"/>                  
+			</div>
+            <div class="col-sm-4" class=" form-control">
+				<label >E-Mail</label>
+				<input type="text" class="form-control" name="email" value="<?=$data->item->email?>"/>                  
+			</div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-sm-6" class="form-control">
+                <label>Telefono</label>
+                <input type="text" class="form-control" name="telefono" value="<?=$data->item->telefono?>"/>
+            </div>
+            <div class="col-sm-6" class=" form-control">
+                <label>Cellulare</label>
+                <input type="text" class="form-control" name="cellulare" value="<?=$data->item->cellulare?>"/>
+            </div>
+        </div>
+        
+        <div class="form-group">
+			<div class="col-sm-3" class="form-control">
+				<label >Iscritto il</label>
+                <input readonly="readonly" type="text" class="form-control" name="iscritto" value="<?=$data->item->iscritto?>"/>                  
+			</div>
+            <div class="col-sm-3" class="form-control">
+				<label >Last Edit</label>
+                <input readonly="readonly" type="text" class="form-control" name="lastedit" value="<?=$data->item->lastedit?>"/>                  
+			</div>
+            <div class="col-sm-2" class="form-control">
+				<label >Attivo</label>
+				<input type="text" class="form-control" name="active" value="<?=$data->item->active?>"/>                  
+			</div>
+            <div class="col-sm-2" class="form-control">
+				<label >Type (text/html)</label>
+				<input type="text" class="form-control" name="type" value="<?=$data->item->type?>"/>                  
+			</div>
+            <div class="col-sm-2" class=" form-control">
+                <label>Lista</label>
+                <input type="text" class="form-control" name="lista" value="<?=$data->item->lista?>"/>
+            </div>
+        </div>
+        
+	</div>
+</div>
+
+

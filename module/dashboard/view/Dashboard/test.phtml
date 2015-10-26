@@ -1,0 +1,17 @@
+<?php
+//$iva_source = file_get_contents(__HOME__.'/iva/autocomplete');
+print_r($iva_source);
+?>
+<div class="row">
+    <input 
+					type="text" 
+					class="form-control"  
+					id="codice_iva"
+					name="codice_iva_testuale"
+					value=""
+					data-ui-autocomplete="source:'<?=__HOME__/*$iva_source*/?>/iva/autocomplete'" 
+                                        />
+    
+</div>
+
+

@@ -1,0 +1,33 @@
+<div class="modal fade " id="modal-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm"> 
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">
+					Informazioni Aggiuntive
+				</h4>
+			</div>
+			<div class="modal-body">
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var modal_info_sender = null;
+	var modal_info_config = null;
+	$("#modal-info").on("show.bs.modal", function(e){
+      	modal_info_sender = $(e.relatedTarget);
+		modal_info_config = $ui.getConfig(modal_info_sender,"data-render-modal");
+                console.log(modal_info_config.title);
+		if (typeof modal_info_config.title === "string") {
+			$("#modal-info .modal-title").html(modal_info_config.title);
+		}
+                if (typeof modal_info_config.message === "string") {
+                    $("#modal-info .modal-body").html(modal_info_config.message);
+                }
+	});
+</script>
