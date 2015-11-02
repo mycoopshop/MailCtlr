@@ -1,0 +1,123 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on https://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
+  <link rel="stylesheet" href="stylesheets/github-dark.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>MailCtlr </title>
+  <meta name="description" content="MailCtlr is a new system for the management of your advertising campaigns based on email, it allows you to send all the emails you want for free. Using different SMTP server can send free mail to all the contacts you want at no cost or almost.">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">MailCtlr </h1>
+    </header>
+    <div id="container">
+      <p class="tagline">MailCtlr is a new system for the management of your advertising campaigns based on email, it allows you to send all the emails you want for free. Using different SMTP server can send free mail to all the contacts you want at no cost or almost.</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/ctlr/MailCtlr/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/ctlr/MailCtlr/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/ctlr/MailCtlr" class="code">View MailCtlr  on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>
+<a id="mailctlr" class="anchor" href="#mailctlr" aria-hidden="true"><span class="octicon octicon-link"></span></a>MailCtlr</h1>
+
+<p>MailCtlr is a new system for the management of your advertising campaigns based on email, it allows you to send all the emails you want for free. 
+Using different SMTP server can send free mail to all the contacts you want at no cost or almost.</p>
+
+<h1>
+<a id="how-to-install-web-application" class="anchor" href="#how-to-install-web-application" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to: Install Web Application</h1>
+
+<ul>
+<li>Open config/mailctlr.alpha.php and edit the follow line</li>
+</ul>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">//Database</span></span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>db<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>host<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>localhost<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>user<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>mailctlr<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>pass<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>mailctlr<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>mailctlt<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>pref<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>mc_<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    ),</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">//Location web application</span></span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>url<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>http://www.your-site.com/folder<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>home<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>http://www.your-site.com/folder<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1"></span><span class="pl-pse"><span class="pl-s1">?</span>&gt;</span></pre></div>
+
+<ul>
+<li>Open .htaccess and edit the follow line</li>
+</ul>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">RewriteBase</span> <span class="pl-k">/</span><span class="pl-c1">folder</span><span class="pl-k">/</span></span>
+<span class="pl-s1"><span class="pl-c1">RewriteRule</span> <span class="pl-k">.</span> <span class="pl-k">/</span><span class="pl-c1">folder</span><span class="pl-k">/</span><span class="pl-c1">index</span><span class="pl-k">.</span><span class="pl-c1">php</span> [<span class="pl-c1">L</span>]</span></pre></div>
+
+<h1>
+<a id="mailctlr-license" class="anchor" href="#mailctlr-license" aria-hidden="true"><span class="octicon octicon-link"></span></a>MailCtlr License</h1>
+
+<p>MailCtlr is licensed <a href="http://www.gnu.org/licenses/agpl-3.0.html">GNU AFFERO GENERAL PUBLIC LICENSE</a></p>
+
+<h1>
+<a id="roadmap-for-beta-version" class="anchor" href="#roadmap-for-beta-version" aria-hidden="true"><span class="octicon octicon-link"></span></a>Roadmap for beta version</h1>
+
+<ul>
+<li>Import contact from a .csv file</li>
+<li>Registration to list form website </li>
+<li>Automatic upgrade to the new version</li>
+<li>Statistics on sending: email receipts, open (opening number), deleted</li>
+<li>Autoresponders for default actions: registration, cancellation, modification, (you can also create your actions)</li>
+<li>Website for Application</li>
+<li>[DONE!] Port to GitHub</li>
+</ul>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/ctlr" class="avatar"><img src="https://avatars3.githubusercontent.com/u/13297408?v=3&amp;s=60" width="48" height="48"></a> <a href="https://github.com/ctlr">ctlr</a> maintains <a href="https://github.com/ctlr/MailCtlr">MailCtlr </a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/ctlr/MailCtlr/tarball/master" class="tar">tar</a><a href="https://github.com/ctlr/MailCtlr/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-63785099-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+</body>
+</html>
