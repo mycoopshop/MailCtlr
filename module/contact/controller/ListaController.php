@@ -1,8 +1,10 @@
 <?php
 
 require_once __BASE__.'/module/contact/grid/ListaGrid.php';
+require_once __BASE__.'/module/contact/grid/ListaModalGrid.php';
 require_once __BASE__.'/module/contact/model/Lista.php';
-
+require_once __BASE__.'/module/contact/model/Iscrizioni.php';
+require_once __BASE__.'/module/contact/model/Contact.php';
 
 class ListaController {
     
@@ -76,7 +78,45 @@ class ListaController {
 		Lista::delete($id);		
 		$app->redirect(__HOME__.'/lista/');
     }
-        
     
+    ##
+    public function deleteAllAction(){
+        $app = App::getInstance();		
+		$id = (int) $app->getUrlParam('id');		
+		$reply = "START<br />";
+        $lista = Iscrizioni::query(array(
+            'lista_id' => $id
+        ));
+        foreach ($lista as $contact) {
+            Contact::delete($contact->contatto_id);
+            $reply .= "contatto {$contact->contatto_id} eliminato - ";
+            Iscrizioni::delete($contact->id);
+            $reply .= "iscrizione {$contact->id} eliminata - ";
+            $reply .= "<br />";
+        }
+        
+        Lista::delete($id);	
+        $reply .= "lista {$id} eliminata!<br />";
+        $reply .= "END";
+		$app->redirect(__HOME__.'/lista/');
+    }
+    
+    ##
+    public function modalSearchAction() {
+		$grid	= new ListaModalGrid();		
+		echo $grid->html();		
+	}
+	
+    ##
+	public function modalGridJsonAction() {
+		$grid	= new ListaModalGrid();		
+		echo json_encode($grid->json());		
+	}
+	
+    ##
+	public function renderAction() {		
+		$item = Lista::load($_POST['id']);
+		echo json_encode($item);
+	}
     
 }

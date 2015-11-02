@@ -26,13 +26,66 @@
 </div>
 
 <div class="row">
-    <?php foreach($app->getMenu('dashboard-button') as $buttons) { ?>
-        <?php foreach($buttons['children'] as $button) { ?>
-            <div class="col-md-4 col-sm-4">
-                <a href="<?=$button['link']?>" type="button" class="btn-block btn <?=$button['type']?> btn-lg"><span class="<?=$button['icon']?>" aria-hidden="true"></span> &nbsp; <?=$button['label']?></a>
+    <?php foreach($app->getMenu('dashboard-button') as $i => $button) { ?>
+            <div class="col-md-3 col-sm-3">
+                <a href="<?=$button['link']?>" type="button" class="btn-block btn btn-<?=$button['type']?> btn-lg"><span class="<?=$button['icon']?>" aria-hidden="true"></span> &nbsp; <?=$button['label']?></a>
             </div>
-        <?php } ?>
-	<?php } ?>    
+    <?php if ($i>0 && $i % 3 == 0) echo "</div> <div class='row'>";
+    } ?>    
+</div>
+
+<div class="row">
+    
+    <div class="col-md-6" id="" >
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                System info
+            </div>
+            <div class="panel-body">
+                Informazioni rapide sullo stato del sistema.<br />
+                * Numero di email inviabili giornalmente<br />
+                * Numero di email inviate dall'inizio <br />
+                * Numero di email rimanenti da inviare oggi.<br />
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                  <span class="badge"><?=$data->max_mail;?></span>
+                  Send Mail for Day
+                </li>
+                <li class="list-group-item">
+                  <span class="badge"><?=$data->remain?></span>
+                  Remain Mail for Day
+                </li>
+                <li class="list-group-item">
+                  <span class="badge"><?=$data->total?></span>
+                  Total Send Mail
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    
+    <div class="col-md-6" id="" >
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Contact Info
+            </div>
+            <div class="panel-body">
+                Informazioni rapide sui contatti inserite all'interno del sistema <b>MailCtlr</b>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                  <span class="badge"><?=$data->contatti?></span>
+                  Total Contact
+                </li>
+                <li class="list-group-item">
+                  <span class="badge"><?=$data->liste?></span>
+                  Total List
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    
 </div>
 <br />
-

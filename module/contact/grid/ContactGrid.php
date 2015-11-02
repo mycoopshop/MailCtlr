@@ -25,9 +25,7 @@ class ContactGrid extends Grid {
             'email' => array(
                 'label' => 'Email',
             ),
-            'lista' => array(
-                'label' => 'Lista',
-            ),
+            
             'active' => array(
               'label' => 'Stato'  ,
             ),

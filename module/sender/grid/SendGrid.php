@@ -4,32 +4,35 @@ require_once __BASE__.'/model/grid/Grid.php';
 class SendGrid extends Grid {
     
 	public function __construct() {
+        $this->id = 'SendGrid';
         
-		$this->id = 'SendGrid';                       
-		$this->source = Coda::table();                
+        $coda = Coda::table();
+        $contatto = Contact::table();
+        //$server = AccountSMTP::table();
+        
+        
+		$this->source = "("
+                        . " SELECT c.*, co.email AS email, CONCAT(co.azienda,' ',co.nome,' ',co.cognome) AS fullname  "
+                        . " FROM $coda AS c "
+                        . " LEFT JOIN $contatto AS co "
+                        . " ON c.contact_id = co.id "
+                        . " WHERE c.processato = '0' "
+                        . " ) AS t";
+                
 		$this->endpoint = __HOME__.'/send/grid';
         
 		$this->columns = array(
 			'id' =>array(
                 'visible'=>false,
             ),                     
-            'contact_id' => array(
-                'label'=>'ID Contatto' 
+            'fullname' => array(
+                'label'=>'Nome', 
             ),                     
-            'email_id' => array(
-                'label'=>'ID Email' 
+            'email' => array(
+                'label'=>'Email' 
             ),
             'created' => array(
                 'label'=>'Creato' 
-            ),
-            'execute' => array(
-                'label' => 'Inviato',
-            ),
-            'processato' => array(
-                'label' => 'Processato',
-            ),
-            'server_id' => array(
-                'label' => 'Server',
             ),
             'command' => array(
                 'label'=>'Command',

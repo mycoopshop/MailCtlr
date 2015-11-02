@@ -50,6 +50,33 @@ class SenderModule {
             'link'		=> __HOME__.'/send/create'
         ));
         
+        //ACCESSO RAPIDO
+        
+        ##
+        $app->addMenu('dashboard-button',array(
+            'link'  => __HOME__.'/email/create',
+            'type'  => 'default',
+            'icon'  => 'glyphicon glyphicon-plus',
+            'label' => 'Crea Nuova Email',
+        ));
+        
+        ##
+        $app->addMenu('dashboard-button',array(
+            'link'  => __HOME__.'/send/create',
+            'type'  => 'default',
+            'icon'  => 'glyphicon glyphicon-plus',
+            'label' => 'Aggiungi a Coda',
+        ));
+        
+        ##
+        $app->addMenu('dashboard-button',array(
+            'link'  => __HOME__.'/send/live',
+            'type'  => 'success',
+            'icon'  => 'glyphicon glyphicon-plus',
+            'label' => 'Live Process',
+        ));
+        
+        
         
 	}
 }

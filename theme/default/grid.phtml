@@ -1,14 +1,5 @@
 <?php if (!isset($gridHandler))  $gridHandler = 'gridTable'; ?>
 <div id="<?php echo $gridHandler ?>-wrapper">
-	<div id="tasto-cancella-ricerca" style="display:none; text-align: center; padding:2px;">
-		<button 
-			type="button" 
-			class="btn btn-warning"
-			onclick="fix_datagrid_cancella_ricerca()"
-			>
-			Cancella ricerca
-		</button>
-	</div>
 	<table id="<?php echo $gridHandler; ?>" class="table table-condensed table-bordered">
 		<thead>
 			<?php foreach($grid->getColumns() as $column) {?>			

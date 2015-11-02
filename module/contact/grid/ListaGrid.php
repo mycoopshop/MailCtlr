@@ -30,7 +30,8 @@ class ListaGrid extends Grid {
                 'html' =>
                     '<a href="'.__HOME__.'/lista/detail/id/{?}" class="btn btn-xs btn-success"> View</a> '.
                     '<a href="'.__HOME__.'/lista/modify/id/{?}" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-pencil"></i> Edit</a> '.
-                    '<button class="btn btn-xs btn-danger" type="button" data-toggle="modal" data-target="#modal-delete" data-delete-url="'.__HOME__.'/lista/delete/id/{?}"><i class="glyphicon glyphicon-trash"></i> Delete</button>',
+                    '<button class="btn btn-xs btn-danger" type="button" data-toggle="modal" data-target="#modal-delete" data-delete-url="'.__HOME__.'/lista/delete/id/{?}"><i class="glyphicon glyphicon-trash"></i> Delete</button> '.
+                    '<button class="btn btn-xs btn-danger" type="button" data-toggle="modal" data-target="#modal-delete" data-delete-url="'.__HOME__.'/lista/deleteAll/id/{?}"><i class="glyphicon glyphicon-trash"></i> Remove All</button> ',
 			),
             
 		);		

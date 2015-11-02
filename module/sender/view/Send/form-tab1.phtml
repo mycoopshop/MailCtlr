@@ -9,11 +9,83 @@
         <div class="form-group">
             <div class="col-sm-6" class="form-control">
                 <label>Send to (LISTA)</label>
-                <input type="text" class="form-control" name="lista" value=""/>
+                <div class="input-group">
+                    <input 
+                        type="text"
+                        class="form-control"
+                        id="lista_testuale"
+                        name="lista_testuale"
+                        value=""
+                        data-ui-testing="nothing"
+                    />
+                    <span class="input-group-btn">
+                        <button 
+                            data-toggle="modal"
+                            data-target="#modal-search"
+                            data-render-modal="
+                                    title:'Cerca Lista',
+                                    source:'lista/modalSearch',
+                                    target:'[name=lista]',
+                                    size:'lg'
+                                    "										
+                            onclick="return false;"
+                            class="btn btn-default"
+                            >
+                            &nbsp;<i class="glyphicon glyphicon-search"></i>&nbsp;
+                        </button>
+                    </span>						
+                </div>
+                <input 
+                    type="hidden" 
+                    name="lista"
+                    data-ui-render="
+                        source:'lista/render',
+                        target:'[name=lista_testuale]',
+                        layout:'{nome}',
+                        "
+                    value="<?=@$data->item->lista?>" 
+                /> 
+                
             </div>
             <div class="col-sm-6" class="form-control">
                 <label>Email to send (EMAIL)</label>
-                <input type="text" class="form-control" name="email" value=""/>
+                <div class="input-group">
+                    <input 
+                        type="text"
+                        class="form-control"
+                        id="email_testuale"
+                        name="email_testuale"
+                        value=""
+                        data-ui-testing="nothing"
+                    />
+                    <span class="input-group-btn">
+                        <button 
+                            data-toggle="modal"
+                            data-target="#modal-search"
+                            data-render-modal="
+                                    title:'Cerca Email',
+                                    source:'email/modalSearch',
+                                    target:'[name=email]',
+                                    size:'lg'
+                                    "										
+                            onclick="return false;"
+                            class="btn btn-default"
+                            >
+                            &nbsp;<i class="glyphicon glyphicon-search"></i>&nbsp;
+                        </button>
+                    </span>						
+                </div>
+                <input 
+                    type="hidden" 
+                    name="email"
+                    data-ui-render="
+                        source:'email/render',
+                        target:'[name=email_testuale]',
+                        layout:'{oggetto}',
+                        "
+                    value="<?=@$data->item->email?>" 
+                /> 
+                
             </div>
         </div>
         

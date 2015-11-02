@@ -1,4 +1,25 @@
-<?php include(__THEME__.'/nav-list.phtml') ?>
+<?php include(__THEME__.'/nav-list-process.phtml') ?>
 <?php include(__THEME__.'/modal/delete.phtml') ?>
 
 <?=$data->grid?> 
+
+<div class="modal fade" id="processModal" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Processamento coda d'invio</h4>
+      </div>
+      <div class="modal-body">
+          <button class="btn btn-success" id="start" onclick="process( '<?=$data->action?>' , '<?=$data->number?>' );">START</button>
+          <br />
+          <div class="result">
+              
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+      </div>
+    </div>
+  </div>
+</div>

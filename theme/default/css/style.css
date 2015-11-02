@@ -106,14 +106,6 @@ table.table-compact input {
 	z-index: 0;
 }
 
-.desc-hack-1{
-    //margin-top: 3px !important;
-    font-size: 10px !important;
-    //border-top: 0px white none !important;
-    
-}
-
-desc-hack{
-    //border-bottom: 0px white none !important;
-    
+.row{
+    padding-bottom: 10px !important;
 }

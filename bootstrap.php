@@ -42,3 +42,4 @@ $db = schemadb::connect(
 define('__URL__',rtrim($config['url'],'/'));
 define('__HOME__',rtrim($config['home'],'/'));
 define('__PUBLIC__',__URL__.'/public');
+define('__VERSION__',rtrim( $config['version']) );

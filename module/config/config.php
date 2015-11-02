@@ -61,6 +61,15 @@ class ConfigModule {
 				'link'		=> __HOME__.'/accountSMTP/'
 			));
             
+            ##
+            $app->addMenu('dashboard-button',array(
+                'link'  => __HOME__.'/accountSMTP',
+                'type'  => 'success',
+                'icon'  => 'glyphicon glyphicon-plus',
+                'label' => 'Server SMTP',
+            ));
+
+            
 		}
          
 		##

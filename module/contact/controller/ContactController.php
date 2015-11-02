@@ -1,8 +1,8 @@
 <?php
-
 require_once __BASE__.'/module/contact/grid/ContactGrid.php';
 require_once __BASE__.'/module/contact/model/Contact.php';
-
+require_once __BASE__.'/module/contact/model/Iscrizioni.php';
+require_once __BASE__.'/module/contact/lib/parsecsv.lib.php';
 
 class ContactController {
     
@@ -13,6 +13,7 @@ class ContactController {
 		$app->render(array(
 			'title'		=> 'Contatti',
 			'createUrl' => __HOME__.'/contact/create',
+            'importCSV' => __HOME__.'/contact/importCSV',
 			'grid'		=> $grid->html(),
 		));
 	}
@@ -78,7 +79,33 @@ class ContactController {
 		Contact::delete($id);		
 		$app->redirect(__HOME__.'/contact/');
     }
+    
+    ##
+    public function importCSVAction(){
+        $reply = "<pre>";
+        /*$csv = new parseCSV();
+        $csv->auto(__BASE__."/module/contact/import/sardegna.csv");
+        $reply .= 'START';
+        foreach ($csv->data as $info) {
+            var_dump($info);die();
+            
+            $id_c = Contact::submit(array(
+                'email' => $info{"Indirizzo e-mail"},
+                'type' => 'html',
+            ));
+            //var_dump($id_c);die();
+            $id_i = Iscrizioni::submit(array(
+                'lista_id' => 1,
+                'contatto_id' => $id_c->id,
+                'creata' => MYSQL_NOW(),
+                
+            ));
+            $reply .= 'Contatto: '.$info{"Indirizzo e-mail"}.' id_c: '.$id_c->id.' - id_i: '.$id_i->id.'<br />';
+        }*/
+        $reply .= 'END';
+        echo $reply;
         
+    }
     
     
 }

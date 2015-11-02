@@ -1,6 +1,8 @@
 <?php
 require_once __BASE__.'/model/Storable.php';
+require_once __BASE__.'/module/contact/model/Iscrizioni.php';
 require_once __BASE__.'/module/contact/model/Contact.php';
+
 ##
 class Coda extends Storable {
 	public $id = MYSQL_PRIMARY_KEY;
@@ -15,24 +17,30 @@ class Coda extends Storable {
     public $server_id = 0;
     public $processato = 0;
     public $note = MYSQL_TEXT;
-        	
+     	
     ##
     public static function addCode($lista="",$email=""){
         $app = App::getInstance();
-                
-        $contacts = Contact::query(
-                array(
-                    'lista'  => $lista,
-                    'active' => true,
-                ));
         
-        foreach ($contacts as $contact) {
+        $iscrizioni = Iscrizioni::getList($lista);        
+        foreach ($iscrizioni as $iscrizione) {
+            $c = Contact::load($iscrizione->contatto_id);
+            if (!$c->active){ 
+                $iscrizione->active=0;
+            }
+            if (!isset($c->id)){
+                $iscrizione::delete($iscrizione->id);
+            }
+            
             Coda::submit(array(
-                'contact_id'    =>  $contact->id,
+                'contact_id'    =>  $iscrizione->contatto_id,
                 'created'       =>  MYSQL_NOW(),
-                'email_id'      => $email,
-                'user_id'       => $app->user["id"],
+                'email_id'      =>  $email,
+                'user_id'       =>  $app->user["id"],
             ));
+            
+            $iscrizione->store();
+            
         }
         
     }

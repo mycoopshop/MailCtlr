@@ -9,6 +9,11 @@ class DashboardModule {
 		##
 		$app = App::getInstance();
 		
+        
+        $app->addMenu('footer-link',array(
+				'label'		=> 'Licenza',
+				'link'		=> __HOME__.'/dashboard/license'
+			));
 		
 			
 	}

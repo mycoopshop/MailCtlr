@@ -21,9 +21,6 @@ class AccountSMTPGrid extends Grid {
             'name' => array(
                 'label' => 'Nome',
             ),
-            'server' => array(
-                'label'=>'Server', 
-            ),            
             'max_mail' => array(
                 'label'=>'Limite',
             ),

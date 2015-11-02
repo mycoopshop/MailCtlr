@@ -15,18 +15,26 @@ class Contact extends Storable {
     public $cap = "";
     public $citta = "";
     public $provincia = "";
-    public $email = "";
-    
+    public $email = "";    
     
     public $lista = 0;
-    
     
     public $iscritto = MYSQL_DATETIME;
     public $active = true;
     public $lastedit = MYSQL_DATETIME;
+
+    public $privacy = 0;
+    public $privacy_url = "";
     
     public $type = array('html','text');
-        	
+    
+    
+    ##
+    public static function count(){
+        $sql = 'SELECT COUNT(id) AS totale FROM '.self::table();
+        $res = schemadb::execute('row',$sql);
+        return number_format($res['totale'],0,",",".");
+    }
 }
 Contact::schemadb_update();
 

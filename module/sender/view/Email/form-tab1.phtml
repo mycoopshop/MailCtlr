@@ -11,21 +11,16 @@
                 <label>Oggetto</label>
                 <input type="text" class="form-control" name="oggetto" value="<?=$data->item->oggetto?>"/>
             </div>
-            <div class="col-sm-4" class="form-control">
-                <label>Programma</label>
-                <input type="text" class="form-control" value="" readonly="readonly"/>
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <div class="col-sm-7" class="form-control">
-                <label>Test Mail</label>
+            <div class="col-sm-4 " class="form-control">
+                <label>Indirizzo Email di Test</label>
                 <input type="text" class="form-control" name="testing" value="<?=$data->item->testing?>" />
             </div>
-            <div class="col-sm-5" class="form-control">
-                <label>Lista Destinatari</label>
-                <input type="text" class="form-control" name="lista" value="<?=$data->item->lista?>" />
-            </div>
+        </div>
+        <div class="form-group">
+            <!--<div class="col-sm-4 col-sm-offset-8" class="form-control">
+                <label>Programma</label>
+                <input type="text" class="form-control" value="" readonly="readonly"/>
+            </div>-->
         </div>
         
         <div class="form-group">
@@ -38,7 +33,7 @@
         <div class="form-group">
             <div class="col-sm-12" class="form-control">
                 <label>Messaggio (TEXT)</label>
-                <textarea class="form-control" name="messaggio_text"><?=$data->item->messaggio_text?></textarea>
+                <textarea class="form-control" name="messaggio_text" rows="6"><?=$data->item->messaggio_text?></textarea>
             </div>
         </div>
         

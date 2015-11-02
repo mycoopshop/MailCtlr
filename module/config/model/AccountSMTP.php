@@ -52,5 +52,37 @@ class AccountSMTP extends Storable {
         return $use;
     }
     
+    ##
+    public static function getMaxMail($account="all"){
+        
+        $append = $account != 'all' ? ' WHERE id = "'.$account.'"' : ' ';
+        $sql = 'SELECT SUM(max_mail) AS maxmail FROM '.self::table().$append;
+        $res = schemadb::execute('row',$sql);
+        return number_format($res['maxmail'],2,",",".");
+    }
+    
+    ##
+    public static function getSenderMail($account="all"){
+        
+        $append = $account != 'all' ? ' WHERE id = "'.$account.'"' : ' ';
+        $sql = 'SELECT SUM(total_send) AS mailtotali FROM '.self::table().$append;
+        $res = schemadb::execute('row',$sql);
+        return number_format($res['mailtotali'],2,",",".");
+    }
+    
+    ##
+    public static function getInviateMail($account="all"){
+        
+        $append = $account != 'all' ? ' WHERE id = "'.$account.'"' : ' ';
+        $sql = 'SELECT SUM(send) AS inviate FROM '.self::table().$append;
+        $res = schemadb::execute('row',$sql);
+        return number_format($res['inviate'],2,",",".");
+    }
+    
+    ##
+    public static function getRemainMail($account="all"){
+        $remain = self::getMaxMail() - self::getInviateMail();
+        return number_format($remain,2,",",".");
+    }
 }
 AccountSMTP::schemadb_update();

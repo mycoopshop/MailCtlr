@@ -6,9 +6,14 @@ class MailCtlrWebApp extends PrivateWebApp {
 	public $acl = array(
 		
         'public' => array(
-			'*'                         => false,
-			'userrole.Login.*'          => true,
-            'payment.Payment.*' => true,
+			'*'                             => false,
+			'userrole.Login.*'              => true,
+            'payment.Payment.*'             => true,
+            'contact.Iscrizioni.extcreate'  => true,
+            'changelog.Changelog.changelogjson' => true,
+            'sender.Send.process'           => true,
+            'sender.Send.activeserver'      => true,
+            
             
 		),
 		'user' => array(
@@ -17,9 +22,9 @@ class MailCtlrWebApp extends PrivateWebApp {
             'config.*'                                  => false,
 		),
 		'admin' => array(
-			'*'                         => true,
-            'userrole.User.*'           => false,
-            'userrole.User.render'           => true,   
+			'*'                                 => true,
+            'userrole.User.*'                   => false,
+            'userrole.User.render'              => true,   
 		),
         'superadmin' => array(
 			'*'  => true,
@@ -27,5 +32,4 @@ class MailCtlrWebApp extends PrivateWebApp {
 	);
 	
 }
-
 date_default_timezone_set ('Europe/Rome');

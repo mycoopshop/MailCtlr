@@ -21,6 +21,12 @@ class ContactModule {
 			'label'	=> 'Liste',
 		));
 		
+        ##
+        $app->addMenu('navbar',array(
+            //'parent'	=> 'navbar-contact',
+            'label'		=> 'Iscrizioni',
+            'link'		=> __HOME__.'/iscrizioni/'
+        ));
         
         ##
         $app->addMenu('navbar',array(
@@ -49,6 +55,25 @@ class ContactModule {
             'label'		=> 'Aggiungi Liste',
             'link'		=> __HOME__.'/lista/create'
         ));
+        
+        
+        
+        ##
+        $app->addMenu('dashboard-button',array(
+            'link'  => __HOME__.'/lista/create',
+            'type'  => 'default',
+            'icon'  => 'glyphicon glyphicon-plus',
+            'label' => 'Nuova Lista',
+        ));
+        
+        ##
+        $app->addMenu('dashboard-button',array(
+            'link'  => __HOME__.'/contact/create',
+            'type'  => 'default',
+            'icon'  => 'glyphicon glyphicon-plus',
+            'label' => 'Nuovo Contatto',
+        ));
+        
         
 	}
 }

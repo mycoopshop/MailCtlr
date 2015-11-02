@@ -9,7 +9,12 @@ class Lista extends Storable {
     public $descrizione = "";
     public $creata = MYSQL_DATETIME;
                
-    
+    ##
+    public static function count(){
+        $sql = 'SELECT COUNT(id) AS totale FROM '.self::table();
+        $res = schemadb::execute('row',$sql);
+        return number_format($res['totale'],0,",",".");
+    }
         	
 }
 

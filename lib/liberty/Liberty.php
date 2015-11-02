@@ -116,8 +116,8 @@ class Liberty {
 		} 
 		$logs.= "   - exit $exit\n";
 				
-		#echo '<pre>'.$logs.'</pre>';		
-		#die();
+        //echo '<pre>'.$logs.'</pre>';		
+		//die();
 				
 		return $exit;
 	}

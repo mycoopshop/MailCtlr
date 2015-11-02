@@ -15,12 +15,6 @@ class EmailGrid extends Grid {
             ),                     
             'oggetto' => array(
                 'label'=>'Oggetto' 
-            ),                     
-            'lista' => array(
-                'label'=>'Destinatari' 
-            ),
-            'testing' => array(
-                'label'=>'Testing' 
             ),
             'created' => array(
                 'label' => 'Creata',
@@ -28,9 +22,7 @@ class EmailGrid extends Grid {
             'execute' => array(
                 'label' => 'Eseguita',
             ),
-            'processato' => array(
-              'label' => 'Elaborato'  ,
-            ),
+            
             'command' => array(
                 'label'=>'Command',
                 'field' => 'id',

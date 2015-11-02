@@ -5,7 +5,7 @@ require_once __BASE__.'/module/sender/lib/PHPMailer/PHPMailerAutoload.php';
 require_once __BASE__.'/module/sender/grid/SendGrid.php';
 require_once __BASE__.'/module/sender/model/Coda.php';
 require_once __BASE__.'/module/sender/model/Email.php';
-require_once __BASE__.'/module/contact/model/Lista.php';
+require_once __BASE__.'/module/contact/model/Iscrizioni.php';
 require_once __BASE__.'/module/contact/model/Contact.php';
 require_once __BASE__.'/module/config/model/AccountSMTP.php';
 
@@ -13,13 +13,40 @@ class SendController{
     
     public function indexAction(){   
         $app = App::getInstance();		
-		$grid = new SendGrid();		
+		$grid = new SendGrid();
+        $app->appendJs(__HOME__.'/module/sender/js/process.js');
+        
+        
+        $number = count ( Coda::all() ) / 50;
+        //print($number);die();
+        
 		$app->render(array(
-			'title'		=> 'Lista Utenti',
+			'title'		=> 'Coda Email da Inviare',
 			'createUrl' => __HOME__.'/send/create',
+            'realTime'  => __HOME__.'/send/live',
+            'modal'     => '#processModal',
+            'number'    => $number,
+            'action'    => __HOME__.'/send/process',
 			'grid'		=> $grid->html(),
-		)); 			
+		));
+        
     }
+    public function liveAction(){   
+        $app = App::getInstance();
+        
+        $app->appendJs(__HOME__.'/module/sender/js/process.js');
+                
+        $number = count ( Coda::all() ) / 50;
+        
+		$app->render(array(
+			'title'		=> 'Invio email in tempo reale',
+            'modal'     => '#processModal',
+            'number'    => $number,
+            'action'    => __HOME__.'/send/process',
+		));
+        
+    }
+    
     public function createAction() {		
 		$app = App::getInstance();				
 		$app->render(array(
@@ -80,13 +107,13 @@ class SendController{
     
     ##
     public function processAction(){
-        $reply = 'START';
-        $app = App::getInstance();
-        //echo "<pre>";
+        $reply = '';
+        //$app = App::getInstance();
+        $limit = isset( $_POST['limit'] ) && $_POST['limit'] > 50 ? $_POST['limit'] : 50;
         $toSends = Coda::query(
                 array(
                     'processato'  => 0,
-                    'limit'       => 50,
+                    'limit'       => $limit,
                 ));
         
         $server = SendController::findServer();
@@ -107,22 +134,30 @@ class SendController{
          
         foreach ($toSends as $dest){
             $contact = Contact::load($dest->contact_id);
+            if (!$contact->email){ 
+                $dest->server_id = $server->id;
+                $dest->processato = 1;
+                $email->execute = MYSQL_NOW();
+                $dest->note = "Email del contatto <b>{$contact->id}</b> assente!";
+                $dest->store();
+                die("Email del contatto <b>{$contact->id}</b> assente!"); 
+            }
             $mail->addAddress($contact->email, $contact->nome.' '.$contact->cognome);
             $mail->isHTML(true);
-            $email   = Email::load($dest->email_id);
+            $email = Email::load($dest->email_id);
             
             $mail->Subject = $email->oggetto;
             $mail->Body    = $email->messaggio_html;
             $mail->AltBody = $email->messaggio_text;
             
             if(!$mail->send()) {
-                $reply .= 'Errore per '.$dest->email.' info: '.$mail->ErrorInfo."\n";
+                $reply .= 'Errore per '.$contact->email.' info: '.$mail->ErrorInfo."\n\r";
                 $dest->note = $mail->ErrorInfo;
+                $dest->server_id = $server->id;
             } else {
-                $reply .= $dest->email.' Invio avvenuto con successo '."\n";
+                $reply .= $contact->email.' Invio avvenuto con successo '."\n\r";
                 $dest->note = "Invio OK";
-                $dest->execute = MYSQL_NOW();
-                
+                $dest->execute = MYSQL_NOW();                
                 $dest->server_id = $server->id;
                 $dest->processato = 1;
                 $email->execute = MYSQL_NOW();
@@ -152,13 +187,13 @@ class SendController{
                 $mail->Port = $server->port;
                 $mail->SMTPKeepAlive = true;
                 $mail->setFrom($server->sender_mail, $server->sender_name);
-                //var_dump($server);var_dump($mail);die();
+                $reply .= "Cambiato Server nuovo server:".$server->code."\n\r";
             }
         }
-        //echo $reply;
-        $app->redirect(__HOME__.'/send/');
+        $reply .= 'Processo terminato con successo';
+        echo $reply.'<br />';
+        //$app->redirect(__HOME__.'/send/');
     }
-    
     ##
     public static function findServer(){
         $servers = AccountSMTP::query(
@@ -178,13 +213,14 @@ class SendController{
         }
         return $use;
     }
-    
     ##
-    public static function activeServerAction(){
-        $servers = AccountSMTP::query(
+    public static function activeServerAction(){ //azzera giornalmente i conteggi
+        $servers = AccountSMTP::all(); 
+        /*$servers = AccountSMTP::query(
             array(
                 'active'  => 0,
-            ));
+            ));*/
+        echo '<pre>';
         foreach ($servers as $server){
             $diff = abs(strtotime(MYSQL_NOW()) - strtotime($server->last_send));
             $years = floor($diff / (365*60*60*24));
