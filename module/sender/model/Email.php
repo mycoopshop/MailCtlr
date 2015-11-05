@@ -13,6 +13,7 @@ class Email extends Storable {
     public $testing = "";
     
     public $created = MYSQL_DATETIME;    
+    public $lastedit = MYSQL_DATETIME;
     public $execute = MYSQL_DATETIME;
         	
 }

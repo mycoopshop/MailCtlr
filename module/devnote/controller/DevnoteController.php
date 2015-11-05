@@ -44,7 +44,7 @@ class DevnoteController {
 	}
 	public function saveAction() {		
 		$app = App::getInstance();
-		$client = new Redmine\Client('http://redmine.lrdev.net/redmine', '460433207b3808ec35adaf53f3ca744273614551');
+		$client = new Redmine\Client('http://redmine.lrdev.net/redmine', '4a4260fcf054f9a4ebf7c01ff7139cafe9c5bc15');
                 
         $client->api('issue')->create(array(
             'project_id'    => 'mailctlr',

@@ -1,5 +1,6 @@
 <?php
 require_once __BASE__.'/module/contact/grid/ContactGrid.php';
+require_once __BASE__.'/module/contact/grid/ContactModalGrid.php';
 require_once __BASE__.'/module/contact/model/Contact.php';
 require_once __BASE__.'/module/contact/model/Iscrizioni.php';
 require_once __BASE__.'/module/contact/lib/parsecsv.lib.php';
@@ -63,8 +64,20 @@ class ContactController {
 		$item = Contact::build($_POST);
         $item->user_id = $app->user["id"];
 		$item->store();
+        
 		$app->redirect(__HOME__.'/contact/');
 	}
+    
+    ##
+    public function createHaskAction(){
+        $cs = Contact::all();
+        $reply = "";
+        foreach ($cs as $c ){
+            $hask = Contact::makeHask($c->id);
+            $reply .= "C: {$c->id}"."\t"."HASK: {$hask} OK<br />";
+        }
+        echo $reply;
+    }
     
     ##
 	public function gridAction() {
@@ -107,5 +120,22 @@ class ContactController {
         
     }
     
+    ##
+    public function modalSearchAction() {
+		$grid	= new ContactModalGrid();		
+		echo $grid->html();		
+	}
+	
+    ##
+	public function modalGridJsonAction() {
+		$grid	= new ContactModalGrid();		
+		echo json_encode($grid->json());		
+	}
+	
+    ##
+	public function renderAction() {		
+		$item = Contact::load($_POST['id']);
+		echo json_encode($item);
+	}
     
 }

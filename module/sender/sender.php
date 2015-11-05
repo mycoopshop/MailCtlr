@@ -50,6 +50,11 @@ class SenderModule {
             'link'		=> __HOME__.'/send/create'
         ));
         
+        $app->addMenu('navbar',array(
+            'parent'	=> 'navbar-job',
+            'label'		=> 'Processate',
+            'link'		=> __HOME__.'/send/processate'
+        ));
         //ACCESSO RAPIDO
         
         ##

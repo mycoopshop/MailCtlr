@@ -22,12 +22,24 @@
 					<li>
                         <button 
 							type="button" 
+                            id="start"
 							data-placement="bottom" 
 							data-toggle="tooltip" 
 							data-original-title="Torna alla scermata precedente" 
 							class="navbar-btn btn btn-success" 
 							onClick="process( '<?=$data->action?>' , '<?=$data->number?>' );" >
-							<span class="glyphicon glyphicon-plus"></span> START
+							<span class="glyphicon glyphicon-play"></span> START
+						</button>
+                        <button 
+							type="button" 
+                            id="stop"
+                            style="display:none;"
+							data-placement="bottom" 
+							data-toggle="tooltip" 
+							data-original-title="Torna alla scermata precedente" 
+							class="navbar-btn btn btn-danger" 
+							onClick="process_stop();" >
+							<span class="glyphicon glyphicon-stop"></span> Stop
 						</button>
 					</li>
 				</ul>

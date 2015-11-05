@@ -57,7 +57,8 @@ class EmailController{
     public function modifyAction() {
 		$app = App::getInstance();
 		$id = (int) $app->getUrlParam('id');
-		$item = Email::load($id);		
+		$item = Email::load($id);
+        $item->created = MYSQL_NOW();
 		$app->render(array(
 			'title' => 'Modifica Email',
 			'item'	=> $item,			
@@ -66,10 +67,10 @@ class EmailController{
     
     ##
     public function saveAction() {
-        $app = App::getInstance();
-        
+        $app = App::getInstance();        
 		$item = Email::build($_POST);
-        $item->user_id = $app->user["id"];
+        $item->user_id = $app->user["id"];        
+        $item->lastedit = MYSQL_NOW();
 		$item->store();
 		$app->redirect(__HOME__.'/email/');
     }

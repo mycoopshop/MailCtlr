@@ -1,8 +1,8 @@
 <?php
 
 require_once __BASE__.'/module/sender/lib/PHPMailer/PHPMailerAutoload.php';
-
 require_once __BASE__.'/module/sender/grid/SendGrid.php';
+require_once __BASE__.'/module/sender/grid/ProcessateGrid.php';
 require_once __BASE__.'/module/sender/model/Coda.php';
 require_once __BASE__.'/module/sender/model/Email.php';
 require_once __BASE__.'/module/contact/model/Iscrizioni.php';
@@ -14,11 +14,9 @@ class SendController{
     public function indexAction(){   
         $app = App::getInstance();		
 		$grid = new SendGrid();
-        $app->appendJs(__HOME__.'/module/sender/js/process.js');
+        $app->appendJs(__HOME__.'/module/sender/js/process.js');      
         
-        
-        $number = count ( Coda::all() ) / 50;
-        //print($number);die();
+        $number = count ( Coda::all() ) / 30;
         
 		$app->render(array(
 			'title'		=> 'Coda Email da Inviare',
@@ -29,14 +27,23 @@ class SendController{
             'action'    => __HOME__.'/send/process',
 			'grid'		=> $grid->html(),
 		));
+    }
+    public function processateAction(){   
+        $app = App::getInstance();		
+		$grid = new ProcessateGrid();
         
+		$app->render(array(
+			'title'		=> 'Coda Email da Inviare',
+			'createUrl' => __HOME__.'/send/create',
+            'grid'		=> $grid->html(),
+		));
     }
     public function liveAction(){   
         $app = App::getInstance();
         
         $app->appendJs(__HOME__.'/module/sender/js/process.js');
                 
-        $number = count ( Coda::all() ) / 50;
+        $number = count ( Coda::all() ) / 30;
         
 		$app->render(array(
 			'title'		=> 'Invio email in tempo reale',
@@ -46,7 +53,6 @@ class SendController{
 		));
         
     }
-    
     public function createAction() {		
 		$app = App::getInstance();				
 		$app->render(array(
@@ -85,12 +91,17 @@ class SendController{
 		$app = App::getInstance();		
 		
         Coda::addCode($_POST['lista'], $_POST["email"]);
-                
 		$app->redirect(__HOME__.'/send/');
     }
     public function gridAction() {		
 		##
 		$grid = new SendGrid();		
+		##
+		echo json_encode($grid->json());			
+    }
+    public function processategridAction() {		
+		##
+		$grid = new ProcessateGrid();		
 		##
 		echo json_encode($grid->json());			
     }
@@ -104,23 +115,19 @@ class SendController{
 				
 		$app->render(); 			
     }
-    
     ##
     public function processAction(){
         $reply = '';
-        //$app = App::getInstance();
-        $limit = isset( $_POST['limit'] ) && $_POST['limit'] > 50 ? $_POST['limit'] : 50;
+        $limit = isset( $_POST['limit'] ) && $_POST['limit'] > 30 ? $_POST['limit'] : 30;
         $toSends = Coda::query(
                 array(
                     'processato'  => 0,
                     'limit'       => $limit,
                 ));
-        
         $server = SendController::findServer();
         if (!$server){die("non ci sono server");}
         if (!isset($server->host)){die("il server non ha un host valido");}
         
-        //var_dump($server);die();
         $mail = new PHPMailer;
         $mail->isSMTP();
         $mail->Host = $server->host;
@@ -142,17 +149,21 @@ class SendController{
                 $dest->store();
                 die("Email del contatto <b>{$contact->id}</b> assente!"); 
             }
-            $mail->addAddress($contact->email, $contact->nome.' '.$contact->cognome);
-            $mail->isHTML(true);
+            $mail2 = clone $mail;
+            $mail2->addAddress($contact->email, $contact->nome.' '.$contact->cognome);
+            $mail2->isHTML(true);
             $email = Email::load($dest->email_id);
             
-            $mail->Subject = $email->oggetto;
-            $mail->Body    = $email->messaggio_html;
-            $mail->AltBody = $email->messaggio_text;
+            $append_html = "se vuoi cancellarti dalle nostre banche dati clicca il link nel tuo browser <a href='".__HOME__."/remote/deActive/hask/{$contact->hask}' target='_blank'>".__HOME__."/remote/deActive/hask/{$contact->hask}</a>";
+            $append_text = "se vuoi cancellarti dalle nostre banche dati copia e incolla il link nel tuo browser ".__HOME__."/remote/deActive/hask/{$contact->hask}";
             
-            if(!$mail->send()) {
-                $reply .= 'Errore per '.$contact->email.' info: '.$mail->ErrorInfo."\n\r";
-                $dest->note = $mail->ErrorInfo;
+            $mail2->Subject = $email->oggetto;
+            $mail2->Body    = $email->messaggio_html; //.$append_html;
+            $mail2->AltBody = $email->messaggio_text; //.$append_text;
+            
+            if(!$mail2->send()) {
+                $reply .= 'Errore per '.$contact->email.' info: '.$mail2->ErrorInfo."\n\r";
+                $dest->note = $mail2->ErrorInfo;
                 $dest->server_id = $server->id;
             } else {
                 $reply .= $contact->email.' Invio avvenuto con successo '."\n\r";
@@ -166,11 +177,11 @@ class SendController{
                 $server->perc = $server->send * 100 / $server->max_mail;
                 $server->last_send = MYSQL_NOW();                
             }
-            $dest->store();
-            
             if ($server->max_mail == $server->send) {
                 $server->active = 0;
-            }            
+            } 
+            $email->store();
+            $dest->store();
             $server->store();
             if (!$server->active){
                 $mail->SmtpClose();
@@ -192,7 +203,39 @@ class SendController{
         }
         $reply .= 'Processo terminato con successo';
         echo $reply.'<br />';
-        //$app->redirect(__HOME__.'/send/');
+    }
+    ##
+    public function testServerAction(){
+        $reply = '';
+        $data = AccountSMTP::load(5);
+        //$data = $_POST[];
+        $debug = '';
+        
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+        $mail->Host = $data->host;
+        $mail->SMTPAuth = true;
+        $mail->Username = $data->username;
+        $mail->Password = $data->password;
+        $mail->SMTPSecure = $data->connection;
+        $mail->Port = $data->port;
+        $mail->SMTPDebug = 3;
+        $mail->Debugoutput = function($str, $level) {echo "$str<br />";};     
+        
+        
+        if( $mail->smtpConnect() ){
+            $mail->smtpClose();
+            $reply.= "OK";
+        }else{
+            $reply.= $debug."<br />Connection Failed";
+        }
+        
+        echo $reply;
+    }
+    ##
+    public function dropCodaAction(){
+        Coda::drop();
+        echo "Coda Svuotata";
     }
     ##
     public static function findServer(){
@@ -216,17 +259,13 @@ class SendController{
     ##
     public static function activeServerAction(){ //azzera giornalmente i conteggi
         $servers = AccountSMTP::all(); 
-        /*$servers = AccountSMTP::query(
-            array(
-                'active'  => 0,
-            ));*/
         echo '<pre>';
         foreach ($servers as $server){
             $diff = abs(strtotime(MYSQL_NOW()) - strtotime($server->last_send));
             $years = floor($diff / (365*60*60*24));
             $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
             $day = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-
+            
             switch ($server->ever) {
                 case 'day':
                     if ($day >= DAY ){ 
@@ -261,4 +300,96 @@ class SendController{
         } 
         echo "ATTIVATI TUTTI I SERVER.";
     }
-}    
+    ##
+    public function noticePrivacyAction(){
+        $server = SendController::findServer();
+        if (!$server){die("non ci sono server");}
+        if (!isset($server->host)){die("il server non ha un host valido");}
+        
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+        $mail->Host = $server->host;
+        $mail->SMTPAuth = true;
+        $mail->Username = $server->username;
+        $mail->Password = $server->password;
+        $mail->SMTPSecure = $server->connection;
+        $mail->Port = $server->port;
+        $mail->SMTPKeepAlive = true;
+        $mail->setFrom($server->sender_mail, $server->sender_name);
+        
+        $cs = Contact::query(
+                array(
+                    'privacy' => 0,
+                ));
+        $reply = "";
+        foreach ($cs as $contact){
+            if (!$contact->email){ 
+                /*$dest->server_id = $server->id;
+                $dest->processato = 1;
+                $email->execute = MYSQL_NOW();
+                $dest->note = "Email del contatto <b>{$contact->id}</b> assente!";
+                $dest->store();*/
+                die("Email del contatto <b>{$contact->id}</b> assente!"); 
+            }
+            $mail2 = clone $mail;
+            $mail2->addAddress($contact->email, $contact->nome.' '.$contact->cognome);
+            $mail2->isHTML(true);
+            $email = Email::load(9);
+            
+            $find = array('{nome}','{cognome}','{confermaPrivacy}','{deleteContact}');
+            $change = array(
+                $contact->nome,
+                $contact->cognome,
+                __HOME__."/remote/activePrivacy/hask/".$contact->hask,
+                __HOME__."/remote/deActive/hask/".$contact->hask
+            );
+            
+            $mail2->Subject = $email->oggetto;
+            $mail2->Body    = str_replace($find,$change,$email->messaggio_html);
+            $mail2->AltBody = str_replace($find,$change,$email->messaggio_text);
+            
+            if(!$mail2->send()) {
+                $reply .= 'Errore per '.$contact->email.' info: '.$mail2->ErrorInfo."\n\r";
+                $dest->note = $mail2->ErrorInfo;
+                $dest->server_id = $server->id;
+            } else {
+                $reply .= $contact->email.' Invio avvenuto con successo '."\n\r";
+                $email->execute = MYSQL_NOW();
+                $server->send ++;
+                $server->total_send ++;
+                $server->perc = $server->send * 100 / $server->max_mail;
+                $server->last_send = MYSQL_NOW();                
+            }
+            if ($server->max_mail == $server->send) {
+                $server->active = 0;
+            } 
+            $email->store();
+            $server->store();
+            if (!$server->active){
+                $mail->SmtpClose();
+                $server = SendController::findServer();
+                if (!$server){die("non ci sono server");}
+                if (!isset($server->host)){die("il server non ha un host valido");}
+                $mail = new PHPMailer;
+                $mail->isSMTP();
+                $mail->Host = $server->host;
+                $mail->SMTPAuth = true;
+                $mail->Username = $server->username;
+                $mail->Password = $server->password;
+                $mail->SMTPSecure = $server->connection;
+                $mail->Port = $server->port;
+                $mail->SMTPKeepAlive = true;
+                $mail->setFrom($server->sender_mail, $server->sender_name);
+                $reply .= "Cambiato Server nuovo server:".$server->code."\n\r";
+            }
+        }
+        echo $reply;
+        
+    }
+    
+    ##
+    public function cronAction(){
+        
+    }
+    
+}

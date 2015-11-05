@@ -8,11 +8,81 @@
 		<div class="form-group">
 			<div class="col-sm-6" class="form-control">
 				<label >Lista</label>
-				<input type="text" class="form-control" name="lista_id" value="<?=$data->item->lista_id?>"/>                  
+                <div class="input-group">
+                    <input 
+                        type="text"
+                        class="form-control"
+                        id="lista_testuale"
+                        name="lista_testuale"
+                        value=""
+                        data-ui-testing="nothing"
+                    />
+                    <span class="input-group-btn">
+                        <button 
+                            data-toggle="modal"
+                            data-target="#modal-search"
+                            data-render-modal="
+                                    title:'Cerca Lista',
+                                    source:'lista/modalSearch',
+                                    target:'[name=lista_id]',
+                                    size:'lg'
+                                    "										
+                            onclick="return false;"
+                            class="btn btn-default"
+                            >
+                            &nbsp;<i class="glyphicon glyphicon-search"></i>&nbsp;
+                        </button>
+                    </span>						
+                </div>
+                <input 
+                    type="hidden" 
+                    name="lista_id"
+                    data-ui-render="
+                        source:'lista/render',
+                        target:'[name=lista_testuale]',
+                        layout:'{nome}',
+                        "
+                    value="<?=@$data->item->lista_id?>" 
+                />
 			</div>
             <div class="col-sm-6" class="form-control">
 				<label >Contatto</label>
-				<input type="text" class="form-control" name="contatto_id" value="<?=$data->item->contatto_id?>"/>                  
+				<div class="input-group">
+                    <input 
+                        type="text"
+                        class="form-control"
+                        id="contatto_testuale"
+                        name="contatto_testuale"
+                        value=""
+                        data-ui-testing="nothing"
+                    />
+                    <span class="input-group-btn">
+                        <button 
+                            data-toggle="modal"
+                            data-target="#modal-search"
+                            data-render-modal="
+                                    title:'Cerca Contatto',
+                                    source:'contact/modalSearch',
+                                    target:'[name=contatto_id]',
+                                    size:'lg'
+                                    "										
+                            onclick="return false;"
+                            class="btn btn-default"
+                            >
+                            &nbsp;<i class="glyphicon glyphicon-search"></i>&nbsp;
+                        </button>
+                    </span>						
+                </div>
+                <input 
+                    type="hidden" 
+                    name="contatto_id"
+                    data-ui-render="
+                        source:'contact/render',
+                        target:'[name=contatto_testuale]',
+                        layout:'{nome} {cognome} {email}',
+                        "
+                    value="<?=@$data->item->contatto_id?>" 
+                />
 			</div>
             
         </div>

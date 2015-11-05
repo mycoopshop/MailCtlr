@@ -433,7 +433,11 @@ class schemadb {
 			case 'string':						
 				$d['Type'] = 'varchar(255)';
 				break;
-
+            
+            case 'text':						
+				$d['Type'] = 'text';
+				break;
+            
 			case 'boolean': 
 				$d['Type'] = 'tinyint(1)';
 				$d['Default'] = (int)$value;
@@ -491,6 +495,7 @@ class schemadb {
 				if (preg_match('/^\%\|([a-z]+):(.*)\|\%$/i',$value,$d)) {
 					switch($d[1]) {
 						case 'key': return $d[2];
+                        case 'type': return $d[2];
 						case 'schema': return 'schema';
 					}					
 				} else if (schemadb::get_class($value)) {
@@ -554,6 +559,10 @@ class schemadb {
 			case 'string':
 				return (string) $notation;
 			
+            ##
+            case 'text':
+                return (string) $notation;
+                
 			##	
 			case 'float': 
 				return (float) $notation;

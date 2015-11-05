@@ -6,20 +6,21 @@ class MailCtlrWebApp extends PrivateWebApp {
 	public $acl = array(
 		
         'public' => array(
-			'*'                             => false,
-			'userrole.Login.*'              => true,
-            'payment.Payment.*'             => true,
-            'contact.Iscrizioni.extcreate'  => true,
+			'*'                                 => false,
+			'userrole.Login.*'                  => true,
+            'payment.Payment.*'                 => true,
+            'contact.Iscrizioni.extcreate'      => true,
             'changelog.Changelog.changelogjson' => true,
-            'sender.Send.process'           => true,
-            'sender.Send.activeserver'      => true,
+            'sender.Send.process'               => true,
+            'sender.Send.activeserver'          => true,
+            'contact.Remote.*'                  => true,
             
             
 		),
 		'user' => array(
-			'*'                                         => true,   
-            'devnote.*'                                 => false,
-            'config.*'                                  => false,
+			'*'                                 => true,   
+            'devnote.*'                         => false,
+            'config.*'                          => false,
 		),
 		'admin' => array(
 			'*'                                 => true,
@@ -33,3 +34,4 @@ class MailCtlrWebApp extends PrivateWebApp {
 	
 }
 date_default_timezone_set ('Europe/Rome');
+ini_set('memory_limit', '2048M');
