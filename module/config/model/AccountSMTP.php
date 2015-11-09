@@ -20,8 +20,8 @@ class AccountSMTP extends Storable {
     public $replyTo = "";
     
     public $max_mail = 0;
-    public $ever = array('day','week','month','year','onetime');
-    public $max_mail_day = 0;
+    public $ever = array('day','week','month','year');
+    
     
     
     public $send = 0;
@@ -32,12 +32,14 @@ class AccountSMTP extends Storable {
     
     public $active = 1;
     
+    
     ##
     public static function findServer(){
         $servers = AccountSMTP::query(
                 array(
                     'active'  => 1,
                 ));
+        $use = (OBJECT) array();
         $perc = 110;
         foreach ($servers as $server){
             if ( $server->perc < $perc ){ //trova quello più saturo
@@ -54,9 +56,9 @@ class AccountSMTP extends Storable {
     public static function getMaxMail($account="all"){
         
         $append = $account != 'all' ? ' WHERE id = "'.$account.'"' : ' ';
-        $sql = 'SELECT SUM(max_mail_day) AS maxmail FROM '.self::table().$append;
+        $sql = 'SELECT SUM(max_mail) AS maxmail FROM '.self::table().$append;
         $res = schemadb::execute('row',$sql);
-        return $res['maxmail'];
+        return number_format($res['maxmail'],2,",",".");
     }
     
     ##
@@ -65,7 +67,7 @@ class AccountSMTP extends Storable {
         $append = $account != 'all' ? ' WHERE id = "'.$account.'"' : ' ';
         $sql = 'SELECT SUM(total_send) AS mailtotali FROM '.self::table().$append;
         $res = schemadb::execute('row',$sql);
-        return $res['mailtotali'];
+        return number_format($res['mailtotali'],2,",",".");
     }
     
     ##
@@ -74,14 +76,13 @@ class AccountSMTP extends Storable {
         $append = $account != 'all' ? ' WHERE id = "'.$account.'"' : ' ';
         $sql = 'SELECT SUM(send) AS inviate FROM '.self::table().$append;
         $res = schemadb::execute('row',$sql);
-        return $res['inviate'];
+        return number_format($res['inviate'],2,",",".");
     }
     
     ##
     public static function getRemainMail($account="all"){
         $remain = self::getMaxMail() - self::getInviateMail();
-        return $remain;
+        return number_format($remain,2,",",".");
     }
-    
 }
 AccountSMTP::schemadb_update();
