@@ -1,6 +1,7 @@
 <?php
 
 require_once __BASE__.'/module/sender/lib/PHPMailer/PHPMailerAutoload.php';
+require_once __BASE__.'/module/sender/lib/checkContact.php';
 require_once __BASE__.'/module/sender/grid/SendGrid.php';
 require_once __BASE__.'/module/sender/grid/ProcessateGrid.php';
 require_once __BASE__.'/module/sender/model/Coda.php';
@@ -174,10 +175,10 @@ class SendController{
                 $email->execute = MYSQL_NOW();
                 $server->send ++;
                 $server->total_send ++;
-                $server->perc = $server->send * 100 / $server->max_mail;
+                $server->perc = $server->send * 100 / $server->max_mail_day;
                 $server->last_send = MYSQL_NOW();                
             }
-            if ($server->max_mail == $server->send) {
+            if ($server->max_mail_day == $server->send) {
                 $server->active = 0;
             } 
             $email->store();
@@ -256,50 +257,7 @@ class SendController{
         }
         return $use;
     }
-    ##
-    public static function activeServerAction(){ //azzera giornalmente i conteggi
-        $servers = AccountSMTP::all(); 
-        echo '<pre>';
-        foreach ($servers as $server){
-            $diff = abs(strtotime(MYSQL_NOW()) - strtotime($server->last_send));
-            $years = floor($diff / (365*60*60*24));
-            $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-            $day = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-            
-            switch ($server->ever) {
-                case 'day':
-                    if ($day >= DAY ){ 
-                        $server->active = 1;
-                        $server->send = 0;
-                        echo $server->id." ATTIVATO.<br />";
-                    }
-                    break;
-                case 'month':
-                    if ($day >= MONTH ){ 
-                        $server->active = 1;
-                        $server->send = 0;
-                        echo $server->id." ATTIVATO.<br />";
-                    }
-                    break;
-                case 'year':
-                    if ($day >= YEAR ){ 
-                        $server->active = 1;
-                        $server->send = 0;
-                        echo $server->id." ATTIVATO.<br />";
-                    }
-                    break;
-                case 'week':
-                    if ($day >= WEEK ){ 
-                        $server->active = 1;
-                        $server->send = 0;
-                        echo $server->id." ATTIVATO.<br />";
-                    }
-                    break;
-            }
-            $server->store();
-        } 
-        echo "ATTIVATI TUTTI I SERVER.";
-    }
+    
     ##
     public function noticePrivacyAction(){
         $server = SendController::findServer();
@@ -392,4 +350,38 @@ class SendController{
         
     }
     
+    ##
+    public function cleanContactAction(){
+        
+        $reply = '';
+        $data = AccountSMTP::load(5);
+        //$data = $_POST[];
+        //$debug = '';
+        
+        $mail = new checkContact();
+        $mail->isSMTP();
+        $mail->Host = $data->host;
+        $mail->SMTPAuth = true;
+        $mail->Username = $data->username;
+        $mail->Password = $data->password;
+        $mail->SMTPSecure = $data->connection;
+        $mail->Port = $data->port;
+        
+        echo $mail->checkConact("vincenzo@ctlr.it");die();
+        
+        $cs = Contact::all();
+        foreach ($cs as $i => $c){
+            
+            $rix = $mail->smtp->recipient($c->email); //recipient($c->email);
+            var_dump($rix);die();
+        }
+        
+        
+        echo $reply;
+    }
+    
+    
+    
+    
 }
+

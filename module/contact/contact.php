@@ -31,16 +31,30 @@ class ContactModule {
         ##
         $app->addMenu('navbar',array(
             'parent'	=> 'navbar-contact',
-            'label'		=> 'Elenco Contatti',
+            'label'		=> 'Tutti i Contatti',
             'link'		=> __HOME__.'/contact/'
         ));			
 		
         ##
         $app->addMenu('navbar',array(
             'parent'	=> 'navbar-contact',
+            'label'		=> 'Contatti Verificati',
+            'link'		=> __HOME__.'/contact/checkedOk'
+        ));
+        
+        ##
+        $app->addMenu('navbar',array(
+            'parent'	=> 'navbar-contact',
             'label'		=> 'Aggiungi Contatti',
             'link'		=> __HOME__.'/contact/create'
         ));			
+        
+        ##
+        $app->addMenu('navbar',array(
+            'parent'	=> 'navbar-contact',
+            'label'		=> 'Pulisci Contatti',
+            'link'		=> __HOME__.'/contact/liveCheck'
+        ));
         
         ##
         $app->addMenu('navbar',array(

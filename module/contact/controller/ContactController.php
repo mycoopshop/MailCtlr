@@ -1,9 +1,12 @@
 <?php
 require_once __BASE__.'/module/contact/grid/ContactGrid.php';
+require_once __BASE__.'/module/contact/grid/ContactCheckedGrid.php';
 require_once __BASE__.'/module/contact/grid/ContactModalGrid.php';
 require_once __BASE__.'/module/contact/model/Contact.php';
 require_once __BASE__.'/module/contact/model/Iscrizioni.php';
 require_once __BASE__.'/module/contact/lib/parsecsv.lib.php';
+
+
 
 class ContactController {
     
@@ -17,6 +20,24 @@ class ContactController {
             'importCSV' => __HOME__.'/contact/importCSV',
 			'grid'		=> $grid->html(),
 		));
+	}
+    
+    ##
+    public function checkedOkAction(){
+        $app = App::getInstance();		
+		$grid = new ContactCheckedGrid();
+		$app->render(array(
+			'title'		=> 'Contatti Verificati',
+			'createUrl' => __HOME__.'/contact/create',
+            'importCSV' => __HOME__.'/contact/importCSV',
+			'grid'		=> $grid->html(),
+		));
+    }
+    
+    ##
+	public function gridCheckedAction() {
+		$grid = new ContactCheckedGrid();
+		echo json_encode($grid->json());
 	}
     
     ##
@@ -62,10 +83,16 @@ class ContactController {
 	public function saveAction() {		
 		$app = App::getInstance();		
 		$item = Contact::build($_POST);
-        $item->user_id = $app->user["id"];
-		$item->store();
+        if (Contact::checkContact($item->email)){
+            $item->user_id = $app->user["id"];
+            $item->store();
+            $app->redirect(__HOME__.'/contact/');
+        }else{
+            $app->redirect(__HOME__.'/contact/create/msg/non%20valido!');
+        }
         
-		$app->redirect(__HOME__.'/contact/');
+        
+		//$app->redirect(__HOME__.'/contact/');
 	}
     
     ##
@@ -138,4 +165,66 @@ class ContactController {
 		echo json_encode($item);
 	}
     
+    /*
+    public function cleanContactAction(){
+        
+        $reply = "START CLEAN CONTACT ACTION <br />";
+        $reply .= "DELETE DUPLICATE START<br />";
+        $reply .= $this->deleteDuplicate();
+        $reply .= "DELETE DUPLICATE STOP<br />VALIDATION ALL CONTACT START<br />";
+        $d = Contact::query(
+                array(
+                    'verificato'  => 0,
+                    'limit'       => 15,
+                ));
+        foreach ($d as $c ){
+            if (!Contact::checkContact($c->email)){
+                $reply .= "Contatto {$c->id} non valido! [{$c->email}]...";
+                Contact::delete($c->id);
+                $reply .= "...ELIMINATO<br />";
+            }else{
+                $v = new Minibots();
+                $rx = $v->doSMTPValidation($c->email,"vincenzo@ctlr.it");
+                if ($rx[1]==550){
+                    //echo $rx;die();
+                    $reply .= "Contatto {$c->id} non valido [VERIFICA SMTP FALLITA]! [{$c->email}]...";
+                    Contact::delete($c->id);
+                    $reply .= "...ELIMINATO<br />";
+                }else{
+                    $reply .= "Contatto {$c->id} valido! [VERIFICA SMTP SUPERATA]! [{$c->email}]...";
+                    $c->verificato = 1;
+                    $c->store();
+                    $reply .= "...AGGIORNATO<br />";
+                }
+            }
+        }
+        $reply .= "VALIDATION ALL CONTACT STOP";
+        echo $reply;
+    }
+    */
+    ##
+    public function testAction(){
+        /*$v = new Minibots();
+        $rx = $v->doSMTPValidation("pcid@ctlr.it","vincenzo@ctlr.it",true);
+        var_dump($rx);
+        echo $rx[1];*/
+        echo "Ciao";        
+    }
+    
+    ##
+    public function liveCheckAction(){
+        $app = App::getInstance();
+        
+        $app->appendJs(__HOME__.'/module/contact/js/process.js'); //?t='.time());
+        
+        $tot = Contact::count('verify0');
+        $num =  $tot / 1;
+        
+        $app->render(array(
+			'totale'    => $num,
+            'number'	=> $num,
+            'action'    => __HOME__.'/remote/cleanContact',
+		));
+        
+    }
 }
