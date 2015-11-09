@@ -49,7 +49,7 @@ class Coda extends Storable {
     public static function attendSend(){
         $sql = 'SELECT COUNT(id) AS totale FROM '.self::table();
         $res = schemadb::execute('row',$sql);
-        return number_format($res['totale'],0,",",".");
+        return $res['totale'];
     }
 }
 Coda::schemadb_update();

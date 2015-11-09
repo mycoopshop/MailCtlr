@@ -23,11 +23,25 @@ class Contact extends Storable {
     public $privacy_url = "";
     public $type = array('html','text');
     public $hask = "";
+    public $verificato = 0;
     ##
-    public static function count(){
-        $sql = 'SELECT COUNT(id) AS totale FROM '.self::table();
+    public static function count($type=""){
+        $append = " ";
+        switch ($type) {
+            case 'verify0':
+                $append .= " WHERE verificato = '0' ";
+                break;
+            case 'verify1':
+                $append .= " WHERE verificato = '1' ";
+                break;
+            default:
+                $append .= "";
+                break;
+        }
+        
+        $sql = 'SELECT COUNT(id) AS totale FROM '.self::table().$append;
         $res = schemadb::execute('row',$sql);
-        return number_format($res['totale'],0,",",".");
+        return $res['totale'];
     }
     ##
     public static function makeHask($contact){
@@ -76,6 +90,18 @@ class Contact extends Storable {
         $c->lastedit = MYSQL_NOW();
         $c->privacy = 0;
         $c->store();
+    }
+    ##
+    public static function checkContact($c){
+        return filter_var($c, FILTER_VALIDATE_EMAIL);
+    }
+    ##
+    public static function duplicate(){
+        $sql =      " SELECT c.id, COUNT(c.id) as tot "
+                  . " FROM (SELECT tb.* FROM ".self::table()." AS tb ORDER BY id DESC ) as c "
+                  . " GROUP BY email "
+                  . " HAVING tot > 1 ";
+        return schemadb::execute('results',$sql);
     }
     
 }

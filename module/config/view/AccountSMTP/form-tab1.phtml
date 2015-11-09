@@ -47,7 +47,17 @@
         <div class="form-group">
 			<div class="col-sm-6" class="form-control">
 				<label>Ever</label>
-				<input type="text" class="form-control" name="ever" value="<?=$data->item->ever?>"/>                  
+                <select class="form-control" name="ever">
+                    <option disabled="disabled">Scegli</option>
+                    
+                    <option value="day" <?=$data->item->ever=='day'?'selected':'';?>>Giorno</option>
+                    <option value="week" <?=$data->item->ever=='week'?'selected':'';?>>Settimana</option>
+                    <option value="month" <?=$data->item->ever=='month'?'selected':'';?>>Mese</option>
+                    <option value="year" <?=$data->item->ever=='year'?'selected':'';?>>Anno</option>
+                    <option value="onetime" <?=$data->item->ever=='onetime'?'selected':'';?>>Una Tantum</option>
+                    
+                </select> 
+                 
 			</div>
             <div class="col-sm-6" class="form-control">
 				<label >Number</label>

@@ -12,7 +12,6 @@ class MailCtlrWebApp extends PrivateWebApp {
             'contact.Iscrizioni.extcreate'      => true,
             'changelog.Changelog.changelogjson' => true,
             'sender.Send.process'               => true,
-            'sender.Send.activeserver'          => true,
             'contact.Remote.*'                  => true,
             
             
@@ -35,3 +34,4 @@ class MailCtlrWebApp extends PrivateWebApp {
 }
 date_default_timezone_set ('Europe/Rome');
 ini_set('memory_limit', '2048M');
+//ini_set('max_execution_time', 0);

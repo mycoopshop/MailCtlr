@@ -43,8 +43,8 @@ class IscrizioniGrid extends Grid {
                 'field' => 'id',
                 'sortable' =>false,
                 'html' =>
-                    '<a href="'.__HOME__.'/iscrizioni/dettaglio/id/{?}" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-th-list"></i> Iscritti</a> ',//.
-                    //'<a href="'.__HOME__.'/iscrizioni/formIscrizione/id/{?}" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-th-list"></i> Raccogli iscrizioni</a> ',
+                    '<a href="'.__HOME__.'/iscrizioni/dettaglio/id/{?}" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-th-list"></i> Iscritti</a> '.
+                    '<a href="'.__HOME__.'/iscrizioni/formIscrizione/id/{?}" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-th-list"></i> Raccogli iscrizioni</a> ',
 			),
             
 		);		

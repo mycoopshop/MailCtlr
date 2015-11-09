@@ -27,7 +27,7 @@
 							data-toggle="tooltip" 
 							data-original-title="Torna alla scermata precedente" 
 							class="navbar-btn btn btn-success" 
-							onClick="process( '<?=$data->action?>' , '<?=$data->number?>' );" >
+							onClick="process( '<?=$data->action?>' , <?=$data->number?> , <?=@$data->totale?> );" >
 							<span class="glyphicon glyphicon-play"></span> START
 						</button>
                         <button 
@@ -40,7 +40,7 @@
 							class="navbar-btn btn btn-danger" 
 							onClick="process_stop();" >
 							<span class="glyphicon glyphicon-stop"></span> Stop
-						</button>
+						</button>                        
 					</li>
 				</ul>
 			</div>
