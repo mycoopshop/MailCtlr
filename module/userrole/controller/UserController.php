@@ -2,7 +2,7 @@
 require_once __BASE__.'/module/userrole/grid/UserGrid.php';
 class UserController{
     public function indexAction(){   
-                $app = App::getInstance();		
+        $app = App::getInstance();		
 		$grid = new UserGrid();		
 		$app->render(array(
 			'title'		=> 'Lista Utenti',

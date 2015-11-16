@@ -89,9 +89,9 @@ class App {
 		## prepare acl query
 		## test ACL permission for this module/controller/action
 		$this->request['acl'] = 
-			$this->request['module'].'.'. 
-			$this->request['name'].'.'. 
-			$this->request['action'];		
+        $this->request['module'].'.'. 
+        $this->request['name'].'.'. 
+        $this->request['action'];		
 	}
 	
 	

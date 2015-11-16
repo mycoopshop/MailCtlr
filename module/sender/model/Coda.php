@@ -47,10 +47,30 @@ class Coda extends Storable {
     
     ##
     public static function attendSend(){
-        $sql = 'SELECT COUNT(id) AS totale FROM '.self::table();
+        return self::count('verify0');
+    }
+    
+    ##
+    public static function count($type=""){
+        $append = " ";
+        switch ($type) {
+            case 'verify0':
+                $append .= " WHERE processato = '0' ";
+                break;
+            case 'verify1':
+                $append .= " WHERE processato = '1' ";
+                break;
+            default:
+                $append .= "";
+                break;
+        }
+        
+        $sql = 'SELECT COUNT(id) AS totale FROM '.self::table().$append;
         $res = schemadb::execute('row',$sql);
         return $res['totale'];
     }
+    
+    
 }
 Coda::schemadb_update();
 

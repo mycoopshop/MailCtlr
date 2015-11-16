@@ -2,6 +2,7 @@
 
 require_once __BASE__.'/module/contact/grid/ListaGrid.php';
 require_once __BASE__.'/module/contact/grid/ListaModalGrid.php';
+require_once __BASE__.'/module/contact/grid/ListaSendModalGrid.php';
 require_once __BASE__.'/module/contact/model/Lista.php';
 require_once __BASE__.'/module/contact/model/Iscrizioni.php';
 require_once __BASE__.'/module/contact/model/Contact.php';
@@ -113,6 +114,18 @@ class ListaController {
 		echo json_encode($grid->json());		
 	}
 	
+    ##
+    public function modalSearchSendAction() {
+		$grid	= new ListaSendModalGrid();		
+		echo $grid->html();		
+	}
+    
+    ##
+	public function modalGridJsonSendAction() {
+		$grid	= new ListaSendModalGrid();		
+		echo json_encode($grid->json());		
+	}
+    
     ##
 	public function renderAction() {		
 		$item = Lista::load($_POST['id']);

@@ -4,14 +4,14 @@
 Inserisci il form all'interno del tuo sito web per raccogliere nuove iscrizioni alla lista <b><?=@$data->lista->nome?></b>
 <br /><br />
 
-<pre>
-<?=htmlspecialchars('
-<form action="'.__HOME__.'/iscrizioni/extCreate/" method="post">
+<pre><?=htmlspecialchars('
+<form action="'.__HOME__.'/remote/subscribe/" method="post">
     <input type="hidden" name="lista" value="'.@$data->lista->id.'" />
     <input type="email" name="email" value="" placeholder="Inserisci la tua email" />
     <input type="text" name="nome" value="" placeholder="Insersici il tuo nome" />
+    <input type="text" name="cognome" value="" placeholder="Insersici il tuo cognome" />
     
-    <input type="radio" name="privacy" value=""/>Acconsento al trattamento della <a href="'.@$data->lista->privacy.'">privacy</a>.
+    <input type="radio" name="privacy" value="1"/>Acconsento al trattamento della <a href="'.@$data->lista->privacy_url.'">privacy</a>.
     <input type="submit" value="Iscrivimi" />
     <input type="hidden" name="return" value="'.__HOME__.'" />
 </form>');?>

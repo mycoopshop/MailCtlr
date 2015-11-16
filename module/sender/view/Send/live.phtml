@@ -1,8 +1,44 @@
-<?php include(__THEME__.'/nav-live.phtml') ?>
-
-
 <div class="container">
-    <h2>Premi il tasto START in alto a Destra per iniziare il processo di invio!</h2>
-    <br /><br />
-    <pre class="result"></pre>
+    <h2>Premi Start per avviare il processo d'invio in tempo reale!</h2>
+    <h4>Email da inviare oggi <b id="remain"><?=@$data->number;?></b> di <b><?=@$data->totale;?></b></h4>
+    <br />
+    <div class="row">
+        <div class="col-sm-1">
+            <button 
+                type="button" 
+                id="start"
+                data-placement="bottom" 
+                data-toggle="tooltip" 
+                data-original-title="Torna alla scermata precedente" 
+                class="navbar-btn btn btn-success" 
+                onClick="process( '<?=$data->action?>' , <?=$data->number?> , <?=@$data->totale?> );" >
+                <span class="glyphicon glyphicon-play"></span> START
+            </button>
+            <button 
+                type="button" 
+                id="stop"
+                style="display:none;"
+                data-placement="bottom" 
+                data-toggle="tooltip" 
+                data-original-title="Torna alla scermata precedente" 
+                class="navbar-btn btn btn-danger" 
+                onClick="process_stop();" >
+                <span class="glyphicon glyphicon-stop"></span> Stop
+            </button> 
+        </div>
+        <div class="col-sm-11">
+            <div class="progress">
+                <div 
+                    id = "progress"
+                    class="progress-bar progress-bar-striped active" 
+                    role="progressbar" 
+                    aria-valuemax="100" 
+                    style="width: 0%">
+                        0% Complete
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <textarea rows="20" readonly="readonly" class="result form-control"></textarea>
 </div>

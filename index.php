@@ -1,6 +1,6 @@
 <?php
 define('__NAME__','mailctlr');
-define('__MODE__','alpha');
+define('__MODE__','dev');
 
 require_once 'bootstrap.php';
 

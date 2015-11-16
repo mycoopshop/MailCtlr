@@ -79,7 +79,7 @@ class IscrizioniController {
     public function deleteAction(){
         $app = App::getInstance();		
 		$id = (int) $app->getUrlParam('id');		
-		Lista::delete($id);		
+		Iscrizioni::delete($id);		
 		$app->redirect(__HOME__.'/iscrizioni/');
     }
     
@@ -94,33 +94,6 @@ class IscrizioniController {
 			'title' => 'Form raccolta email',
 			'lista'	=> $lista,
 		));
-    }
-    
-    ##
-    public function extCreateAction(){
-        //echo "ciao";die();
-        $app = App::getInstance();
-        $lista = $_POST["lista"];
-        $email = $_POST["email"];
-        $nome = $_POST["nome"];
-        
-        
-        $id_c = Contact::submit(array(
-                'nome'    =>  $nome,
-                'type'       =>  'html',
-                'email'      => $email,
-                'iscritto'  => MYSQL_NOW(),
-                'lastedit' => MYSQL_NOW(),                
-                
-            ));
-        Iscrizioni::submit(array(
-                'lista_id'    =>  $lista,
-                'contatto_id'       =>  $id_c->id,
-                'creata'  => MYSQL_NOW(),                
-            ));
-        
-		$app->redirect($_POST["return"]);
-        
     }
     
     ##

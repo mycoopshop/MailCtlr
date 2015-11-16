@@ -35,7 +35,7 @@ class WebApp extends App {
 		}
 		
 		##
-		$this->theme = 'default';
+		$this->theme = $config['default']['theme']; 
 		
 		##
 		define('__LOGO__',__URL__.(isset($config['logo'])?$config['logo']:'/public/images/logo.png'));					

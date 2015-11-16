@@ -8,7 +8,9 @@ class Lista extends Storable {
     public $nome = "";
     public $descrizione = "";
     public $creata = MYSQL_DATETIME;
-               
+    
+    public $privacy_url = "";
+    
     ##
     public static function count(){
         $sql = 'SELECT COUNT(id) AS totale FROM '.self::table();

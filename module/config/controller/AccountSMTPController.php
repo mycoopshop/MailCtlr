@@ -59,6 +59,13 @@ class AccountSMTPController {
 		$app = App::getInstance();		
 		$item = AccountSMTP::build($_POST);
         $item->last_edit = MYSQL_NOW();
+        switch ($item->ever) {
+            case 'day': $item->max_mail_day = $item->max_mail/ DAY;break;
+            case 'month': $item->max_mail_day = $item->max_mail / MONTH;break;
+            case 'year': $item->max_mail_day = $item->max_mail / YEAR; break;
+            case 'week': $item->max_mail_day = $item->max_mail / WEEK; break;
+            case 'onetime': $item->max_mail_day = $item->max_mail; break;
+        }
 		$item->store();		
 		$app->redirect(__HOME__.'/accountSMTP/');
 	}

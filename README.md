@@ -36,12 +36,14 @@ RewriteRule . /folder/index.php [L]
 MailCtlr is licensed GNU AFFERO GENERAL PUBLIC LICENSE http://www.gnu.org/licenses/agpl-3.0.html 
 
 
-# Roadmap for beta version
+# Roadmap
 
- - Import contact from a .csv file
- - Registration to list form website 
+ - Import contact from a .csv file 
  - Automatic upgrade to the new version
  - Statistics on sending: email receipts, open (opening number), deleted
  - Autoresponders for default actions: registration, cancellation, modification, (you can also create your actions)
  - Website for Application
+ - Support Multilanguage
+ - [DONE!] Registration to list form website 
+ - [DONE!] Check Existence Contacts (check SMTP)
  - [DONE!] Port to GitHub

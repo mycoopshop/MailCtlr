@@ -96,17 +96,6 @@ class ContactController {
 	}
     
     ##
-    public function createHaskAction(){
-        $cs = Contact::all();
-        $reply = "";
-        foreach ($cs as $c ){
-            $hask = Contact::makeHask($c->id);
-            $reply .= "C: {$c->id}"."\t"."HASK: {$hask} OK<br />";
-        }
-        echo $reply;
-    }
-    
-    ##
 	public function gridAction() {
 		$grid = new ContactGrid();
 		echo json_encode($grid->json());
@@ -165,43 +154,6 @@ class ContactController {
 		echo json_encode($item);
 	}
     
-    /*
-    public function cleanContactAction(){
-        
-        $reply = "START CLEAN CONTACT ACTION <br />";
-        $reply .= "DELETE DUPLICATE START<br />";
-        $reply .= $this->deleteDuplicate();
-        $reply .= "DELETE DUPLICATE STOP<br />VALIDATION ALL CONTACT START<br />";
-        $d = Contact::query(
-                array(
-                    'verificato'  => 0,
-                    'limit'       => 15,
-                ));
-        foreach ($d as $c ){
-            if (!Contact::checkContact($c->email)){
-                $reply .= "Contatto {$c->id} non valido! [{$c->email}]...";
-                Contact::delete($c->id);
-                $reply .= "...ELIMINATO<br />";
-            }else{
-                $v = new Minibots();
-                $rx = $v->doSMTPValidation($c->email,"vincenzo@ctlr.it");
-                if ($rx[1]==550){
-                    //echo $rx;die();
-                    $reply .= "Contatto {$c->id} non valido [VERIFICA SMTP FALLITA]! [{$c->email}]...";
-                    Contact::delete($c->id);
-                    $reply .= "...ELIMINATO<br />";
-                }else{
-                    $reply .= "Contatto {$c->id} valido! [VERIFICA SMTP SUPERATA]! [{$c->email}]...";
-                    $c->verificato = 1;
-                    $c->store();
-                    $reply .= "...AGGIORNATO<br />";
-                }
-            }
-        }
-        $reply .= "VALIDATION ALL CONTACT STOP";
-        echo $reply;
-    }
-    */
     ##
     public function testAction(){
         /*$v = new Minibots();
@@ -227,4 +179,6 @@ class ContactController {
 		));
         
     }
+    
+    
 }

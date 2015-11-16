@@ -11,7 +11,7 @@
         <h4 class="modal-title" id="myModalLabel">Processamento coda d'invio</h4>
       </div>
       <div class="modal-body">
-          <button class="btn btn-success" id="start" onclick="process( '<?=$data->action?>' , '<?=$data->number?>' );"><span class="glyphicon glyphicon-play"></span>  START</button>
+          <button class="btn btn-success" id="start" onclick="process( '<?=$data->action?>' , <?=$data->number?> , <?=@$data->totale?> );"><span class="glyphicon glyphicon-play"></span>  START</button>
           <button class="btn btn-danger" style="display:none;" id="stop" onclick="process_stop();"><span class="glyphicon glyphicon-stop"></span> STOP</button>
           
           <br /><br />

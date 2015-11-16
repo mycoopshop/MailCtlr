@@ -25,6 +25,14 @@ class Iscrizioni extends Storable {
         );
     }
     
+    ##
+    public static function duplicate(){
+        $sql =      " SELECT tb.id, COUNT(tb.contatto_id) as tot "
+                  . " FROM (SELECT tb.* FROM ".self::table()." AS tb ORDER BY id DESC ) as tb "
+                  . " GROUP BY contatto_id "
+                  . " HAVING tot > 1 ";
+        return schemadb::execute('results',$sql);
+    }
+    
 }
-
 Iscrizioni::schemadb_update();

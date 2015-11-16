@@ -9,7 +9,7 @@ define('YEAR',365); // in giorni
 return array(
 	
 	##
-	'debug' => true,
+	'debug' => false,
 	
 	##
 	'name' => 'MailCtlr',

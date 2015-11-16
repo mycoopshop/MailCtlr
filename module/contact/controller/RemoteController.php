@@ -4,7 +4,9 @@ require_once __BASE__.'/module/config/model/AccountSMTP.php';
 require_once __BASE__.'/module/contact/model/Contact.php';
 require_once __BASE__.'/module/sender/model/Coda.php';
 require_once __BASE__.'/module/contact/model/Iscrizioni.php';
-require_once __BASE__.'/module/contact/lib/smtpvalidate.php';
+
+require_once __BASE__.'/module/sender/lib/PHPMailer/PHPMailerAutoload.php';
+require_once __BASE__.'/module/sender/model/Email.php';
 
 class RemoteController {
     
@@ -21,7 +23,7 @@ class RemoteController {
 		$app = App::getInstance();		
 		$hask = (string) $app->getUrlParam('hask');
         Contact::deActivePrivacy($hask);
-        echo "{$hask} ok!";
+        echo "NON HAI ACCONSENTITO AL TRATTEMENTO DELLA PRIVACY, SARI CANCELLATO DAL NOSTRO DATABASE A BREVE! IL TUO ID: {$hask}";
 	}
     
     ##
@@ -29,7 +31,7 @@ class RemoteController {
 		$app = App::getInstance();		
 		$hask = (string) $app->getUrlParam('hask');
         Contact::deActive($hask);
-        echo "{$hask} ok!";
+        echo "SEI STATO CANCELLATO DAL NOSTRO DATABASE! IL TUO ID: {$hask}";
 	}
     
     ##
@@ -37,7 +39,7 @@ class RemoteController {
 		$app = App::getInstance();		
 		$hask = (string) $app->getUrlParam('hask');
         Contact::Active($hask);
-        echo "{$hask} ok!";
+        echo "SEI STATO INSERITO DAL NOSTRO DATABASE! IL TUO ID:{$hask}";
 	}
     
     ##
@@ -46,8 +48,6 @@ class RemoteController {
         $reply .= "DELETE DUPLICATE START<br />";
         $d = Contact::duplicate();
         foreach ($d as $c){
-            //var_dump($c);echo $c['id'];die();
-            //$cs = Contact::load($c['id']);
             $reply .= "Eliminato contatto  {$c['id']} duplicato {$c['tot']} volte";
             Contact::delete($c['id']);
             $i = Iscrizioni::query(array('contatto_id' => $c['id']));
@@ -67,12 +67,22 @@ class RemoteController {
     }
     
     ##
+    public function createHaskAction(){
+        $cs = Contact::all();
+        $reply = "";
+        foreach ($cs as $c ){
+            $hask = Contact::makeHask($c->id);
+            $reply .= "C: {$c->id}"."\t"."HASK: {$hask} OK<br />";
+        }
+        echo $reply;
+    }
+    
+    ##
     public function cleanContactAction(){
         $tot = $_POST['tot'];
         $current =  $tot - $_POST['curr'];
         $prog = $current * 100 / $tot;
         $reply = "";
-        $v = new Minibots();
         $d = Contact::query(
                 array(
                     'verificato'  => 0,
@@ -84,7 +94,7 @@ class RemoteController {
                 Contact::delete($c->id);
                 $reply .= "...ELIMINATO " . "\n\r";
             }else{
-                $rx = $v->doSMTPValidation($c->email,"vincenzo@ctlr.it");
+                $rx = Contact::SMTPValidation($c->email,"vincenzo@ctlr.it");
                 if ($rx[1]==550){
                     $reply .= "Contatto {$c->id} non valido [VERIFICA SMTP FALLITA]! [{$c->email}]...";
                     Contact::delete($c->id);
@@ -105,7 +115,7 @@ class RemoteController {
     
     ##
     public static function activeServerAction(){ //azzera giornalmente i conteggi
-        $servers = AccountSMTP::all(); 
+        $servers = AccountSMTP::all();
         $reply = '';
         foreach ($servers as $server){
             $diff = abs(strtotime(MYSQL_NOW()) - strtotime($server->last_send));
@@ -159,5 +169,157 @@ class RemoteController {
         
         echo $reply;
     }
+   
+    ##
+    public function iscrizioniDuplicateAction(){
+        $d = Iscrizioni::duplicate();
+        //echo "<pre>";var_dump($d);
+        foreach ($d as $c) {
+            //echo "DELETING: {$c['id']}<br />";
+            Iscrizioni::delete($c['id']);            
+        }
+        echo "iscrizioni duplicate eliminate";
+    }
+    
+    ##
+    public function subscribeAction(){
+        //echo "ciao";die();
+        $app = App::getInstance();
+        $data = $_POST;
+        
+        $lista = $data["lista"];
+        $email = isset($data['email'])?$data["email"]:"";
+        $nome = isset($data['nome'])?$data["nome"]:"";
+        $cognome = isset($data['cognome'])?$data['cognome']:"";
+        $privacy = isset($data['privacy']) && $date['privacy'] == 1? 1 : 0;
+        
+        $id_c = Contact::submit(array(
+                'nome'          => mysql_real_escape_string($nome),
+                'cognome'       => mysql_real_escape_string($cognome),
+                'type'          => 'html',
+                'email'         => mysql_real_escape_string($email),
+                'iscritto'      => MYSQL_NOW(),
+                'lastedit'      => MYSQL_NOW(),
+                'privacy'       => mysql_real_escape_string($privacy),
+                
+            ));
+        Iscrizioni::submit(array(
+                'lista_id'          =>  mysql_real_escape_string($lista),
+                'contatto_id'       =>  $id_c->id,
+                'creata'            => MYSQL_NOW(),                
+            ));
+        
+		$app->redirect($data["return"]);
+    }   
+    
+    ##
+    public function cronAction(){
+        echo "in sviluppo!";
+    }
+  
+    ##
+    public function processAction(){
+        
+        $tot = isset($_POST['tot'])?$_POST['tot']:1;
+        $cur = isset($_POST['curr'])?$_POST['curr']:1;
+        $limit = isset( $_POST['limit'] ) && $_POST['limit'] > 1 ? $_POST['limit'] : 1;
+        
+        $current =  $tot - $cur;
+        $prog = $current * 100 / $tot;
+        $reply = '';
+        $toSends = Coda::query(
+                array(
+                    'processato'  => 0,
+                    'limit'       => $limit,
+                ));
+        $server = AccountSMTP::findServer();
+        if (!$server){$reply ="non ci sono server". "\n\r";}
+        if (!isset($server->host)){$reply = "il server non ha un host valido". "\n\r";}
+        
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+        $mail->Host = $server->host;
+        $mail->SMTPAuth = true;
+        $mail->Username = $server->username;
+        $mail->Password = $server->password;
+        $mail->SMTPSecure = $server->connection;
+        $mail->Port = $server->port;
+        $mail->SMTPKeepAlive = true;
+        $mail->setFrom($server->sender_mail, $server->sender_name);
+         
+        foreach ($toSends as $dest){
+            $contact = Contact::load($dest->contact_id);
+            //var_dump($contact);
+            if (!$contact->email || $contact->id==null){ 
+                $dest->server_id = $server->id;
+                $dest->processato = 1;
+                $dest->note = "Email del contatto {$contact->id} assente! O Contatto non presente!";
+                $dest->store();
+                $reply = "Email del contatto {$contact->id} assente! O Contatto non presente!" . "\n\r";
+                Contact::delete($contact->id);
+                continue;
+            }
+            $mail2 = clone $mail;
+            $mail2->addAddress($contact->email, $contact->nome.' '.$contact->cognome);
+            $mail2->isHTML(true);
+            $email = Email::load($dest->email_id);
+            
+            $append_html = "se vuoi cancellarti dalle nostre banche dati clicca il link nel tuo browser <a href='".__HOME__."/remote/deActive/hask/{$contact->hask}' target='_blank'>".__HOME__."/remote/deActive/hask/{$contact->hask}</a>";
+            $append_text = "se vuoi cancellarti dalle nostre banche dati copia e incolla il link nel tuo browser ".__HOME__."/remote/deActive/hask/{$contact->hask}";
+            
+            $mail2->Subject = $email->oggetto;
+            $mail2->Body    = $email->messaggio_html.$append_html;
+            $mail2->AltBody = $email->messaggio_text.$append_text;
+            $mail2->addReplyTo($server->replyTo);
+            
+            if(!$mail2->send()) {
+                $reply .= 'Errore per '.$contact->email.' info: '.$mail2->ErrorInfo."\n\r";
+                $dest->note = $mail2->ErrorInfo;
+                $dest->server_id = $server->id;
+            } else {
+                $reply .= $contact->email." Invio avvenuto con successo..." . "\n\r";
+                $dest->note = "Invio OK";
+                $dest->execute = MYSQL_NOW();                
+                $dest->server_id = $server->id;
+                $dest->processato = 1;
+                $email->execute = MYSQL_NOW();
+                $server->send ++;
+                $server->total_send ++;
+                $server->perc = $server->send * 100 / $server->max_mail_day;
+                $server->last_send = MYSQL_NOW();                
+            }
+            if ($server->max_mail_day == $server->send) {
+                $server->active = 0;
+            } 
+            $email->store();
+            $dest->store();
+            $server->store();
+            if (!$server->active){
+                $mail->SmtpClose();
+                $server = SendController::findServer();
+                if (!$server){$reply ="non ci sono server". "\n\r";continue;}
+                if (!isset($server->host)){$reply = "il server non ha un host valido". "\n\r";continue;}
+                $mail = new PHPMailer;
+                $mail->isSMTP();
+                $mail->Host = $server->host;
+                $mail->SMTPAuth = true;
+                $mail->Username = $server->username;
+                $mail->Password = $server->password;
+                $mail->SMTPSecure = $server->connection;
+                $mail->Port = $server->port;
+                $mail->SMTPKeepAlive = true;
+                $mail->setFrom($server->sender_mail, $server->sender_name);
+                $reply .= "Cambiato Server nuovo server:".$server->code."\n\r";
+            }
+        }
+        //$reply .= 'Processo terminato con successo';
+        $json = array(
+            'progress' => $prog,
+            'remain' => $tot-$current-1,
+            'message' => $reply,
+        );
+        echo json_encode($json);
+    }
+    
     
 }
