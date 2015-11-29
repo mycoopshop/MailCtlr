@@ -1,0 +1,102 @@
+<div class="tab-pane fade in active" id="tab1">
+	<div id="t_general" class="tab">
+		<div class="form-group">
+			<div class="col-sm-12">
+				<legend>Dati generali</legend>                    
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-6" class="form-control">
+				<label >Server Code</label>
+				<input type="text" class="form-control" name="code" value="<?=$data->item->code?>"/>                  
+			</div>
+            <div class="col-sm-6" class="form-control">
+				<label >Server Name</label>
+				<input type="text" class="form-control" name="name" value="<?=$data->item->name?>"/>                  
+			</div>
+            
+        </div>
+        
+        <div class="form-group">
+			<div class="col-sm-6" class="form-control">
+				<label >Server Host</label>
+				<input type="text" class="form-control" name="host" value="<?=$data->item->host?>"/>                  
+			</div>
+            <div class="col-sm-3" class="form-control">
+				<label >Server Port</label>
+				<input type="text" class="form-control" name="port" value="<?=$data->item->port?>"/>                  
+			</div>
+            <div class="col-sm-3" class="form-control">
+				<label >Server Connetction</label>
+				<input type="text" class="form-control" name="connection" value="<?=$data->item->connection?>"/>                  
+			</div>
+        </div>
+        
+        <div class="form-group">
+			<div class="col-sm-6" class="form-control">
+				<label >Username</label>
+				<input type="text" class="form-control" name="username" value="<?=$data->item->username?>"/>                  
+			</div>
+            <div class="col-sm-6" class="form-control">
+				<label >Password</label>
+				<input type="text" class="form-control" name="password" value="<?=$data->item->password?>"/>                  
+			</div>
+            
+        </div>
+        
+        <div class="form-group">
+			<div class="col-sm-6" class="form-control">
+				<label>Ever</label>
+                <select class="form-control" name="ever">
+                    <option disabled="disabled">Scegli</option>
+                    
+                    <option value="day" <?=$data->item->ever=='day'?'selected':'';?>>Giorno</option>
+                    <option value="week" <?=$data->item->ever=='week'?'selected':'';?>>Settimana</option>
+                    <option value="month" <?=$data->item->ever=='month'?'selected':'';?>>Mese</option>
+                    <option value="year" <?=$data->item->ever=='year'?'selected':'';?>>Anno</option>
+                    <option value="onetime" <?=$data->item->ever=='onetime'?'selected':'';?>>Una Tantum</option>
+                    
+                </select> 
+                 
+			</div>
+            <div class="col-sm-6" class="form-control">
+				<label >Number</label>
+                <input type="number" class="form-control" name="max_mail" value="<?=$data->item->max_mail?>"/>                  
+			</div>
+            
+        </div>
+        
+        <div class="form-group">
+			<div class="col-sm-6" class="form-control">
+                <label >Sender Email</label>
+                <input type="text" class="form-control" name="sender_mail" value="<?=$data->item->sender_mail?>"/>
+			</div>
+            <div class="col-sm-6" class="form-control">
+				<label >Sender Nome</label>
+				<input type="text" class="form-control" name="sender_name" value="<?=$data->item->sender_name?>"/>                 
+			</div>
+            
+        </div>
+        <div class="form-group">
+			<div class="col-sm-6" class="form-control">
+                <label >Rispondi a:</label>
+                <input type="text" class="form-control" name="replyTo" value="<?=$data->item->replyTo?>"/>
+			</div>
+            
+        </div>
+        <div class="form-group">
+			<div class="col-sm-6" class="form-control">
+				<label >Inviate</label>
+                <input type="text" class="form-control" name="send" value="<?=$data->item->send?>" readonly="readonly"/>
+			</div>
+            <div class="col-sm-6" class="form-control">
+				<label >Ultimo invio</label>
+				<input type="text" class="form-control" name="last_send" value="<?=$data->item->last_send?>" readonly="readonly"/>                 
+			</div>
+            
+        </div>
+        
+	</div>
+</div>
+
+

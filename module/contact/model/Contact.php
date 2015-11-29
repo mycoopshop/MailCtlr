@@ -15,14 +15,13 @@ class Contact extends Storable {
     public $citta = "";
     public $provincia = "";
     public $email = "";
-    //public $lista = 0;
     public $iscritto = MYSQL_DATETIME;
     public $active = true;
     public $lastedit = MYSQL_DATETIME;
     public $privacy = 0;
     public $privacy_url = "";
     public $type = array('html','text');
-    public $hask = "";
+    public $token = "";
     public $verificato = 0;
     ##
     public static function count($type=""){
@@ -44,48 +43,47 @@ class Contact extends Storable {
         return $res['totale'];
     }
     ##
-    public static function makeHask($contact){
+    public static function makeToken($contact){
         $c = Contact::load($contact);
         $t = time();
-        $c->hask = substr(md5($c->email.$t.$c->iscritto),5,11);
+        $c->token = substr(md5($c->email.$t.$c->iscritto),5,11);
         $c->store();
-        return $c->hask;
-        
+        return $c->token;
     }
     ##
-    public static function checkHask($hask){
+    public static function checkToken($token){
         return self::query(
                 array(
-                    'hask' => $hask,
+                    'token' => $token,
                 ));
     }
     ##
-    public static function deActive($hask){
-        $co = self::checkHask($hask);
+    public static function deActive($token){
+        $co = self::checkToken($token);
         $c = $co[0];
         $c->lastedit = MYSQL_NOW();
         $c->active = 0;
         $c->store();
     }
     ##
-    public static function ActivePrivacy($hask){
-        $co = self::checkHask($hask);
+    public static function ActivePrivacy($token){
+        $co = self::checkToken($token);
         $c = $co[0];
         $c->lastedit = MYSQL_NOW();
         $c->privacy = 1;
         $c->store();
     }
     ##
-    public static function Active($hask){
-        $co = self::checkHask($hask);
+    public static function Active($token){
+        $co = self::checkToken($token);
         $c = $co[0];
         $c->lastedit = MYSQL_NOW();
         $c->active = 1;
         $c->store();
     }
     ##
-    public static function deActivePrivacy($hask){
-        $co = self::checkHask($hask);
+    public static function deActivePrivacy($token){
+        $co = self::checkToken($token);
         $c = $co[0];
         $c->lastedit = MYSQL_NOW();
         $c->privacy = 0;
@@ -105,101 +103,85 @@ class Contact extends Storable {
     }
     
     ##
-    public static function SMTPValidation($email, $probe_address="", $debug=false) {
-        $output = "";
-        if (!$probe_address) $probe_address = $_SERVER["SERVER_ADMIN"];
-        if (preg_match('/^([a-zA-Z0-9\._\+-]+)\@((\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,7}|[0-9]{1,3})(\]?))$/', $email, $matches)) {
-            $user = $matches[1];
-            $domain = $matches[2];
-            if (function_exists('checkdnsrr')) {
-                if(getmxrr($domain, $mxhosts, $mxweight)) {
-                    for($i=0;$i<count($mxhosts);$i++){
-                        $mxs[$mxhosts[$i]] = $mxweight[$i];
-                    }
-                    asort($mxs);
-                    $mailers = array_keys($mxs);
-                } elseif(checkdnsrr($domain, 'A')) {
-                    $mailers[0] = gethostbyname($domain);
-                } else {
-                    $mailers=array();
-                }
-                $total = count($mailers);
-                if($total > 0) {
-                    for($n=0; $n < $total; $n++) {
-                        if($debug) { $output .= "Checking server $mailers[$n]...\n";}
-                        $connect_timeout = 2;
-                        $errno = 0;
-                        $errstr = 0;
-                        if (preg_match('/^([a-zA-Z0-9\._\+-]+)\@((\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,7}|[0-9]{1,3})(\]?))$/', $probe_address,$fakematches)) {
-                            $probe_domain = str_replace("@","",strstr($probe_address, '@'));
-                            if($sock = @fsockopen($mailers[$n], 25, $errno , $errstr, $connect_timeout)) {
-                                $response = fgets($sock);
-                                if($debug) {$output .= "Opening up socket to $mailers[$n]... Success!\n";}
-                                stream_set_timeout($sock, 5);
-                                $meta = stream_get_meta_data($sock);
-                                if($debug) { $output .= "$mailers[$n] replied: $response\n";}
-                                $cmds = array(
-                                    "HELO $probe_domain",
-                                    "MAIL FROM: <$probe_address>",
-                                    "RCPT TO: <$email>",
-                                    "QUIT",
-                                );
-                                if(!$meta['timed_out'] && !preg_match('/^2\d\d[ -]/', $response)) {
-                                    $codice = trim(substr(trim($response),0,3));
-                                    if ($codice=="421") {
-                                        $error = $response;
-                                        break;
-                                    } else {
-                                        if($response=="" || $codice=="") {
-                                            $codice = "0";
-                                        }
-                                        $error = "Error: $mailers[$n] said: $response\n";
-                                        break;
-                                    }
-                                    break;
-                                }
-                                foreach($cmds as $cmd) {
-                                    $before = microtime(true);
-                                    fputs($sock, "$cmd\r\n");
-                                    $response = fgets($sock, 4096);
-                                    $t = 1000*(microtime(true)-$before);
-                                    if($debug) {$output .= "$cmd\n$response" . "(" . sprintf('%.2f', $t) . " ms)\n";}
-                                    if(!$meta['timed_out'] && preg_match('/^5\d\d[ -]/', $response)) {
-                                        $codice = trim(substr(trim($response),0,3));
-                                        if ($codice<>"552") {
-                                            $error = "Unverified address: $mailers[$n] said: $response";
-                                            break 2;
-                                        } else {
-                                            $error = $response;
-                                            break 2;
-                                        }
-                                    }
-                                }
-                                fclose($sock);
-                                if($debug) { $output .= "Succesful communication with $mailers[$n], no hard errors, assuming OK\n";}
-                                break;
-                            } elseif($n == $total-1) {
-                                $error = "None of the mailservers listed for $domain could be contacted";
-                                $codice = "0";
-                            }
-                        } else {
-                            $error = "Il probe_address non è una mail valida.";
-                        }
-                    }
-                } elseif($total <= 0) {
-                    $error = "No usable DNS records found for domain '$domain'";
-                }
+    public static function verifyEmail($toemail, $fromemail, $getdetails = false){
+        $details = "";
+        $email_arr = explode("@", $toemail);
+        $domain = array_slice($email_arr, -1);
+        $domain = $domain[0];
+
+        // Trim [ and ] from beginning and end of domain string, respectively
+        $domain = ltrim($domain, "[");
+        $domain = rtrim($domain, "]");
+
+        if( "IPv6:" == substr($domain, 0, strlen("IPv6:")) ) {
+            $domain = substr($domain, strlen("IPv6") + 1);
+        }
+
+        $mxhosts = array();
+        if( filter_var($domain, FILTER_VALIDATE_IP) )
+            $mx_ip = $domain;
+        else
+            getmxrr($domain, $mxhosts, $mxweight);
+
+        if(!empty($mxhosts) )
+            $mx_ip = $mxhosts[array_search(min($mxweight), $mxhosts)];
+        else {
+            if( filter_var($domain, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) ) {
+                $record_a = dns_get_record($domain, DNS_A);
             }
-        } else {
-            $error = 'Address syntax not correct';
+            elseif( filter_var($domain, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) ) {
+                $record_a = dns_get_record($domain, DNS_AAAA);
+            }
+
+            if( !empty($record_a) )
+                $mx_ip = $record_a[0]['ip'];
+            else {
+
+                $result   = "invalid";
+                $details .= "No suitable MX records found.";
+
+                return ( (true == $getdetails) ? array($result, $details) : $result );
+            }
         }
-        if($debug) {
-            print nl2br(htmlentities($output));
+
+        $connect = @fsockopen($mx_ip, 25); 
+        if($connect){ 
+            if(preg_match("/^220/i", $out = fgets($connect, 1024))){
+                fputs ($connect , "HELO $mx_ip\r\n"); 
+                $out = fgets ($connect, 1024);
+                $details .= $out."\n";
+
+                fputs ($connect , "MAIL FROM: <$fromemail>\r\n"); 
+                $from = fgets ($connect, 1024); 
+                $details .= $from."\n";
+
+                fputs ($connect , "RCPT TO: <$toemail>\r\n"); 
+                $to = fgets ($connect, 1024);
+                $details .= $to."\n";
+
+                fputs ($connect , "QUIT"); 
+                fclose($connect);
+
+                if(!preg_match("/^250/i", $from) || !preg_match("/^250/i", $to)){
+                    $result = "invalid"; 
+                }
+                else{
+                    $result = "valid";
+                }
+            } 
         }
-        if(!isset($codice)) {$codice="n.a.";}
-        if(isset($error)) return array($error,$codice); else return true;
+        else{
+            $result = "invalid";
+            $details .= "Could not connect to server";
+        }
+        if($getdetails){
+            return array($result, $details);
+        }
+        else{
+            return $result;
+        }
     }
-    
+
 }
 Contact::schemadb_update();
 

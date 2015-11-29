@@ -8,8 +8,8 @@ class MailCtlrWebApp extends PrivateWebApp {
         'public' => array(
 			'*'                                 => false,
 			'userrole.Login.*'                  => true,
-            'changelog.Changelog.changelogjson' => true,
             'contact.Remote.*'                  => true,
+            'install.*'                         => true,
             
 		),
 		'user' => array(

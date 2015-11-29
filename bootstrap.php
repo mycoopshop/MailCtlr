@@ -1,16 +1,13 @@
 <?php
-## set debug error
-error_reporting(E_ALL);
-ini_set('html_errors', True);
-ini_set('display_errors', True);
-ini_set('display_startup_errors', True);
-//xdebug_disable();
 
 ## define base dir
 define('__BASE__',__DIR__);
 
 ## required base library
 require_once __BASE__.'/lib/liberty/Liberty.php';
+
+## handle database model
+require_once __BASE__.'/lib/schemadb/schemadb.php';
 
 ## 
 Liberty::debug(true);
@@ -26,17 +23,36 @@ if (!defined('__MODE__')) {
 ## load config
 $config = Liberty::config();
 
-## handle database model
-require_once __BASE__.'/lib/schemadb/schemadb.php';
+$db = "";
 
-## connect database
-$db = schemadb::connect(
-	$config['db']['host'],
-	$config['db']['user'],
-	$config['db']['pass'],
-	$config['db']['name'],
-	$config['db']['pref']
-);
+if ( $config['install'] == 0 ) {
+    $config['default']['theme'] = 'default';
+    $config['default']['controller'] = 'Install';
+    $config['default']['action'] = 'index';
+    $config['modules'][] = 'install';
+    $config['url'] = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    $config['home'] = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    $config['version'] = "0.1";
+    $config['debug'] = "false";
+}else{
+    ## connect database
+    $db = schemadb::connect(
+        $config['db']['host'],
+        $config['db']['user'],
+        $config['db']['pass'],
+        $config['db']['name'],
+        $config['db']['pref']
+    );
+
+    require_once __BASE__.'/module/config/model/Options.php';
+    $c = Options::getOptions($config['type']);
+    $config = array_merge($config,$c);
+    $config['modules'][] = 'install';
+    
+}
+
+## set debug error
+Liberty::debug($config['debug']);
 
 ## other constants
 define('__URL__',rtrim($config['url'],'/'));

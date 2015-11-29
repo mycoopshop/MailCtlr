@@ -3,18 +3,18 @@
 	role="navigation"
 	>
 	<div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="<?=__HOME__?>">
-                <img src="<?=__LOGO__?>" alt="<?=__NAME__?>" height="20" style=""/>				
-				<?=$app->name?>
-            </a>
-        </div>
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a id="top-logo" class="navbar-brand" href="<?=__HOME__?>">
+				<img src="<?=__LOGO__?>" alt="<?=__NAME__?>" height="20" style="" />
+                <!-- <?=$app->name?> -->
+			</a>
+		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
 				<?php foreach($app->getMenu('navbar') as $item) { ?>
@@ -30,12 +30,30 @@
 								<?=$item["label"]?>
 							</a>
 							<ul class="dropdown-menu">
-								<?php foreach($item["children"] as $submenuitem) { ?> 
-									<?php if ($submenuitem!="divider") { ?>
-										<li><a role="menuitem" tabindex="-1" href="<?=$submenuitem["link"]?>" <?php echo isset($submenuitem['target']) ? "target='".$submenuitem['target']."'":"";?>><?=$submenuitem["label"];?></a></li>
-									<?php } else { ?>
-										<li role="presentation" class="divider"></li>
-									<?php } ?>
+								<?php foreach($item["children"] as $submenuitem) { ?>
+                                    <?php if (!isset($submenuitem['children'])) { ?>
+                                        <?php if (!isset($submenuitem['divider'])) { ?>
+                                            <li><a role="menuitem" tabindex="-1" href="<?=$submenuitem["link"]?>" <?php echo isset($submenuitem['target']) ? "target='".$submenuitem['target']."'":"";?>><?=$submenuitem["label"];?></a></li>
+                                        <?php } else { ?>
+                                            <li role="presentation" class="divider"></li>
+                                        <?php } ?>
+                                    <?php } else { ?>
+                                            <li class="dropdown dropdown-submenu">
+                                                <a id="<?=$submenuitem["id"]?>" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                    <?=$submenuitem["label"]?>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <?php foreach($submenuitem["children"] as $sub2menuitem) { ?>
+                                                        <?php if (!isset($sub2menuitem['divider'])) { ?>
+                                                            <li><a role="menuitem" tabindex="-1" href="<?=$sub2menuitem["link"]?>" <?php echo isset($sub2menuitem['target']) ? "target='".$sub2menuitem['target']."'":"";?>><?=$sub2menuitem["label"];?></a></li>
+                                                        <?php } else { ?>
+                                                            <li role="presentation" class="divider"></li>
+                                                        <?php } ?>
+                                                    <?php } ?>
+                                                </ul>
+                                            </li>
+                                    <?php } ?>
+                                            
 								<?php } ?>
 							</ul>
 						</li>
@@ -43,9 +61,9 @@
 				<?php } ?>
 			</ul>
 			<ul class="nav navbar-nav pull-right">
-				<?php if ($app->hasSessionUser()) { ?>
-					<li><a href=""><?=$app->user['name']?></a></li>
-                    <li><a href="<?=__HOME__?>/changelog/">v.<?=__VERSION__?></a></li>
+				<?php if ( $app->hasSessionUser() ) { ?> 
+					<li><a href="#"><?=$app->user['name']?></a></li>
+                    <li><a href="#">v.<?=__VERSION__?></a></li>
 					<li><a href="<?=__HOME__?>/Login/logout">Esci</a></li>
 				<?php } ?>
 			</ul>

@@ -3,10 +3,10 @@ require_once __BASE__.'/module/contact/grid/ContactGrid.php';
 require_once __BASE__.'/module/contact/grid/ContactCheckedGrid.php';
 require_once __BASE__.'/module/contact/grid/ContactModalGrid.php';
 require_once __BASE__.'/module/contact/model/Contact.php';
+require_once __BASE__.'/module/contact/model/Lista.php';
 require_once __BASE__.'/module/contact/model/Iscrizioni.php';
 require_once __BASE__.'/module/contact/lib/parsecsv.lib.php';
-
-
+require_once __BASE__.'/module/contact/lib/checksmtp.lib.php';
 
 class ContactController {
     
@@ -156,11 +156,8 @@ class ContactController {
     
     ##
     public function testAction(){
-        /*$v = new Minibots();
-        $rx = $v->doSMTPValidation("pcid@ctlr.it","vincenzo@ctlr.it",true);
-        var_dump($rx);
-        echo $rx[1];*/
-        echo "Ciao";        
+
+        echo Contact::verifyEmail("vincenzo@ctlr.it", "vince.sikania@gmail.com");
     }
     
     ##
@@ -171,11 +168,13 @@ class ContactController {
         
         $tot = Contact::count('verify0');
         $num =  $tot / 1;
+        $liste = Lista::all();
         
         $app->render(array(
 			'totale'    => $num,
             'number'	=> $num,
             'action'    => __HOME__.'/remote/cleanContact',
+            'liste'     => $liste,
 		));
         
     }

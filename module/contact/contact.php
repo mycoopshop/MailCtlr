@@ -20,13 +20,6 @@ class ContactModule {
 			'id'	=> 'navbar-list',
 			'label'	=> 'Liste',
 		));
-		
-        ##
-        $app->addMenu('navbar',array(
-            //'parent'	=> 'navbar-contact',
-            'label'		=> 'Iscrizioni',
-            'link'		=> __HOME__.'/iscrizioni/'
-        ));
         
         ##
         $app->addMenu('navbar',array(
@@ -70,7 +63,12 @@ class ContactModule {
             'link'		=> __HOME__.'/lista/create'
         ));
         
-        
+        ##
+        $app->addMenu('navbar',array(
+            'parent'	=> 'navbar-list',
+            'label'		=> 'Iscrizioni',
+            'link'		=> __HOME__.'/iscrizioni/'
+        ));
         
         ##
         $app->addMenu('dashboard-button',array(

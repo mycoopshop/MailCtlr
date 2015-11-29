@@ -11,19 +11,20 @@
 		<tbody>
 		</tbody>
 	</table>		
-</div>
+</div> 
 <script>
 	var <?=$gridHandler?> = null;
 	jQuery(document).ready(function() {
 		// grid init
 		<?=$gridHandler?> = jQuery('#<?=$gridHandler?>').dataTable({
-			bFilter: true,
+			responsive: true,
+            bFilter: true,
 			bJQueryUI: true,
 			sServerMethod: "POST",
 		    bServerSide: true,
     		bProcessing: true,
 			bStateSave: false,
-			iDisplayLength: 25,
+			iDisplayLength: 50,
 			sAjaxSource: '<?=$grid->getService();?>',
 			fnServerParams: function ( aoData ) {
 					
@@ -78,19 +79,17 @@
 		var id = gridTable.fnGetData(po)[0];
 		<?=@$grid->ClientEvents['row.click']?>
     });
-	jQuery(document).ready(function(){
+	
+    jQuery(document).ready(function(){
 		setTimeout('fix_datagrid_questions();',100);		
 	});
 	function fix_datagrid_questions() {
-		
 		var f = jQuery('#gridTable_filter input').first();
-		
 		if (!!f.val()) {
 			jQuery("#tasto-cancella-ricerca").show();
 			f.select();
 			f.focus();
-		}		
-		
+		}
 	}
 	function fix_datagrid_cancella_ricerca() {
 		jQuery("#tasto-cancella-ricerca").hide();
@@ -98,5 +97,6 @@
 		f.val('');
 		f.trigger(jQuery.Event('change', {which: 13}));;		
 	}
+    
 	// internationalization url: http://datatables.net/plug-ins/i18n 
 </script>

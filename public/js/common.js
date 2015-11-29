@@ -25,16 +25,19 @@ var isValidDate = function (value, userFormat)
 
   return isDate(theDate, theFormat);
 };
+
 // chech for int value from -9007199254740990 to 9007199254740990
 function isInt(n)
 {
     return +n === n && !(n % 1);
 }
+
 //  Any number including Infinity and -Infinity but not NaN
 function isFloat(n)
 {
     return +n === n;
 }
+
 function nl2br (str, is_xhtml) 
 {
     // http://kevin.vanzonneveld.net
@@ -57,6 +60,7 @@ function nl2br (str, is_xhtml)
 
     return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
 }
+
 function make_form_readonly_action(selector) {
 	var form = jQuery(selector);
 	jQuery(":input",form).each(function(){
@@ -108,10 +112,13 @@ function make_form_readonly_action(selector) {
 	jQuery(".no-readonly",form).hide();
 	jQuery(selector).show();
 }
+
 function make_form_readonly(selector) {
 	jQuery(selector).hide();
 	setTimeout('make_form_readonly_action("'+selector+'");','200'); //5secondi	
 }
+
+
 jQuery(document).on("keyup",".fill-with-16-chars",function(e){	
 	if(e.keyCode===220) {
 		function makeid() {
@@ -127,6 +134,7 @@ jQuery(document).on("keyup",".fill-with-16-chars",function(e){
 		$(this).val(s);
 	}
 });
+
 $ui.testing.min3=function(data){
     var valore=jQuery(data).val();
     if (valore.length >= 3 ){
@@ -141,10 +149,12 @@ $ui.testing.min2=function(data){
     }
     return false;
 };
+
 function submitForm() {
 	console.log("form#item submit()");
 	jQuery("form#item").submit();
 }
+
 $ui.testing.cap_check=function(data){
     var valore=jQuery(data).val();
     if (valore.length == 5 ){
@@ -152,6 +162,8 @@ $ui.testing.cap_check=function(data){
     }
     return false;
 };
+
+
 $ui.testing.maggiore0=function(data){
     var valore=jQuery(data).val();
     if (valore > 0 ){

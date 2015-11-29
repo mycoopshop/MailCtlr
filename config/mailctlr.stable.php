@@ -24,7 +24,7 @@ return array(
 	'home' => 'http://www.ctlr.eu/MailCtlr',
 	
 	##
-	'logo' => '/store/mailctlr/ctlr.png',
+	'logo' => '/store/mailctlr/logo-mailctlr.png',
 	
 	##
 	'db' => array(

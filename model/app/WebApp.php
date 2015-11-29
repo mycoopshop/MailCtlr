@@ -246,7 +246,7 @@ class WebApp extends App {
 	
 	public function getUrlParam($paramName) {		
 		## return  paramenter      
-                return @$this->request['params'][$paramName];        
+        return @$this->request['params'][$paramName];        
 	}
 
 	public function hook($hook_name,$hook_value,$hook_order=0) {

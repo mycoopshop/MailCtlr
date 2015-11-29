@@ -17,6 +17,7 @@ class User extends Storable {
     //fine add
 	public $role = array('user','admin','superadmin');
     
+    public $lastedit = MYSQL_DATETIME;
 	##
 	public static function canUserLogin($username,$password) {			
 		return User::ping(array('username'=>$username,'password'=>md5($password)));		

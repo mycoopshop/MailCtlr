@@ -3,7 +3,35 @@
     <h4>Verifiche da fare: <b><?=@$data->totale;?></b> - Numero di verifiche rimaste: <b id="remain"><?=@$data->number;?></b></h4>
     <br />
     <div class="row">
-        <div class="col-sm-1">
+        <div class="col-sm-2">
+            <label>Elimina duplicati</label>
+            <select class="form-control" id="duplicate" name="duplicati">
+                <option value="1">SI</option>
+                <option value="0" selected="">NO</option>
+            </select>
+        </div>
+        <div class="col-sm-2">
+            <label>Processa per volta</label>
+            <select class="form-control" id="limit" name="limit">
+                <option value="1" selected="">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+            </select>
+        </div>
+        <div class="col-sm-2">
+            <label>Inserisci in</label>
+            <select class="form-control" id="lista" name="lista">
+                <option value="0" selected="">NESSUNA</option>
+                <?php foreach($data->liste as $ls){?>
+                <option value="<?=$ls->id?>"><?=$ls->nome?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div class="col-sm-1 col-sm-offset-5">
+            <label>&nbsp;</label>
             <button 
                 type="button" 
                 id="start"
@@ -26,7 +54,10 @@
                 <span class="glyphicon glyphicon-stop"></span> Stop
             </button> 
         </div>
-        <div class="col-sm-11">
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-12">
             <div class="progress">
                 <div 
                     id = "progress"

@@ -17,7 +17,11 @@ class Coda extends Storable {
     public $server_id = 0;
     public $processato = 0;
     public $note = MYSQL_TEXT;
-     	
+    
+    public $last_see = MYSQL_DATETIME;
+    
+    
+    
     ##
     public static function addCode($lista="",$email=""){
         $app = App::getInstance();

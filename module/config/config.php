@@ -49,7 +49,6 @@ class ConfigModule {
 		##
 		if ($app->testAcl('menu-user',$this->acl)) {
 			  
-            
 		}
 		
 		##
@@ -68,7 +67,12 @@ class ConfigModule {
                 'icon'  => 'glyphicon glyphicon-plus',
                 'label' => 'Server SMTP',
             ));
-
+            
+            $app->addMenu('navbar',array(
+				'parent'	=> 'navbar-config',
+				'label'		=> 'Opzioni',
+				'link'		=> __HOME__.'/options/'
+			));
             
 		}
          

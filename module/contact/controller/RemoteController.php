@@ -4,7 +4,6 @@ require_once __BASE__.'/module/config/model/AccountSMTP.php';
 require_once __BASE__.'/module/contact/model/Contact.php';
 require_once __BASE__.'/module/sender/model/Coda.php';
 require_once __BASE__.'/module/contact/model/Iscrizioni.php';
-
 require_once __BASE__.'/module/sender/lib/PHPMailer/PHPMailerAutoload.php';
 require_once __BASE__.'/module/sender/model/Email.php';
 
@@ -13,35 +12,31 @@ class RemoteController {
     ##
 	public function activePrivacyAction() {		
 		$app = App::getInstance();		
-		$hask = (string) $app->getUrlParam('hask');
-        Contact::ActivePrivacy($hask);
-        echo "{$hask} ok!";
+		$token = (string) $app->getUrlParam('token');
+        Contact::ActivePrivacy($token);
+        echo "{$token} ok!";
 	}
-    
     ##
 	public function deactivePrivacyAction() {		
 		$app = App::getInstance();		
-		$hask = (string) $app->getUrlParam('hask');
-        Contact::deActivePrivacy($hask);
-        echo "NON HAI ACCONSENTITO AL TRATTEMENTO DELLA PRIVACY, SARI CANCELLATO DAL NOSTRO DATABASE A BREVE! IL TUO ID: {$hask}";
+		$token = (string) $app->getUrlParam('token');
+        Contact::deActivePrivacy($token);
+        echo "NON HAI ACCONSENTITO AL TRATTEMENTO DELLA PRIVACY, SARI CANCELLATO DAL NOSTRO DATABASE A BREVE! IL TUO ID: {$token}";
 	}
-    
     ##
 	public function deActiveAction() {		
 		$app = App::getInstance();		
-		$hask = (string) $app->getUrlParam('hask');
-        Contact::deActive($hask);
-        echo "SEI STATO CANCELLATO DAL NOSTRO DATABASE! IL TUO ID: {$hask}";
+		$token = (string) $app->getUrlParam('token');
+        Contact::deActive($token);
+        echo "SEI STATO CANCELLATO DAL NOSTRO DATABASE! IL TUO ID: {$token}";
 	}
-    
     ##
 	public function ActiveAction() {		
 		$app = App::getInstance();		
-		$hask = (string) $app->getUrlParam('hask');
-        Contact::Active($hask);
-        echo "SEI STATO INSERITO DAL NOSTRO DATABASE! IL TUO ID:{$hask}";
+		$token = (string) $app->getUrlParam('token');
+        Contact::Active($token);
+        echo "SEI STATO INSERITO DAL NOSTRO DATABASE! IL TUO ID:{$token}";
 	}
-    
     ##
     public function deleteDuplicateAction(){
         $reply = "";
@@ -62,31 +57,42 @@ class RemoteController {
             'message' => $reply,
         );
         
-        echo json_encode($json);
+        return json_encode($json);
         
     }
     
     ##
-    public function createHaskAction(){
+    public function createTokenAction(){
         $cs = Contact::all();
         $reply = "";
         foreach ($cs as $c ){
-            $hask = Contact::makeHask($c->id);
-            $reply .= "C: {$c->id}"."\t"."HASK: {$hask} OK<br />";
+            $token = Contact::makeToken($c->id);
+            $reply .= "C: {$c->id}"."\t"."TOKEN: {$token} OK<br />";
         }
         echo $reply;
     }
     
     ##
     public function cleanContactAction(){
+        $app = App::getInstance();
         $tot = $_POST['tot'];
         $current =  $tot - $_POST['curr'];
+        
         $prog = $current * 100 / $tot;
         $reply = "";
+        $dup = isset($_POST['dup']) && $_POST['dup'] == 1 ? 1:0;
+        $lis = isset($_POST['lista']) && $_POST['lista'] > 0 ? 1 : 0;
+        $limit = isset($_POST['limit']) && $_POST['limit'] > 1 ? $_POST['limit'] : 1;
+        
+        if ($dup){
+            $d = json_decode($this->deleteDuplicateAction());
+            $reply .= $d->message;            
+        }
+        
         $d = Contact::query(
                 array(
                     'verificato'  => 0,
-                    'limit'       => 1,
+                    'limit'       => $limit,
                 ));
         foreach ($d as $c ){
             if (!filter_var($c->email, FILTER_VALIDATE_EMAIL)){
@@ -94,20 +100,29 @@ class RemoteController {
                 Contact::delete($c->id);
                 $reply .= "...ELIMINATO " . "\n\r";
             }else{
-                $rx = Contact::SMTPValidation($c->email,"vincenzo@ctlr.it");
-                if ($rx[1]==550){
+                $rx = Contact::verifyEmail($c->email,"vince.sikania@gmail.com");
+                if ($rx=='invalid'){
                     $reply .= "Contatto {$c->id} non valido [VERIFICA SMTP FALLITA]! [{$c->email}]...";
                     Contact::delete($c->id);
                     $reply .= "...ELIMINATO " . "\n\r";
                 }else{
+                    $c->email = strtolower($c->email);
                     $c->verificato = 1;
+                    if ($lis){
+                        Iscrizioni::submit(array(
+                            'lista_id'          => mysql_real_escape_string($_POST['lista']),
+                            'contatto_id'       => $c->id,
+                            'creata'            => MYSQL_NOW(),
+                            'user_id'           => $app->user['id'],
+                        ));
+                    }
                     $c->store();
                 }
             }
         }
         $json = array(
             'progress' => $prog,
-            'remain' => $tot-$current-1,
+            'remain' => $tot-$current-$limit,
             'message' => $reply,
         );
         echo json_encode($json);
@@ -169,7 +184,7 @@ class RemoteController {
         
         echo $reply;
     }
-   
+    
     ##
     public function iscrizioniDuplicateAction(){
         $d = Iscrizioni::duplicate();
@@ -183,7 +198,6 @@ class RemoteController {
     
     ##
     public function subscribeAction(){
-        //echo "ciao";die();
         $app = App::getInstance();
         $data = $_POST;
         
@@ -191,7 +205,7 @@ class RemoteController {
         $email = isset($data['email'])?$data["email"]:"";
         $nome = isset($data['nome'])?$data["nome"]:"";
         $cognome = isset($data['cognome'])?$data['cognome']:"";
-        $privacy = isset($data['privacy']) && $date['privacy'] == 1? 1 : 0;
+        $privacy = isset($data['privacy']) && $data['privacy'] == 1? 1 : 0;
         
         $id_c = Contact::submit(array(
                 'nome'          => mysql_real_escape_string($nome),
@@ -209,14 +223,14 @@ class RemoteController {
                 'creata'            => MYSQL_NOW(),                
             ));
         
-		$app->redirect($data["return"]);
-    }   
+		$app->redirect(@$data["return"]);
+    }
     
     ##
     public function cronAction(){
         echo "in sviluppo!";
     }
-  
+    
     ##
     public function processAction(){
         
@@ -264,12 +278,20 @@ class RemoteController {
             $mail2->isHTML(true);
             $email = Email::load($dest->email_id);
             
-            $append_html = "se vuoi cancellarti dalle nostre banche dati clicca il link nel tuo browser <a href='".__HOME__."/remote/deActive/hask/{$contact->hask}' target='_blank'>".__HOME__."/remote/deActive/hask/{$contact->hask}</a>";
-            $append_text = "se vuoi cancellarti dalle nostre banche dati copia e incolla il link nel tuo browser ".__HOME__."/remote/deActive/hask/{$contact->hask}";
+            $find = array('{nome}','{cognome}','{confermaPrivacy}','{deleteContact}');
+            $change = array(
+                $contact->nome,
+                $contact->cognome,
+                __HOME__."/remote/activePrivacy/token/".$contact->token,
+                __HOME__."/remote/deActive/token/".$contact->token
+            );
+            
+            $append_html = "se vuoi cancellarti dalle nostre banche dati clicca il link nel tuo browser <a href='".__HOME__."/remote/deActive/token/{$contact->token}' target='_blank'>".__HOME__."/remote/deActive/token/{$contact->token}</a>";
+            $append_text = "se vuoi cancellarti dalle nostre banche dati copia e incolla il link nel tuo browser ".__HOME__."/remote/deActive/token/{$contact->token}";
             
             $mail2->Subject = $email->oggetto;
-            $mail2->Body    = $email->messaggio_html.$append_html;
-            $mail2->AltBody = $email->messaggio_text.$append_text;
+            $mail2->Body    = str_replace($find,$change,$email->messaggio_html.$append_html);
+            $mail2->AltBody = str_replace($find,$change,$email->messaggio_text.$append_text);
             $mail2->addReplyTo($server->replyTo);
             
             if(!$mail2->send()) {
@@ -320,6 +342,5 @@ class RemoteController {
         );
         echo json_encode($json);
     }
-    
-    
+
 }

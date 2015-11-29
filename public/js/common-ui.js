@@ -473,8 +473,8 @@
 	$ui.datePicker = function(obj) {
 		var self = $(obj);
 		var conf = $ui.getConfig(obj,"data-ui-datepicker");
-                var name = $(obj).prop("name"); 
-                
+        var name = $(obj).prop("name"); 
+
 		self.datepicker(conf);		
 		self.datepicker("hide");
 	};
