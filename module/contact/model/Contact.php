@@ -63,6 +63,7 @@ class Contact extends Storable {
         $c = $co[0];
         $c->lastedit = MYSQL_NOW();
         $c->active = 0;
+        $c->verificato = 0;
         $c->store();
     }
     ##
@@ -87,6 +88,8 @@ class Contact extends Storable {
         $c = $co[0];
         $c->lastedit = MYSQL_NOW();
         $c->privacy = 0;
+        $c->active = 0;
+        $c->verificato = 0;
         $c->store();
     }
     ##

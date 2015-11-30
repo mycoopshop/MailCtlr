@@ -26,6 +26,7 @@ class EmailController{
         $item = new Email();
         $item->messaggio_html = "";
         $item->messaggio_text = "";
+        $item->created = MYSQL_NOW();
 		$app->render(array(
 			'title'		=> 'Nuova Email',
 			'closeUrl'	=> __HOME__.'/email',

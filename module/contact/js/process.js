@@ -2,7 +2,9 @@ var process_status = false;
 var duplicate = 0;
 var lista = 0;
 var limit = 1;
-
+var privacy = 0;
+var active = 0;
+var p_email = null;
 function process_loop(action,number,total){
     if (number <= 0 || !process_status ){
         console.log("stop");
@@ -20,8 +22,10 @@ function process_loop(action,number,total){
             tot: total,
             dup: duplicate,
             lista: lista,
-            limit: limit
-                   
+            limit: limit,
+            active: active,
+            privacy: privacy,
+            p_email: p_email
         },
         function( data ) {
             console.log(data);
@@ -52,6 +56,9 @@ function process(action,number,total){
     duplicate = $( "#duplicate" ).val();
     lista = $( "#lista" ).val();
     limit = $( "#limit" ).val();
+    privacy = $("#privacy").val();
+    active = $("#active").val();
+    p_email = $("#p_email").val();
     
     process_start(action,number,total);
 }

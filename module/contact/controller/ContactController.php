@@ -5,6 +5,7 @@ require_once __BASE__.'/module/contact/grid/ContactModalGrid.php';
 require_once __BASE__.'/module/contact/model/Contact.php';
 require_once __BASE__.'/module/contact/model/Lista.php';
 require_once __BASE__.'/module/contact/model/Iscrizioni.php';
+require_once __BASE__.'/module/sender/model/Email.php';
 require_once __BASE__.'/module/contact/lib/parsecsv.lib.php';
 require_once __BASE__.'/module/contact/lib/checksmtp.lib.php';
 
@@ -169,12 +170,14 @@ class ContactController {
         $tot = Contact::count('verify0');
         $num =  $tot / 1;
         $liste = Lista::all();
+        $email = Email::all();
         
         $app->render(array(
 			'totale'    => $num,
             'number'	=> $num,
             'action'    => __HOME__.'/remote/cleanContact',
             'liste'     => $liste,
+            'email'     => $email,
 		));
         
     }

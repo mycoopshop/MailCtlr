@@ -59,7 +59,7 @@ class InstallController {
         );
         $opt['type'] = $date['type'];
         $opt['install'] = 1;
-        /*
+        
         global $db;
         $db = schemadb::connect(
             $opt['db']['host'],
@@ -68,7 +68,7 @@ class InstallController {
             $opt['db']['name'],
             $opt['db']['pref']
         );       
-        */
+        
 
         $optdb = array(
             'debug' => 'false',
@@ -88,10 +88,9 @@ class InstallController {
                 'last_edit' => MYSQL_NOW(),
             ));
         }
-        $conf_name = __DIR__."/../../../config/mailctlr.".$date['type'].".php";
+        $date['nome_app'] = strtolower($date['nome_app']);
         
-        //$conf_file = fopen($conf_name, "w");
-        
+        $conf_name = __DIR__."/../../../config/{$date['nome_app']}.{$date['type']}.php";
         $config = "<?php "."\r\n"."\r\n"
                 . "define('DAY',1);"."\r\n"
                 . "define('WEEK',7);"."\r\n"
@@ -99,8 +98,34 @@ class InstallController {
                 . "define('YEAR',365);"."\r\n"."\r\n"
                 . "return ".var_export($opt, true).";"."\r\n";
         
+        $index_file = __DIR__."/../../../index.php";
+        $index = "<?php "."\r\n"
+                . " define('__NAME__','{$date['nome_app']}');"."\r\n"
+                . " define('__MODE__','{$date['type']}');"."\r\n"
+                . " require_once 'bootstrap.php';"."\r\n"
+                . " require_once __BASE__.'/app/mailctlr/MailCtlrWebApp.php';"."\r\n"
+                . " \$app = new MailCtlrWebApp( __FILE__ , ".chr('36')."_SERVER['PHP_SELF'], ".chr('36')."_SERVER['REQUEST_URI'] ); "."\r\n"
+                . " \$app->run(); ";
+        
+        
+        $htaccess_file = __DIR__."/../../../.htaccess";
+        $htaccess = "<IfModule mod_rewrite.c>"."\r\n"
+                    . "RewriteEngine On"."\r\n"
+                    . "RewriteBase /MailCtlr/"."\r\n"
+                    . "RewriteRule ^index\.php$ - [L]"."\r\n"
+                    . "RewriteCond %{REQUEST_FILENAME} !-f"."\r\n"
+                    . "RewriteCond %{REQUEST_FILENAME} !-d"."\r\n"
+                    . "RewriteRule . /MailCtlr/index.php [L]"."\r\n"
+                    . "</IfModule>";
+        
+        
         file_put_contents($conf_name, $config );
-        echo "FILE: {$conf_name} creato!";
+        echo "FILE: {$conf_name} creato!<br />";
+        file_put_contents($index_file, $index);
+        echo "FILE: {$index_file} creato!<br />";
+        file_put_contents($htaccess_file, $htaccess);
+        echo "FILE: {$htaccess_file} creato!<br />";
+        
     }
     
     

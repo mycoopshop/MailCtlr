@@ -83,6 +83,9 @@ class RemoteController {
         $dup = isset($_POST['dup']) && $_POST['dup'] == 1 ? 1:0;
         $lis = isset($_POST['lista']) && $_POST['lista'] > 0 ? 1 : 0;
         $limit = isset($_POST['limit']) && $_POST['limit'] > 1 ? $_POST['limit'] : 1;
+        $privacy = isset($_POST['privacy']) && $_POST['privacy'] > 0 ? 1 : 0;
+        $active = isset($_POST['active']) && $_POST['active'] > 0 ? 1 : 0;
+        $p_email = isset($_POST['p_email']) && $_POST['p_email'] > 0 ? $_POST['p_email'] : 0;
         
         if ($dup){
             $d = json_decode($this->deleteDuplicateAction());
@@ -95,19 +98,32 @@ class RemoteController {
                     'limit'       => $limit,
                 ));
         foreach ($d as $c ){
-            if (!filter_var($c->email, FILTER_VALIDATE_EMAIL)){
-                $reply .= "Contatto {$c->id} non valido! [{$c->email}]...";
+            /*if (!filter_var($c->email, FILTER_VALIDATE_EMAIL)){
+                $reply .= "Contatto {$c->id} non valido [FORMATO NON VALIDO]! [{$c->email}]...";
                 Contact::delete($c->id);
-                $reply .= "...ELIMINATO " . "\n\r";
-            }else{
-                $rx = Contact::verifyEmail($c->email,"vince.sikania@gmail.com");
+                $reply .= "...ELIMINATO " . "\r\n";
+            }else{*/
+                $rx = Contact::verifyEmail($c->email,"vincenzo@ctlr.it");
                 if ($rx=='invalid'){
                     $reply .= "Contatto {$c->id} non valido [VERIFICA SMTP FALLITA]! [{$c->email}]...";
                     Contact::delete($c->id);
-                    $reply .= "...ELIMINATO " . "\n\r";
+                    $reply .= "...ELIMINATO " . "\r\n";
                 }else{
                     $c->email = strtolower($c->email);
                     $c->verificato = 1;
+                    if ($active && !$c->active){
+                        $reply .= "Contatto {$c->id} non attivo! [{$c->email}]...";
+                        Contact::delete($c->id);
+                        $reply.= "...ELIMINATO "."\r\n";
+                    }
+                    if ($privacy && $p_email>0 && !$c->privacy){
+                        Coda::submit(array(
+                            'contact_id' => $c->id,
+                            'email_id' => $p_email,
+                            'created' => MYSQL_NOW(),
+                            'user_id' => $app->user['id'],
+                        ));
+                    }
                     if ($lis){
                         Iscrizioni::submit(array(
                             'lista_id'          => mysql_real_escape_string($_POST['lista']),
@@ -118,7 +134,7 @@ class RemoteController {
                     }
                     $c->store();
                 }
-            }
+            //}
         }
         $json = array(
             'progress' => $prog,
@@ -247,8 +263,8 @@ class RemoteController {
                     'limit'       => $limit,
                 ));
         $server = AccountSMTP::findServer();
-        if (!$server){$reply ="non ci sono server". "\n\r";}
-        if (!isset($server->host)){$reply = "il server non ha un host valido". "\n\r";}
+        if (!$server){$reply ="non ci sono server". "\r\n";}
+        if (!isset($server->host)){$reply = "il server non ha un host valido". "\r\n";}
         
         $mail = new PHPMailer;
         $mail->isSMTP();
@@ -269,7 +285,7 @@ class RemoteController {
                 $dest->processato = 1;
                 $dest->note = "Email del contatto {$contact->id} assente! O Contatto non presente!";
                 $dest->store();
-                $reply = "Email del contatto {$contact->id} assente! O Contatto non presente!" . "\n\r";
+                $reply = "Email del contatto {$contact->id} assente! O Contatto non presente!" . "\r\n";
                 Contact::delete($contact->id);
                 continue;
             }
@@ -295,11 +311,11 @@ class RemoteController {
             $mail2->addReplyTo($server->replyTo);
             
             if(!$mail2->send()) {
-                $reply .= 'Errore per '.$contact->email.' info: '.$mail2->ErrorInfo."\n\r";
+                $reply .= 'Errore per '.$contact->email.' info: '.$mail2->ErrorInfo."\r\n";
                 $dest->note = $mail2->ErrorInfo;
                 $dest->server_id = $server->id;
             } else {
-                $reply .= $contact->email." Invio avvenuto con successo..." . "\n\r";
+                $reply .= $contact->email." Invio avvenuto con successo..." . "\r\n";
                 $dest->note = "Invio OK";
                 $dest->execute = MYSQL_NOW();                
                 $dest->server_id = $server->id;
@@ -319,8 +335,8 @@ class RemoteController {
             if (!$server->active){
                 $mail->SmtpClose();
                 $server = SendController::findServer();
-                if (!$server){$reply ="non ci sono server". "\n\r";continue;}
-                if (!isset($server->host)){$reply = "il server non ha un host valido". "\n\r";continue;}
+                if (!$server){$reply ="non ci sono server". "\r\n";continue;}
+                if (!isset($server->host)){$reply = "il server non ha un host valido". "\r\n";continue;}
                 $mail = new PHPMailer;
                 $mail->isSMTP();
                 $mail->Host = $server->host;
@@ -331,7 +347,7 @@ class RemoteController {
                 $mail->Port = $server->port;
                 $mail->SMTPKeepAlive = true;
                 $mail->setFrom($server->sender_mail, $server->sender_name);
-                $reply .= "Cambiato Server nuovo server:".$server->code."\n\r";
+                $reply .= "Cambiato Server nuovo server:".$server->code."\r\n";
             }
         }
         //$reply .= 'Processo terminato con successo';

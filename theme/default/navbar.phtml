@@ -63,7 +63,7 @@
 			<ul class="nav navbar-nav pull-right">
 				<?php if ( $app->hasSessionUser() ) { ?> 
 					<li><a href="#"><?=$app->user['name']?></a></li>
-                    <li><a href="#">v.<?=__VERSION__?></a></li>
+                    <li><a href="<?=__HOME__?>/changelog/">v.<?=__VERSION__?></a></li>
 					<li><a href="<?=__HOME__?>/Login/logout">Esci</a></li>
 				<?php } ?>
 			</ul>
