@@ -5,31 +5,7 @@ Using different SMTP server can send free mail to all the contacts you want at n
 
 # How to: Install Web Application
 
-* Open config/mailctlr.alpha.php and edit the follow line
-
-```php
-<?php
-    //Database
-	'db' => array(
-		'host' => 'localhost',
-		'user' => 'mailctlr',
-		'pass' => 'mailctlr',
-		'name' => 'mailctlt',
-		'pref' => 'mc_',
-	),
-            
-    //Location web application
-	'url' => 'http://www.your-site.com/folder',
-	'home' => 'http://www.your-site.com/folder',
-?>
-```
-
-* Open .htaccess and edit the follow line
-
-```php
-RewriteBase /folder/
-RewriteRule . /folder/index.php [L]
-```
+* Open http://www.your-link.com/your-folder/install/
 
 
 # MailCtlr License 
@@ -44,6 +20,7 @@ MailCtlr is licensed GNU AFFERO GENERAL PUBLIC LICENSE http://www.gnu.org/licens
  - Autoresponders for default actions: registration, cancellation, modification, (you can also create your actions)
  - Website for Application
  - Support Multilanguage
+ - [DONE!] Automatic Install Web Application
  - [DONE!] Registration to list form website 
  - [DONE!] Check Existence Contacts (check SMTP)
  - [DONE!] Port to GitHub
