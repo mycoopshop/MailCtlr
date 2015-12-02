@@ -20,7 +20,7 @@ if (!defined('__MODE__')) {
 ## load config
 $config = Liberty::config();
 $db = "";
-//var_dump($config);die();
+
 if ( $config['install'] == 0 ) {
     $config['default']['theme'] = 'default';
     $config['default']['controller'] = 'Install';
