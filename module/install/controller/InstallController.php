@@ -14,13 +14,13 @@ class InstallController {
 
         ##iscrivi su ctlr
         if ($date['news'] == 1){
-            $url = 'http://www.ctlr.eu/MailCtlr/remote/subscribe/';
+            $url = 'http://www.ctlr.it/mailctlr/remote/subscribe/';
             $fields = array(
                 'email' => urlencode($_POST['email']),
                 'nome' => urlencode($_POST['nome']),
                 'cognome' => urlencode($_POST['cognome']),
                 'privacy' => urlencode(1),
-                'lista' => urlencode(2),
+                'lista' => urlencode(1),
 
             );
             $fields_string = "";
