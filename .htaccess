@@ -1,8 +1,8 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /MailCtlr/
+RewriteBase /mailctlr/
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /MailCtlr/index.php [L]
+RewriteRule . /mailctlr/index.php [L]
 </IfModule>

@@ -9,9 +9,6 @@ require_once __BASE__.'/lib/liberty/Liberty.php';
 ## handle database model
 require_once __BASE__.'/lib/schemadb/schemadb.php';
 
-## 
-Liberty::debug(true);
-
 ## define base constants
 if (!defined('__NAME__')) {
 	Liberty::trigger_error('[Liberty 102] define constant "__NAME__" in your "index.php"');
@@ -22,9 +19,8 @@ if (!defined('__MODE__')) {
 
 ## load config
 $config = Liberty::config();
-
 $db = "";
-
+//var_dump($config);die();
 if ( $config['install'] == 0 ) {
     $config['default']['theme'] = 'default';
     $config['default']['controller'] = 'Install';

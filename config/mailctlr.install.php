@@ -8,10 +8,10 @@ define('YEAR',365);
 return array (
   'name' => 'MailCtlr',
   'db' => array (
-    'host' => '',
-    'user' => '',
-    'pass' => '',
-    'name' => '',
+    'host' => 'localhost',
+    'user' => 'c1beta',
+    'pass' => 'bgba#EM21T',
+    'name' => 'c1beta',
     'pref' => '',
   ),
   'type' => 'beta',

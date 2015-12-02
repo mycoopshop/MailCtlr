@@ -5,7 +5,10 @@ Using different SMTP server can send free mail to all the contacts you want at n
 
 # How to: Install Web Application
 
-* Open http://www.your-link.com/your-folder/install/
+* Download latest version and upload on your server
+* Open http://www.your-domain.com/mailctlr/ in your browser
+* Insert all request date and click "Install" 
+* Now you can use MailCtlr... Enjoy!
 
 
 # MailCtlr License 
@@ -20,7 +23,9 @@ MailCtlr is licensed GNU AFFERO GENERAL PUBLIC LICENSE http://www.gnu.org/licens
  - Autoresponders for default actions: registration, cancellation, modification, (you can also create your actions)
  - Website for Application
  - Support Multilanguage
- - [DONE!] Automatic Install Web Application
+ - [DONE!] Clean contact (SMTP check exist mail, email format check)
+ - [DONE!] Form for remote subscription
+ - [DONE!] Autoinstall process
  - [DONE!] Registration to list form website 
  - [DONE!] Check Existence Contacts (check SMTP)
  - [DONE!] Port to GitHub
