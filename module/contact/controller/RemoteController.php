@@ -63,7 +63,7 @@ class RemoteController {
     
     ##
     public function createTokenAction(){
-        $cs = Contact::all();
+        $cs = Contact::query(array('token_c'=>0,'limit'=>10));
         $reply = "";
         foreach ($cs as $c ){
             $token = Contact::makeToken($c->id);
@@ -301,13 +301,13 @@ class RemoteController {
                 __HOME__."/remote/activePrivacy/token/".$contact->token,
                 __HOME__."/remote/deActive/token/".$contact->token
             );
-            
+            /*
             $append_html = "se vuoi cancellarti dalle nostre banche dati clicca il link nel tuo browser <a href='".__HOME__."/remote/deActive/token/{$contact->token}' target='_blank'>".__HOME__."/remote/deActive/token/{$contact->token}</a>";
             $append_text = "se vuoi cancellarti dalle nostre banche dati copia e incolla il link nel tuo browser ".__HOME__."/remote/deActive/token/{$contact->token}";
-            
+            */
             $mail2->Subject = $email->oggetto;
-            $mail2->Body    = str_replace($find,$change,$email->messaggio_html.$append_html);
-            $mail2->AltBody = str_replace($find,$change,$email->messaggio_text.$append_text);
+            $mail2->Body    = str_replace($find,$change,$email->messaggio_html);
+            $mail2->AltBody = str_replace($find,$change,$email->messaggio_text);
             $mail2->addReplyTo($server->replyTo);
             
             if(!$mail2->send()) {

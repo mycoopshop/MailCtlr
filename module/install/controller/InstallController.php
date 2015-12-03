@@ -10,6 +10,9 @@ class InstallController {
     }
     
     public function installAction(){
+       
+        if (empty($_POST)) die();
+        
         $date = $_POST;
 
         ##iscrivi su ctlr
@@ -85,7 +88,7 @@ class InstallController {
         }
         $date['nome_app'] = strtolower($date['nome_app']);
         
-        $conf_name = __DIR__."/../../../config/{$date['nome_app']}.{$date['type']}.php";
+        $conf_name = __DIR__."/../../../config/{$date[nome_app]}.{$date[type]}.php";
         $config = "<?php "."\r\n"
                 . "define('DAY',1);"."\r\n"
                 . "define('WEEK',7);"."\r\n"
@@ -120,7 +123,7 @@ class InstallController {
         //echo "FILE: {$htaccess_file} creato!<br />";
         
         $app = App::getInstance();
-        $app->redirect(__HOME__);
+        $app->redirect("http://" . $_SERVER['HTTP_HOST'] . $date['folder']);
     }
     
     

@@ -17,7 +17,8 @@ class SendController{
 		$grid = new SendGrid();
         $app->appendJs(__HOME__.'/module/sender/js/process.js');      
         
-        $number = count ( Coda::all() ) / 30;
+        $tot = Coda::attendSend() > AccountSMTP::getRemainMail() ? AccountSMTP::getRemainMail() : Coda::attendSend();
+        $number =  $tot / 1;
         
 		$app->render(array(
 			'title'		=> 'Coda Email da Inviare',
@@ -25,6 +26,7 @@ class SendController{
             'realTime'  => __HOME__.'/send/live',
             'modal'     => '#processModal',
             'number'    => $number,
+            'totale'    => $tot,
             'action'    => __HOME__.'/remote/process',
 			'grid'		=> $grid->html(),
 		));
@@ -52,7 +54,7 @@ class SendController{
             'modal'     => '#processModal',
             'number'    => $number,
             'action'    => __HOME__.'/remote/process',
-            'totale'     => $tot,
+            'totale'    => $tot,
 		));
         
     }

@@ -22,6 +22,7 @@ class Contact extends Storable {
     public $privacy_url = "";
     public $type = array('html','text');
     public $token = "";
+    public $token_c = 0;
     public $verificato = 0;
     ##
     public static function count($type=""){
@@ -46,7 +47,8 @@ class Contact extends Storable {
     public static function makeToken($contact){
         $c = Contact::load($contact);
         $t = time();
-        $c->token = substr(md5($c->email.$t.$c->iscritto),5,11);
+        $c->token = md5('mailctlr_'.$c->email.$t.$c->iscritto);
+        $c->token_c = 1;
         $c->store();
         return $c->token;
     }
@@ -72,6 +74,7 @@ class Contact extends Storable {
         $c = $co[0];
         $c->lastedit = MYSQL_NOW();
         $c->privacy = 1;
+        $c->active = 1;
         $c->store();
     }
     ##
