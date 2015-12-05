@@ -1,5 +1,4 @@
-$ui.uploadifyInit = function(o) {
-	
+$ui.uploadifyInit = function(o) {	
 	var s = jQuery(o);
 	var i = "data-ui-uploadify-"+Math.floor(Math.random()*100000);
 		
@@ -72,8 +71,6 @@ $ui.uploadifyDelete = function(obj) {
 	}
 	return false;
 };
-
-//
 $ui.uploadifyDownload = function(obj) {
 	var f = jQuery(obj);
 	var s = f.parents("[data-ui-uploadify]").first();
@@ -81,13 +78,11 @@ $ui.uploadifyDownload = function(obj) {
 	var i = f.attr("data-ui-uploadify-download");
 	c.downloader = $ui.urlParamsUpdate(c.service,{
 		id:i,
-		action:'Download'
+		action:'download'
 	});	
 	
 	window.open(c.downloader,'_blank'); 
 };
-
-//
 $ui.uploadifyView = function(obj) {
 	var f = jQuery(obj);
 	var s = f.parents("[data-ui-uploadify]").first();
@@ -95,7 +90,7 @@ $ui.uploadifyView = function(obj) {
 	var i = f.attr("data-ui-uploadify-view");
 	c.viewer = $ui.urlParamsUpdate(c.service,{
 		id:i,
-		action:'Mostra'
+		action:'view'
 	});	
 	
 	window.open(c.viewer,'_blank'); 
@@ -107,22 +102,16 @@ jQuery(document).ready(function(){
 		$ui.uploadifyInit(this);
 	});
 });
-
-//
 jQuery(document).on("click","[data-ui-uploadify-delete]",function(e){	
 	$ui.uploadifyDelete(this);	
 	e.preventDefault();
 	return false;
 });
-
-//
 jQuery(document).on("click","[data-ui-uploadify-download]",function(e){	
 	$ui.uploadifyDownload(this);	
 	e.preventDefault();
 	return false;
 });
-
-//
 jQuery(document).on("click","[data-ui-uploadify-view]",function(e){	
 	$ui.uploadifyView(this);	
 	e.preventDefault();

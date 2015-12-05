@@ -1,5 +1,6 @@
 <?php
 require_once __BASE__.'/module/contact/grid/ContactGrid.php';
+require_once __BASE__.'/module/contact/files/ContactFiles.php';
 require_once __BASE__.'/module/contact/grid/ContactCheckedGrid.php';
 require_once __BASE__.'/module/contact/grid/ContactModalGrid.php';
 require_once __BASE__.'/module/contact/model/Contact.php';
@@ -18,7 +19,7 @@ class ContactController {
 		$app->render(array(
 			'title'		=> 'Contatti',
 			'createUrl' => __HOME__.'/contact/create',
-            'importCSV' => __HOME__.'/contact/importCSV',
+            'import' => __HOME__.'/contact/import',
 			'grid'		=> $grid->html(),
 		));
 	}
@@ -111,30 +112,66 @@ class ContactController {
     }
     
     ##
+    public function filesAction() {
+		$files = new ContactFiles();
+		echo $files->response();		
+	}
+    
+    ##
+    public function importAction(){
+        $app = App::getInstance();
+        
+		$app->render(array(
+			'title' => 'Importa contatti da file CSV',
+            'user'  => $app->user['id'],
+            'createUrl' => __HOME__.'/contact/import',
+		));
+        
+    }
+    
+    ##
     public function importCSVAction(){
-        $reply = "<pre>";
-        /*$csv = new parseCSV();
-        $csv->auto(__BASE__."/module/contact/import/sardegna.csv");
-        $reply .= 'START';
-        foreach ($csv->data as $info) {
-            var_dump($info);die();
+        $reply = "";
+        $app = App::getInstance();
+        $id = (int) $app->getUrlParam('id');
+        $csv = new parseCSV();
+        $f = ContactFiles::load($id);
+        $csv->auto($f->getPath());
+        $reply .= 'START<br />';
+        $count = 0;
+        foreach ($csv->data as $i => $info) {
             
+            $email = $info{"email"};
+            $nome = isset($info{"nome"}) ? $info{"nome"} : "";
+            $cognome = isset($info{"cognome"}) ? $info{"cognome"} : "";
+            
+            if (!Contact::checkContact($email)){ 
+                $reply .= $email." contatto non valido!<br />";
+                continue;
+            }
             $id_c = Contact::submit(array(
-                'email' => $info{"Indirizzo e-mail"},
+                'nome' => $nome,
+                'cognome' => $cognome,
+                'email' => $email,
+                'active' => 1,
+                'privacy' => 0,
+                'iscritto' => MYSQL_NOW(),
+                'lastedit' => MYSQL_NOW(),
                 'type' => 'html',
             ));
-            //var_dump($id_c);die();
-            $id_i = Iscrizioni::submit(array(
-                'lista_id' => 1,
-                'contatto_id' => $id_c->id,
-                'creata' => MYSQL_NOW(),
-                
-            ));
-            $reply .= 'Contatto: '.$info{"Indirizzo e-mail"}.' id_c: '.$id_c->id.' - id_i: '.$id_i->id.'<br />';
-        }*/
+            $t = Contact::makeToken($id_c->id);
+            $reply .= "Contatto: $nome $cognome $email Token: $t<br />";
+            $count ++;
+        }
         $reply .= 'END';
-        echo $reply;
+        ContactFiles::delete($f->id);
         
+        //echo $reply;
+        $app->render(array(
+			'title' => 'Importazione contatti da CSV',
+            'createUrl' => __HOME__.'/contact/import',
+            'reply'  => "Contati Importati $count<br />".$reply,
+		));
     }
     
     ##

@@ -1,0 +1,23 @@
+<?php include(__THEME__.'/nav-list.phtml') ?>
+
+<div class="row">
+    <div class="form-legend">
+        File Caricati
+    </div>
+    <!-- Note -->	
+    <div class="form-group">
+            <div class="col-sm-12">				
+                   
+				<div 
+					data-ui-uploadify="
+						folder:'Import',
+                        parent: '<?=@$data->user?>',
+						service:'<?=__HOME__?>/contact/files'
+					"
+					>
+				</div>
+				
+            </div>
+            <div style="clear:both"></div>		
+    </div>
+</div>

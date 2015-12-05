@@ -29,18 +29,26 @@ class ContactModule {
         ));			
 		
         ##
+        /*
         $app->addMenu('navbar',array(
             'parent'	=> 'navbar-contact',
             'label'		=> 'Contatti Verificati',
             'link'		=> __HOME__.'/contact/checkedOk'
         ));
-        
+        */
         ##
         $app->addMenu('navbar',array(
             'parent'	=> 'navbar-contact',
             'label'		=> 'Aggiungi Contatti',
             'link'		=> __HOME__.'/contact/create'
         ));			
+        
+        ##
+        $app->addMenu('navbar',array(
+            'parent'	=> 'navbar-contact',
+            'label'		=> 'Importa Contatti',
+            'link'		=> __HOME__.'/contact/import'
+        ));
         
         ##
         $app->addMenu('navbar',array(

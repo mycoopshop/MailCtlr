@@ -17,12 +17,12 @@ MailCtlr is licensed GNU AFFERO GENERAL PUBLIC LICENSE http://www.gnu.org/licens
 
 # Roadmap
 
- - Import contact from a .csv file 
  - Automatic upgrade to the new version
  - Statistics on sending: email receipts, open (opening number), deleted
  - Autoresponders for default actions: registration, cancellation, modification, (you can also create your actions)
  - Website for Application
  - Support Multilanguage
+ - [DONE!] Import contact from a .csv file 
  - [DONE!] Clean contact (SMTP check exist mail, email format check)
  - [DONE!] Form for remote subscription
  - [DONE!] Autoinstall process

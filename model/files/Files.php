@@ -8,7 +8,7 @@ class Files extends Storable {
 	public $id = MYSQL_PRIMARY_KEY;
 	public $folder = "";
 	public $parent = 0;
-	public $name = "";	
+	public $name = "";
 	public $session = "";
 
 	##
@@ -54,7 +54,7 @@ class Files extends Storable {
 	}
 	
 	## 
-	private function response_upload($folder,$parent,$session) {
+	public function response_upload($folder,$parent,$session) {
 		
 		$info = array_merge($_FILES['Filedata'],pathinfo($_FILES['Filedata']["name"]));								
 		$name = $info['name'];
@@ -80,7 +80,7 @@ class Files extends Storable {
 	}
 	
 	##
-	private function response_list($folder,$parent) {
+	public function response_list($folder,$parent) {
 		
 		$all = static::query(array(
 			'folder' => $folder,
@@ -119,12 +119,12 @@ class Files extends Storable {
 	}
 	
 	##
-	private function response_delete($id) {		
+	public function response_delete($id) {		
 		static::delete($id);
 	}
 
 	##
-	private function response_download($id) {		
+	public function response_download($id) {		
 		
 		$file = static::load($id);
 		$name = $file->name;
@@ -147,7 +147,7 @@ class Files extends Storable {
 	}
 
 	##
-	private function response_view($id) {		
+	public function response_view($id) {		
 		
 		$file = static::load($id);
 		$name = $file->name;
@@ -170,7 +170,7 @@ class Files extends Storable {
 	}
 
 	##
-	private function response_session() {
+	public function response_session() {
 		$session = session_id();
 		echo $session;
 		exit();
