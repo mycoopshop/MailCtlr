@@ -1,9 +1,8 @@
 <?php
 
-class Module {
-	
-	public $scope = array(
-		'index.php'
-	);
-	
+class Module
+{
+    public $scope = [
+        'index.php',
+    ];
 }
