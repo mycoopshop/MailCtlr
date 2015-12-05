@@ -1,5 +1,7 @@
 # MailCtlr
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ctlr/MailCtlr/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ctlr/MailCtlr/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/ctlr/MailCtlr/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ctlr/MailCtlr/build-status/master) 
+
 MailCtlr is a new system for the management of your advertising campaigns based on email, it allows you to send all the emails you want for free. 
 Using different SMTP server can send free mail to all the contacts you want at no cost or almost.
 
