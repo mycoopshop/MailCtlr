@@ -1,9 +1,10 @@
 <?php
 /**
  * PHPMailer - PHP email creation and transport class.
- * PHP Version 5.4
- * @package PHPMailer
+ * PHP Version 5.4.
+ *
  * @link https://github.com/PHPMailer/PHPMailer/ The PHPMailer GitHub project
+ *
  * @author Marcus Bointon (Synchro/coolbru) <phpmailer@synchromedia.co.uk>
  * @author Jim Jagielski (jimjag) <jimjag@gmail.com>
  * @author Andy Prevost (codeworxtech) <codeworxtech@users.sourceforge.net>
@@ -19,45 +20,50 @@
 
 /**
  * PHPMailerOAuth - PHPMailer subclass adding OAuth support.
- * @package PHPMailer
+ *
  * @author @sherryl4george
  * @author Marcus Bointon (@Synchro) <phpmailer@synchromedia.co.uk>
  */
 class PHPMailerOAuth extends PHPMailer
 {
     /**
-     * The OAuth user's email address
+     * The OAuth user's email address.
+     *
      * @var string
      */
     public $oauthUserEmail = '';
 
     /**
-     * The OAuth refresh token
+     * The OAuth refresh token.
+     *
      * @var string
      */
     public $oauthRefreshToken = '';
 
     /**
-     * The OAuth client ID
+     * The OAuth client ID.
+     *
      * @var string
      */
     public $oauthClientId = '';
 
     /**
-     * The OAuth client secret
+     * The OAuth client secret.
+     *
      * @var string
      */
     public $oauthClientSecret = '';
 
     /**
      * An instance of the PHPMailerOAuthGoogle class.
+     *
      * @var PHPMailerOAuthGoogle
-     * @access protected
      */
     protected $oauth = null;
 
     /**
      * Get a PHPMailerOAuthGoogle instance to use.
+     *
      * @return PHPMailerOAuthGoogle
      */
     public function getOAUTHInstance()
@@ -70,18 +76,21 @@ class PHPMailerOAuth extends PHPMailer
                 $this->oauthRefreshToken
             );
         }
+
         return $this->oauth;
     }
 
     /**
      * Initiate a connection to an SMTP server.
      * Overrides the original smtpConnect method to add support for OAuth.
+     *
      * @param array $options An array of options compatible with stream_context_create()
+     *
      * @uses SMTP
-     * @access public
+     *
      * @return bool
      */
-    public function smtpConnect($options = array())
+    public function smtpConnect($options = [])
     {
         if (is_null($this->smtp)) {
             $this->smtp = $this->getSMTPInstance();
@@ -104,7 +113,7 @@ class PHPMailerOAuth extends PHPMailer
         $lastexception = null;
 
         foreach ($hosts as $hostentry) {
-            $hostinfo = array();
+            $hostinfo = [];
             if (!preg_match('/^((ssl|tls):\/\/)*([a-zA-Z0-9\.-]*):?([0-9]*)$/', trim($hostentry), $hostinfo)) {
                 // Not a valid host entry
                 continue;
@@ -136,11 +145,11 @@ class PHPMailerOAuth extends PHPMailer
             }
             $host = $hostinfo[3];
             $port = $this->Port;
-            $tport = (integer)$hostinfo[4];
+            $tport = (integer) $hostinfo[4];
             if ($tport > 0 and $tport < 65536) {
                 $port = $tport;
             }
-            if ($this->smtp->connect($prefix . $host, $port, $this->Timeout, $options)) {
+            if ($this->smtp->connect($prefix.$host, $port, $this->Timeout, $options)) {
                 try {
                     if ($this->Helo) {
                         $hello = $this->Helo;
@@ -176,6 +185,7 @@ class PHPMailerOAuth extends PHPMailer
                             throw new phpmailerException($this->lang('authenticate'));
                         }
                     }
+
                     return true;
                 } catch (phpmailerException $exc) {
                     $lastexception = $exc;
@@ -191,6 +201,7 @@ class PHPMailerOAuth extends PHPMailer
         if ($this->exceptions and !is_null($lastexception)) {
             throw $lastexception;
         }
+
         return false;
     }
 }

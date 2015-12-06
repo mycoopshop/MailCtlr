@@ -1,9 +1,5 @@
 <?php
-class Storable extends sdbClass {
-	
-	
-	
-	
-	
-	
+
+class Storable extends sdbClass
+{
 }
