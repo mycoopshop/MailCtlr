@@ -1,6 +1,6 @@
 <div class="container">
-    <h2>Premi Start per avviare il processo d'invio in tempo reale!</h2>
-    <h4>Email da inviare oggi <b id="remain"><?=@$data->number;?></b> di <b><?=@$data->totale;?></b></h4>
+    <h2><?=_('Press Start to start the process of sending real-time!')?></h2>
+    <h4><?=_('Email sent today')?><b id="remain"><?=@$data->number;?></b> <?=_('of')?> <b><?=@$data->totale;?></b></h4>
     <br />
     <div class="row">
         <div class="col-sm-1">
@@ -9,10 +9,9 @@
                 id="start"
                 data-placement="bottom" 
                 data-toggle="tooltip" 
-                data-original-title="Torna alla scermata precedente" 
                 class="navbar-btn btn btn-success" 
                 onClick="process( '<?=$data->action?>' , <?=$data->number?> , <?=@$data->totale?> );" >
-                <span class="glyphicon glyphicon-play"></span> START
+                <span class="glyphicon glyphicon-play"></span> <?=_('Start')?>
             </button>
             <button 
                 type="button" 
@@ -20,10 +19,9 @@
                 style="display:none;"
                 data-placement="bottom" 
                 data-toggle="tooltip" 
-                data-original-title="Torna alla scermata precedente" 
                 class="navbar-btn btn btn-danger" 
                 onClick="process_stop();" >
-                <span class="glyphicon glyphicon-stop"></span> Stop
+                <span class="glyphicon glyphicon-stop"></span> <?=_('Stop')?>
             </button> 
         </div>
         <div class="col-sm-11">
@@ -34,7 +32,7 @@
                     role="progressbar" 
                     aria-valuemax="100" 
                     style="width: 0%">
-                        0% Complete
+                        0% <?=_('Complete')?>
                 </div>
             </div>
         </div>

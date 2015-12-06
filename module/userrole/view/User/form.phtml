@@ -1,56 +1,53 @@
 <form action="<?=__HOME__?>/user/save/" method="POST" data-ui-validate="success:'<?=$data->modal?'testModalSave':''?>'" id="item">
 	<input type="hidden" name="id" value="<?=$data->item->id?>" />
-        
-		<input type="hidden" name="role" value="<?=$data->item->role?>" />
-        		
-		<div >
-            <label>User Name*</label>
-            <input data-ui-testing="required min3" type="text" name="username" value="<?=$data->item->username?>">
-            <div data-ui-message="error:username:required">
-               Il campo "username" non pu&ograve; essere vuoto.
-            </div>
-            <div data-ui-message="error:username:min3">
-               Il campo "username" deve contenere almeno 3 caratteri.
-            </div>
+    <div >
+        <label><?=_('Username')?>*</label>
+        <input data-ui-testing="required min3" type="text" name="username" value="<?=$data->item->username?>">
+        <div data-ui-message="error:username:required">
+           <?=_('Username is required!')?>
         </div>
-        <div>
-            <label>Password*</label>
-            <input data-ui-testing="required min3" type="text" name="password" value="<?=$data->item->password?>">
-            <div data-ui-message="error:password:required">
-                Il campo "password" non pu&ograve; essere vuoto.
-            </div>
-            <div data-ui-message="error:password:min3">
-               Il campo "password" deve contenere almeno 3 caratteri.
-            </div>
+        <div data-ui-message="error:username:min3">
+           <?=_('Min lengh is 3')?>
         </div>
-        <div>
-            <label>Nome</label>
-            <input type="text" name="nome" value="<?=$data->item->nome?>">
+    </div>
+    <div>
+        <label><?=_('Password')?>*</label>
+        <input data-ui-testing="required min3" type="text" name="password" value="<?=$data->item->password?>">
+        <div data-ui-message="error:password:required">
+            <?=_('Password is required!')?>
         </div>
-        <div>
-            <label>Cognome</label>
-            <input type="text" name="cognome" value="<?=$data->item->cognome?>">
+        <div data-ui-message="error:password:min3">
+           <?=_('Min lengh is 3')?>
         </div>
-        <div>
-            <label>Email</label>
-            <input type="text" name="email" value="<?=$data->item->email?>">
-        </div>
-        <div>
-            <label>Telefono</label>
-            <input type="text" name="telefono" value="<?=$data->item->telefono?>">
-        </div>
-        <div>
-            <label>Cellulare</label>
-            <input type="text" name="cellulare1" value="<?=$data->item->cellulare1?>">
-        </div>
-        <div>
-            <label>Cellulare 2</label>
-            <input type="text" name="cellulare2" value="<?=$data->item->cellulare2?>">
-        </div>
-        <select name="role">'user','admin','superadmin'
-            <option value="user">user</option>		
-            <option value="admin">admin</option>		
-            <option value="superadmin">superadmin</option>
-        </select>
-        <span>* Campo Obbligatorio</span>
+    </div>
+    <div>
+        <label><?=_('Name')?></label>
+        <input type="text" name="nome" value="<?=$data->item->nome?>">
+    </div>
+    <div>
+        <label><?=_('Surname')?></label>
+        <input type="text" name="cognome" value="<?=$data->item->cognome?>">
+    </div>
+    <div>
+        <label><?=_('Email')?></label>
+        <input type="text" name="email" value="<?=$data->item->email?>">
+    </div>
+    <div>
+        <label><?=_('Phone')?></label>
+        <input type="text" name="telefono" value="<?=$data->item->telefono?>">
+    </div>
+    <div>
+        <label><?=_('Mobile phone')?></label>
+        <input type="text" name="cellulare1" value="<?=$data->item->cellulare1?>">
+    </div>
+    <div>
+        <label><?=_('Mobile phone 2')?></label>
+        <input type="text" name="cellulare2" value="<?=$data->item->cellulare2?>">
+    </div>
+    <select name="role">
+        <option value="user" <?=$data->item->role=='user'?'selected':''?>>user</option>		
+        <option value="admin" <?=$data->item->role=='admin'?'selected':''?>>admin</option>		
+        <option value="superadmin" <?=$data->item->role=='superadmin'?'selected':''?>>superadmin</option>
+    </select>
+    <span>* <?=_('Required')?></span>
 </form>

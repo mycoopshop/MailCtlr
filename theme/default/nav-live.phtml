@@ -1,14 +1,11 @@
 <div class="h70px">
-
 	<nav 	
 		data-spy="affix" 
 		data-offset-top="10" 
 		class="navbar navbar-default" 
 		role="navigation" 
 		>
-
 		<div class="container">
-
 			<div class="navbar-header">    
 				<span class="navbar-brand nav-bar-title" ><?=@$data->title ?></span>
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#toolbar-nav">
@@ -25,10 +22,10 @@
                             id="start"
 							data-placement="bottom" 
 							data-toggle="tooltip" 
-							data-original-title="Torna alla scermata precedente" 
+							data-original-title="<?=_('Start send process')?>" 
 							class="navbar-btn btn btn-success" 
 							onClick="process( '<?=$data->action?>' , <?=$data->number?> , <?=@$data->totale?> );" >
-							<span class="glyphicon glyphicon-play"></span> START
+							<span class="glyphicon glyphicon-play"></span> <?=_('Start')?>
 						</button>
                         <button 
 							type="button" 
@@ -36,16 +33,14 @@
                             style="display:none;"
 							data-placement="bottom" 
 							data-toggle="tooltip" 
-							data-original-title="Torna alla scermata precedente" 
+							data-original-title="<?=_('Stop send process')?>" 
 							class="navbar-btn btn btn-danger" 
 							onClick="process_stop();" >
-							<span class="glyphicon glyphicon-stop"></span> Stop
+							<span class="glyphicon glyphicon-stop"></span> <?=_('Stop')?>
 						</button>                        
 					</li>
 				</ul>
 			</div>
 		</div>
-
-	</nav> 
-
+	</nav>
 </div>	

@@ -3,14 +3,13 @@
 require_once __BASE__.'/module/logmod/grid/LogGrid.php';
 require_once __BASE__.'/module/logmod/model/Log.php';
 
-class LogController
-{
-    ##
 
-    public function indexAction()
-    {
-        $app = App::getInstance();
-        $grid = new LogGrid();
+class LogController {
+    
+    ##
+	public function indexAction() {		
+		$app = App::getInstance();		
+		$grid = new LogGrid();
         //Log::drop();
         /*
         $info_user = User::getInfoUser();
@@ -29,36 +28,36 @@ class LogController
         //Log::submit($log);
         */
         //Log::logga("Test","Testo il sistema di log 'Avanzato'!");
-
-        $app->render([
-            'title'        => 'Log di Sisitema',
-            'grid'         => $grid->html(),
-        ]);
-    }
-
+        
+		$app->render(array(
+			'title'		=> 'Log di Sisitema',
+			'grid'		=> $grid->html(),
+		));
+	}
+    
     ##
-
-    public function gridAction()
-    {
-        $grid = new LogGrid();
-        echo json_encode($grid->json());
+	public function gridAction() {
+		$grid = new LogGrid();
+		echo json_encode($grid->json());
+	}
+    
+    
+    public function detailAction() {		
+		
+		##
+		$app = App::getInstance();		
+		
+		##
+		$id = (int) $app->getUrlParam('id');		
+		
+		##
+		$item = Log::load($id);
+        
+        $app->render(array(
+			'title'		=> 'Log di Sisitema',
+			'item'		=> $item,
+		));
+		
     }
-
-    public function detailAction()
-    {
-
-        ##
-        $app = App::getInstance();
-
-        ##
-        $id = (int) $app->getUrlParam('id');
-
-        ##
-        $item = Log::load($id);
-
-        $app->render([
-            'title'        => 'Log di Sisitema',
-            'item'         => $item,
-        ]);
-    }
+    
 }

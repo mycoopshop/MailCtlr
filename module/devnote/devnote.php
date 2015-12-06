@@ -1,28 +1,29 @@
 <?php
 
-class DevnoteModule
-{
-    private $acl = [
-        'superadmin' => [
+class DevnoteModule {	
+
+    private $acl = array(
+        'superadmin'=>array(
             'menu-footer'            => true,
-        ],
-        'admin' => [
+        ),
+		'admin' => array(
             'menu-footer'            => true,
-        ],
-        'user' => [
+		),
+		'user' => array(
             'menu-footer'            => false,
-        ],
-    ];
+		),
+    );
+    
+    public function __construct() {
+		$app = App::getInstance();
+                
+        if ($app->testAcl('menu-footer',$this->acl)) {
 
-    public function __construct()
-    {
-        $app = App::getInstance();
+            $app->addMenu('footer-link',array(
+                    'label' => 'Help',
+                    'link'	=> __HOME__.'/devnote/ticket',
+            ));
 
-        if ($app->testAcl('menu-footer', $this->acl)) {
-            $app->addMenu('footer-link', [
-                    'label'   => 'Help',
-                    'link'    => __HOME__.'/devnote/ticket',
-            ]);
         }
-    }
+	}
 }

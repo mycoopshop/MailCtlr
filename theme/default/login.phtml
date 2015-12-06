@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?=__LANG__?>">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,13 +17,11 @@
 </head>
 <body>
 <div class="container">
-	
 	<div style="text-align:center">
 		 <a href="<?=__HOME__?>/login">
 			<img src="<?=__LOGO__?>" alt="<?=__NAME__?>">				
 		</a>
 	</div>
-
 	<form action="<?=__HOME__?>/Login/Login" class="form-signin" role="form" method="POST">
 		<?php if (isset($_GET["alert"])) { ?>
 			<div class="alert alert-danger">
@@ -31,17 +29,15 @@
 			</div>
 		<?php } ?>
 		<br/>        
-		<input type="text" name="username" class="form-control" placeholder="Nome utente" required autofocus>		
-		<input type="password" name="password" class="form-control" placeholder="Password" required>
+		<input type="text" name="username" class="form-control" placeholder="<?=_('Username')?>" required autofocus>		
+		<input type="password" name="password" class="form-control" placeholder="<?=_('Password')?>" required>
 		<input type="hidden" name="redirect" value="<?=@$_GET["redirect"];?>">
 		<!--label class="checkbox">
 			<input type="checkbox" value="remember-me"> Remember me
 		</label-->
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Entra</button>
+		<button class="btn btn-lg btn-primary btn-block" type="submit"><?=_('Sign In')?></button>
 	</form>
-
 </div>
-
 <style>
 	body {
 		padding-top: 40px;

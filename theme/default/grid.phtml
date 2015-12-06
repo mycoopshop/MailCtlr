@@ -23,17 +23,14 @@
 		    bServerSide: true,
     		bProcessing: true,
 			bStateSave: false,
-			iDisplayLength: 50,
+			iDisplayLength: 25,
 			sAjaxSource: '<?=$grid->getService();?>',
-			fnServerParams: function ( aoData ) {
-					
-				var data = {};	
-		
+			fnServerParams: function ( aoData ) {					
+				var data = {};		
 				jQuery("[data-grid-input]").each(function(){
 					var name = jQuery(this).attr("name");
 					data[name] = jQuery(this).val();
-				});
-		
+				});		
 				aoData.push({ 
 					"name": "gridTable", 
 					"value": JSON.stringify(data) 
@@ -78,7 +75,6 @@
 		var id = gridTable.fnGetData(po)[0];
 		<?=@$grid->ClientEvents['row.click']?>
     });
-	
     jQuery(document).ready(function(){
 		setTimeout('fix_datagrid_questions();',100);		
 	});
@@ -96,6 +92,5 @@
 		f.val('');
 		f.trigger(jQuery.Event('change', {which: 13}));;		
 	}
-    
 	// internationalization url: http://datatables.net/plug-ins/i18n 
 </script>

@@ -1,24 +1,21 @@
 <?php include(__THEME__.'/nav-list-process.phtml') ?>
 <?php include(__THEME__.'/modal/delete.phtml') ?>
-
-<?=$data->grid?> 
-
+<?=$data->grid?>
 <div class="modal fade" id="processModal" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Processamento coda d'invio</h4>
+        <h4 class="modal-title" id="myModalLabel"><?=_('Processing the send queue')?></h4>
       </div>
       <div class="modal-body">
-          <button class="btn btn-success" id="start" onclick="process( '<?=$data->action?>' , <?=$data->number?> , <?=@$data->totale?> );"><span class="glyphicon glyphicon-play"></span>  START</button>
-          <button class="btn btn-danger" style="display:none;" id="stop" onclick="process_stop();"><span class="glyphicon glyphicon-stop"></span> STOP</button>
-          
+          <button class="btn btn-success" id="start" onClick="process( '<?=$data->action?>' , <?=$data->number?> , <?=@$data->totale?> );" ><span class="glyphicon glyphicon-play"></span>  <?=_('Start')?></button>
+          <button class="btn btn-danger" style="display:none;" id="stop" onclick="process_stop();"><span class="glyphicon glyphicon-stop"></span> <?=_('Stop')?></button>
           <br /><br />
           <pre class="result"></pre>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><?=_('Close')?></button>
       </div>
     </div>
   </div>

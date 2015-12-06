@@ -1,14 +1,11 @@
 <div class="h70px">
-
 	<nav 	
 		data-spy="affix" 
 		data-offset-top="10" 
 		class="navbar navbar-default" 
 		role="navigation" 
 		>
-
 		<div class="container">
-
 			<div class="navbar-header">    
 				<span class="navbar-brand nav-bar-title" ><?=@$data->title ?></span>
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#toolbar-nav">
@@ -24,10 +21,9 @@
 							type="button" 
 							data-placement="bottom" 
 							data-toggle="tooltip" 
-							data-original-title="Torna alla scermata precedente" 
 							class="navbar-btn btn btn-default" 
 							onClick="location.href='<?php echo $data->createUrl ?>'" >
-							<span class="glyphicon glyphicon-plus"></span> Nuovo
+							<span class="glyphicon glyphicon-plus"></span> <?=_('New')?>
                         </button>&nbsp;
 					</li>
                     <li>
@@ -35,16 +31,13 @@
 							type="button" 
 							data-placement="bottom" 
 							data-toggle="tooltip" 
-							data-original-title="Torna alla scermata precedente" 
 							class="navbar-btn btn btn-default" 
 							onClick="location.href='<?php echo $data->importCSV ?>'" >
-							<span class="glyphicon glyphicon-plus"></span> Importa CSV
+							<span class="glyphicon glyphicon-plus"></span> <?=_('Import csv file')?>
 						</button>&nbsp;
 					</li>
 				</ul>
 			</div>
 		</div>
-
-	</nav> 
-
-</div>	
+	</nav>
+</div>

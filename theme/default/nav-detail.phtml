@@ -1,14 +1,11 @@
 <div class="h70px">
-
 	<nav 
 		data-spy="affix" 
 		data-offset-top="10" 
 		class="navbar navbar-default" 
 		role="navigation"
-		> 
-
+		>
 		<div class="container">
-
 			<div class="navbar-header">    
 				<span class="navbar-brand nav-bar-title"><?=@$data->title?></span>
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#toolbar-nav">
@@ -16,32 +13,26 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button> 
-			</div> 
-
+			</div>
 			<div class="navbar-content collapse navbar-collapse">		
 				<div class="pull-right">
 					<button 
 						type="button" 
 						data-toggle="tooltip" 
-						data-original-title="Torna alla scermata precedente" 
-						class="navbar-btn btn btn-success" 
+						class="navbar-btn btn btn-default" 
 						onclick="javascript:history.go(-1);" >
-						<span class="glyphicon glyphicon-chevron-left <!--glyphicon glyphicon-remove-->"></span> Ritorna Indietro
+						<span class="glyphicon glyphicon-chevron-left"></span> <?=_('Go back')?>
 					</button>
 					<button 
 						class="navbar-btn btn btn-default btn-primary" 
 						type="button" 					
 						data-toggle="tooltip" 
-						data-original-title="Salva il dato corrente"
 						onclick="window.location='<?=$data->modifyUrl?>';"
 						>
-						<span class="glyphicon glyphicon-chevron-down"></span> Modifica
+						<span class="glyphicon glyphicon-chevron-down"></span> <?=_('Edit')?>
 					</button>
 				</div>
-			</div>   
-
+			</div>
 		</div>
-
 	</nav>
-
-</div>	
+</div>

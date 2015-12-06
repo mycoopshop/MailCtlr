@@ -1,11 +1,11 @@
 <?php
 
 ##
-class InstallModule
-{
-    ##
+class InstallModule {
 
-    public function __construct()
-    {
-    }
+	##
+	public function __construct() {		
+
+	}
+
 }
