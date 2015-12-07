@@ -4,26 +4,28 @@
 class InstallController
 {
     private $ls;
-    
+
     ##
+
     public function __construct()
     {
-        $dirs = array_filter(glob(__BASE__."/lang/*"), 'is_dir');
-        foreach($dirs as $dir){
-            $lang = str_replace(__BASE__."/lang/","",$dir);
-            $l = explode("_", $lang);
+        $dirs = array_filter(glob(__BASE__.'/lang/*'), 'is_dir');
+        foreach ($dirs as $dir) {
+            $lang = str_replace(__BASE__.'/lang/', '', $dir);
+            $l = explode('_', $lang);
             $this->ls[] = [
                 'locale' => $lang,
                 'lang'   => $l[0],
             ];
         }
     }
-    
+
     ##
+
     public function indexAction()
     {
         $app = App::getInstance();
-        
+
         $app->render_view([
             'lang' => $this->ls,
         ]);
@@ -105,7 +107,7 @@ class InstallController
             'lang'       => $date['lang'],
             'locale'     => '',
         ];
-        
+
         require_once __BASE__.'/module/config/model/Options.php';
         foreach ($optdb as $key => $value) {
             Options::submit([

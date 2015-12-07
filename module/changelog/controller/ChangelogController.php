@@ -17,12 +17,12 @@ class ChangelogController
         ]);
     }
 
-    
     /*
      * Check update from remote repository
      *      function to review
     */
     ##
+
     public function updateChangelogAction()
     {
         $json = file_get_contents(__HOME__.'/changelog/changelogJson');
@@ -35,11 +35,12 @@ class ChangelogController
         }
         echo "Inseriti {$i} cambiamenti!";
     }
-    
+
     /*
      * Function for get all change in json
     */
     ##
+
     public function changelogJsonAction()
     {
         echo json_encode(Changelog::all());
