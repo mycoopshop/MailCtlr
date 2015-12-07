@@ -36,7 +36,7 @@ class ContactController
         $app->render([
             'title'        => _('Verified Contact'),
             'createUrl'    => __HOME__.'/contact/create',
-            'import'    => __HOME__.'/contact/import',
+            'import'       => __HOME__.'/contact/import',
             'grid'         => $grid->html(),
         ]);
     }
