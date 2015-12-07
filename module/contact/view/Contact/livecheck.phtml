@@ -1,46 +1,46 @@
 <div class="container">
-    <h2>Premi il tasto START per iniziare il processo di pulizia dei contatti!</h2>
-    <h4>Verifiche da fare: <b><?=@$data->totale;?></b> - Numero di verifiche rimaste: <b id="remain"><?=@$data->number;?></b></h4>
+    <h2><?=_('Press the START button to begin the process of cleaning the contacts!')?></h2>
+    <h4><?=sprintf(_('Checks to do: <b>%s</b> -  Number of checks remaining: <b id="remain">%s</b>'),@$data->totale,@$data->number)?></h4>
     <br />
     <div class="row">
         <div class="col-sm-2">
-            <label>Elimina duplicati</label>
+            <label><?=_('Delete duplicate')?></label>
             <select class="form-control" id="duplicate" name="duplicati">
-                <option value="1">SI</option>
-                <option value="0" selected="">NO</option>
+                <option value="1"><?=_('Yes')?></option>
+                <option value="0" selected=""><?=_('No')?></option>
             </select>
         </div>
         <div class="col-sm-2">
-            <label>Elimina non attivi</label>
+            <label><?=_('Delete inactive')?></label>
             <select class="form-control" id="active" name="active">
-                <option value="0" selected="">NO</option>
-                <option value="1">SI</option>
+                <option value="0" selected=""><?=_('No')?></option>
+                <option value="1"><?=_('Yes')?></option>
             </select>
         </div>
         <div class="col-sm-2">
-            <label>Processa per volta</label>
+            <label><?=_('Process for time')?></label>
             <input type="number" class="form-control" id="limit" name="limit" value="1" />
         </div>
         <div class="col-sm-2">
-            <label>Inserisci in</label>
+            <label><?=_('Enter in')?></label>
             <select class="form-control" id="lista" name="lista">
-                <option value="0" selected="">NESSUNA</option>
+                <option value="0" selected=""><?=_('Nowhere')?></option>
                 <?php foreach($data->liste as $ls){?>
                 <option value="<?=$ls->id?>"><?=$ls->nome?></option>
                 <?php } ?>
             </select>
         </div>
         <div class="col-sm-2">
-            <label>Richiesta privacy</label>
+            <label><?=_('Request privacy')?></label>
             <select class="form-control" id="privacy" name="privacy">
-                <option value="0" selected="">NO</option>
-                <option value="1">SI</option>
+                <option value="0" selected=""><?=_('No')?></option>
+                <option value="1"><?=_('Yes')?></option>
             </select>
         </div>
         <div class="col-sm-2">
             <label>Email privacy</label>
             <select class="form-control" id="p_email" name="p_email">
-                <option value="0" selected="">NESSUNA</option>
+                <option value="0" selected=""><?=_('Nowhere')?></option>
                 <?php foreach($data->email as $em){?>
                 <option value="<?=$em->id?>"><?=$em->oggetto?></option>
                 <?php } ?>
@@ -56,10 +56,9 @@
                 id="start"
                 data-placement="bottom" 
                 data-toggle="tooltip" 
-                data-original-title="Torna alla scermata precedente" 
                 class="navbar-btn btn btn-success" 
                 onClick="process( '<?=$data->action?>' , <?=$data->number?> , <?=@$data->totale?> );" >
-                <span class="glyphicon glyphicon-play"></span> START
+                <span class="glyphicon glyphicon-play"></span> <?=_('Start')?>
             </button>
             <button 
                 type="button" 
@@ -67,10 +66,9 @@
                 style="display:none;"
                 data-placement="bottom" 
                 data-toggle="tooltip" 
-                data-original-title="Torna alla scermata precedente" 
                 class="navbar-btn btn btn-danger" 
                 onClick="process_stop();" >
-                <span class="glyphicon glyphicon-stop"></span> Stop
+                <span class="glyphicon glyphicon-stop"></span> <?=_('Stop')?>
             </button> 
         </div>
     </div>
@@ -84,7 +82,7 @@
                     role="progressbar" 
                     aria-valuemax="100" 
                     style="width: 0%">
-                        0% Complete
+                        0% <?=_('Complete')?>
                 </div>
             </div>
         </div>

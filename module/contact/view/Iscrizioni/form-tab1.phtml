@@ -2,12 +2,12 @@
 	<div id="t_general" class="tab">
 		<div class="form-group">
 			<div class="col-sm-12">
-				<legend>Dati generali</legend>                    
+				<legend><?=_('General date')?></legend>                    
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-6" class="form-control">
-				<label >Lista</label>
+				<label ><?=_('List')?></label>
                 <div class="input-group">
                     <input 
                         type="text"
@@ -46,7 +46,7 @@
                 />
 			</div>
             <div class="col-sm-6" class="form-control">
-				<label >Contatto</label>
+				<label ><?=_('Contact')?></label>
 				<div class="input-group">
                     <input 
                         type="text"
@@ -89,7 +89,7 @@
         
         <div class="form-group">
 			<div class="col-sm-1" class="form-control">
-				<label >Attivo</label>
+				<label ><?=_('Active')?></label>
                 <select class="form-control" name="active">
                     <option disabled="disabled">Scegli</option>
                     <option value="0" <?=$data->item->active=='0'?'selected':'';?>>No</option>
@@ -97,7 +97,7 @@
                 </select>                   
 			</div>
 			<div class="col-sm-11" class="form-control">
-				<label >Creata</label>
+				<label ><?=_('Created')?></label>
                 <input readonly="readonly" type="text" class="form-control" name="creata" value="<?=$data->item->creata?>"/>                  
 			</div>
         </div>

@@ -6,38 +6,48 @@
     
     <div class="form-group">
         <div class="col-sm-12">
-            <legend>APP NAME</legend>                    
+            <legend><?=_('Application information')?></legend>                    
         </div>
     </div>
     
     <div class="form-group">
         <div class="col-sm-6" class="form-control">
-            <label>NOME</label>
+            <label><?=_('Application Name')?></label>
             <input type="text" class="form-control" name="nome_app" value="MailCtlr" />
         </div>
     </div>
     
+    <div class="form-group">
+        <div class="col-sm-6" class="form-control">
+            <label><?=_('Language')?></label>
+            <select name="lang" class="form-control">
+                <?php foreach ($data->lang as $l ){ ?>
+                <option value="<?=$l['lang']?>"><?=$l['lang']?></option>
+                <?php } ?>
+            </select>
+        </div>
+    </div>
     
     <div class="form-group">
         <div class="col-sm-12">
-            <legend>Database</legend>                    
+            <legend><?=_('Database')?></legend>                    
         </div>
     </div>
     
     <div class="form-group">
          <div class="col-sm-12" class="form-control">
-             <label>Host</label>
+             <label><?=_('DB Host')?></label>
              <input type="text" class="form-control" name="host" value="" placeholder="localhost" />
          </div>
     </div>
     
     <div class="form-group">
          <div class="col-sm-6" class="form-control">
-             <label>User</label>
+             <label><?=_('DB User')?></label>
              <input type="text" class="form-control" name="user" value="" />
         </div>
         <div class="col-sm-6" class="form-control">
-             <label>Password</label>
+             <label><?=_('DB Password')?></label>
              <input type="text" class="form-control" name="pass" value="" />
         </div>
         
@@ -45,11 +55,11 @@
     
     <div class="form-group">
          <div class="col-sm-6" class="form-control">
-             <label>Name</label>
+             <label><?=_('DB Name')?></label>
              <input type="text" class="form-control" name="name" value="" />
         </div>
         <div class="col-sm-6" class="form-control">
-             <label>Prefix</label>
+             <label><?=_('Prefix')?></label>
              <input type="text" class="form-control" name="pref" value="" placeholder="mc_"/>
         </div>
         
@@ -57,39 +67,39 @@
     
     <div class="form-group">
         <div class="col-sm-12">
-            <legend>Dati Utente</legend>                    
+            <legend><?=_('Admin user data')?></legend>                    
         </div>
     </div>
     
     <div class="form-group">
         <div class="col-sm-6" class="form-control">
-            <label>Username</label>
+            <label><?=_('Username')?></label>
             <input type="text" class="form-control" name="u_username" value="" />
         </div>
         <div class="col-sm-6" class="form-control">
-            <label>Password</label>
+            <label><?=_('Password')?></label>
             <input type="text" class="form-control" name="u_password" value="" />
         </div>
     </div>
     
     <div class="form-group">
         <div class="col-sm-6" class="form-control">
-            <label>Nome</label>
+            <label><?=_('Name')?></label>
             <input type="text" class="form-control" name="nome" value="" />
         </div>
         <div class="col-sm-6" class="form-control">
-            <label>Cognome</label>
+            <label><?=_('Surname')?></label>
             <input type="text" class="form-control" name="cognome" value="" />
         </div>
     </div>
     
     <div class="form-group">
         <div class="col-sm-7" class="form-control">
-            <label>Email</label>
+            <label><?=_('Email')?></label>
             <input type="email" class="form-control" name="email" value="" />
         </div>
         <div class="col-sm-2" class="form-control">
-            <label>Newsletter</label>
+            <label><?=_('Newsletter')?></label>
             <select class="form-control" name="news">
                 <option value="1" selected="">SI</option>
                 <option value="0">NO</option>
@@ -98,7 +108,7 @@
         <div class="col-sm-3" class="form-control">
             <button class="btn btn-lg btn-primary">
                 <i class="glyphicon glyphicon-save"></i>
-                INSTALLA
+                <?=_('Install')?>
             </button>
         </div>
     </div>

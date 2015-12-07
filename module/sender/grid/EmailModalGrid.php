@@ -15,20 +15,20 @@ class EmailModalGrid extends Grid
                 'visible' => false,
             ],
             'oggetto' => [
-                'label' => 'Oggetto',
+                'label' => _('Subject'),
             ],
             'created' => [
-                'label' => 'Creata',
+                'label' => _('Created'),
             ],
             'execute' => [
-                'label' => 'Eseguita',
+                'label' => _('Execution'),
             ],
 
             'command' => [
-                'label'    => 'Command',
+                'label'    => _('Command'),
                 'field'    => 'id',
                 'sortable' => false,
-                'html'     => '<button data-select-id="{?}" class="btn btn-xs btn-primary" type="button">Seleziona</button>',
+                'html'     => '<button data-select-id="{?}" class="btn btn-xs btn-primary" type="button">'._('Select').'</button>',
             ],
         ];
         $this->events = [

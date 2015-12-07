@@ -32,6 +32,7 @@ class Coda extends Storable
             $c = Contact::load($iscrizione->contatto_id);
             if (!$c->active || !isset($c->id)) {
                 $iscrizione::delete($iscrizione->id);
+                continue;
             }
             self::submit([
                 'contact_id'    => $iscrizione->contatto_id,

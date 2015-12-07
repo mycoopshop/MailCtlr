@@ -12,7 +12,7 @@ class AccountSMTPController
         $app = App::getInstance();
         $grid = new AccountSMTPGrid();
         $app->render([
-            'title'        => 'Server SMTP',
+            'title'        => _('Server SMTP'),
             'createUrl'    => __HOME__.'/accountSMTP/create',
             'grid'         => $grid->html(),
         ]);
@@ -27,7 +27,7 @@ class AccountSMTPController
         $item->created = MYSQL_NOW();
 
         $app->render([
-            'title'        => 'Nuovo Server SMTP',
+            'title'        => _('Add Server SMTP'),
             'closeUrl'     => __HOME__.'/accountSMTP',
             'item'         => $item,
         ]);
@@ -41,7 +41,7 @@ class AccountSMTPController
         $id = (int) $app->getUrlParam('id');
         $item = AccountSMTP::load($id);
         $app->render([
-            'title'     => 'Dettaglio Server SMTP',
+            'title'     => _('Detail Server SMTP'),
             'modifyUrl' => __HOME__.'/accountSMTP/modify/id/'.$id,
             'item'      => $item,
         ]);
@@ -55,7 +55,7 @@ class AccountSMTPController
         $id = (int) $app->getUrlParam('id');
         $item = AccountSMTP::load($id);
         $app->render([
-            'title'   => 'Modifica Server SMTP',
+            'title'   => _('Edit Server SMTP'),
             'item'    => $item,
         ]);
     }
@@ -101,7 +101,6 @@ class AccountSMTPController
      *      to add at saving process
     */
     ##
-
     public function testServerAction()
     {
         $reply = '';
@@ -124,7 +123,7 @@ class AccountSMTPController
             $mail->smtpClose();
             $reply .= 'OK';
         } else {
-            $reply .= $debug.'<br />Connection Failed';
+            $reply .= $debug.'<br />'._('Connection Failed');
         }
         echo $reply;
     }

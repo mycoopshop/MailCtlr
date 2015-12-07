@@ -68,14 +68,7 @@ class ContactFiles extends Files
     ?>
 				<li class="list-group-item">
 					<?=$row->name?>
-                    <a href="<?=__HOME__?>/contact/importCsv/id/<?=$row->id?>" class="btn btn-xs btn-primary">Importa&nbsp;</a>
-					<!--<button 
-						data-ui-uploadify-download="<?=$row->id?>" 						
-						class="btn btn-xs btn-success"
-						>
-						&nbsp;<i class="glyphicon glyphicon-download"></i>
-						Scarica&nbsp;
-					</button>-->
+                    <a href="<?=__HOME__?>/contact/importCsv/id/<?=$row->id?>" class="btn btn-xs btn-primary"><?=_('Import')?>&nbsp;</a>
 					<button 
 						data-ui-uploadify-delete="<?=$row->id?>" 
 						class="btn btn-xs btn-danger"

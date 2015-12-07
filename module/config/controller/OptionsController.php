@@ -9,20 +9,10 @@ class OptionsController
 
     public function indexAction()
     {
-        $opt = [
-            'name'        => 'default', //azione fatta
-            'descrizione' => 'Tema + Controller Principale',
-            'value'       => serialize(['theme' => 'default', 'controller' => 'Dashboard', 'action' => 'index']),
-            'type'        => 'alpha',
-            'last_edit'   => MYSQL_NOW(),
-        ];
-
-        //Options::submit($opt);
-
         $app = App::getInstance();
         $grid = new OptionsGrid();
         $app->render([
-            'title'        => 'Opzioni',
+            'title'        => _('Setting'),
             'createUrl'    => __HOME__.'/options/', //create',
             'grid'         => $grid->html(),
         ]);
@@ -37,7 +27,7 @@ class OptionsController
         $item->created = MYSQL_NOW();
 
         $app->render([
-            'title'        => 'Nuova Opzione',
+            'title'        => _('New Setting'),
             'closeUrl'     => __HOME__.'/options',
             'item'         => $item,
         ]);
@@ -51,7 +41,7 @@ class OptionsController
         $id = (int) $app->getUrlParam('id');
         $item = Options::load($id);
         $app->render([
-            'title'     => 'Dettaglio Opzioni',
+            'title'     => _('Setting Detail'),
             'modifyUrl' => __HOME__.'/options/', //modify/id/'.$id,
             'item'      => $item,
         ]);
@@ -65,7 +55,7 @@ class OptionsController
         $id = (int) $app->getUrlParam('id');
         $item = Options::load($id);
         $app->render([
-            'title'   => 'Modifica Opzione',
+            'title'   => _('Edit Setting'),
             'item'    => $item,
         ]);
     }

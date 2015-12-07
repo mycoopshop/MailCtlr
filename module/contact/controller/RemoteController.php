@@ -46,7 +46,7 @@ class RemoteController
         $app = App::getInstance();
         $token = (string) $app->getUrlParam('token');
         Contact::Active($token);
-        echo "SEI STATO INSERITO DAL NOSTRO DATABASE! IL TUO ID:{$token}";
+        echo "SEI STATO INSERITO DAL NOSTRO DATABASE! IL TUO ID: {$token}";
     }
 
     ##

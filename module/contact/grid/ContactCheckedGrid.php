@@ -22,35 +22,33 @@ class ContactCheckedGrid extends Grid
                 'visible' => false,
             ],
             'azienda' => [
-                'label' => 'Azienda',
+                'label' => _('Company'),
             ],
             'nome' => [
-                'label' => 'Nome',
+                'label' => _('Name'),
             ],
             'cognome' => [
-                'label' => 'Cognome',
+                'label' => _('Surname'),
             ],
             'email' => [
-                'label' => 'Email',
+                'label' => _('Email'),
             ],
-
             'active' => [
-              'label' => 'Stato',
+              'label' => _('State'),
             ],
             'type' => [
-              'label' => 'Type',
+              'label' => _('Type'),
             ],
             'lastedit' => [
-                'label' => 'Last Edit',
+                'label' => _('Last edit'),
             ],
-
             'command' => [
-                'label'    => 'Command',
+                'label'    => _('Command'),
                 'field'    => 'id',
                 'sortable' => false,
-                'html'     => '<a href="'.__HOME__.'/contact/detail/id/{?}" class="btn btn-xs btn-success"> View</a> '.
-                    '<a href="'.__HOME__.'/contact/modify/id/{?}" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-pencil"></i> Edit</a> '.
-                    '<button class="btn btn-xs btn-danger" type="button" data-toggle="modal" data-target="#modal-delete" data-delete-url="'.__HOME__.'/contact/delete/id/{?}"><i class="glyphicon glyphicon-trash"></i> Delete</button>',
+                'html'     => '<a href="'.__HOME__.'/contact/detail/id/{?}" class="btn btn-xs btn-success">'._('View').'</a> '.
+                    '<a href="'.__HOME__.'/contact/modify/id/{?}" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-pencil"></i>'._('Edit').'</a> '.
+                    '<button class="btn btn-xs btn-danger" type="button" data-toggle="modal" data-target="#modal-delete" data-delete-url="'.__HOME__.'/contact/delete/id/{?}"><i class="glyphicon glyphicon-trash"></i> '._('Delete').'</button>',
             ],
         ];
         $this->events = [

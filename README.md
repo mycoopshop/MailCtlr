@@ -20,8 +20,8 @@ MailCtlr is licensed GNU AFFERO GENERAL PUBLIC LICENSE http://www.gnu.org/licens
  - Statistics on sending: email receipts, open (opening number), deleted
  - Autoresponders for default actions: registration, cancellation, modification, (you can also create your actions)
  - Website for Application
- - Support Multilanguage
  - Translate Platform
+ - [DONE!] Support Multilanguage
  - [DONE!] Import contact from a .csv file 
  - [DONE!] Clean contact (SMTP check exist mail, email format check)
  - [DONE!] Form for remote subscription

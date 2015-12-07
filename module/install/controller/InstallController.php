@@ -3,12 +3,30 @@
 
 class InstallController
 {
+    private $ls;
+    
     ##
-
+    public function __construct()
+    {
+        $dirs = array_filter(glob(__BASE__."/lang/*"), 'is_dir');
+        foreach($dirs as $dir){
+            $lang = str_replace(__BASE__."/lang/","",$dir);
+            $l = explode("_", $lang);
+            $this->ls[] = [
+                'locale' => $lang,
+                'lang'   => $l[0],
+            ];
+        }
+    }
+    
+    ##
     public function indexAction()
     {
         $app = App::getInstance();
-        $app->render_view();
+        
+        $app->render_view([
+            'lang' => $this->ls,
+        ]);
     }
 
     public function installAction()
@@ -84,7 +102,10 @@ class InstallController
             'modules'    => serialize(['dashboard', 'contact', 'sender', 'config', 'userrole', 'changelog']),
             'total_send' => 0,
             'mail'       => $id->email,
+            'lang'       => $date['lang'],
+            'locale'     => '',
         ];
+        
         require_once __BASE__.'/module/config/model/Options.php';
         foreach ($optdb as $key => $value) {
             Options::submit([
@@ -98,10 +119,10 @@ class InstallController
 
         $conf_name = __DIR__."/../../../config/{$date[nome_app]}.{$date[type]}.php";
         $config = '<?php '."\r\n"
-                ."define('DAY',1);"."\r\n"
-                ."define('WEEK',7);"."\r\n"
-                ."define('MONTH',30);"."\r\n"
-                ."define('YEAR',365);"."\r\n"
+                ."define('DAY', 1);"."\r\n"
+                ."define('WEEK', 7);"."\r\n"
+                ."define('MONTH', 30);"."\r\n"
+                ."define('YEAR', 365);"."\r\n"
                 .'return '.var_export($opt, true).';';
 
         $index_file = __DIR__.'/../../../index.php';

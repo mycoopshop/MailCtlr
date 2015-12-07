@@ -12,16 +12,16 @@ class OptionsGrid extends Grid
 
         $this->columns = [
             'id' => [
-                    'visible' => false,
+                'visible' => false,
             ],
             'name' => [
-                    'label' => 'Nome',
+                'label' => _('Name'),
             ],
             'descrizione' => [
-                'label' => 'Descrizione',
+                'label' => _('Description'),
             ],
             'value' => [
-                'label' => 'Value',
+                'label' => _('Value'),
             ],
         ];
         $this->events = [

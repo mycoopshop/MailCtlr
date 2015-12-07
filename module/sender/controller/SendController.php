@@ -89,11 +89,11 @@ class SendController
     {
         $app = App::getInstance();
         $id = (int) $app->getUrlParam('id');
-        $item = User::load($id);
+        //$item = User::load($id);
         $app->render([
             'title'     => 'Dettaglio Utente',
             'modifyUrl' => __HOME__.'/send/modify/id/'.$id,
-            'item'      => $item,
+            //'item'      => $item,
         ]);
     }
 
@@ -116,11 +116,11 @@ class SendController
     {
         $app = App::getInstance();
         $id = (int) $app->getUrlParam('id');
-        $item = User::load($id);
+        //$item = User::load($id);
         $item->password = '';
         $app->render([
             'title'   => 'Modifica Utente',
-            'item'    => $item,
+            //'item'    => $item,
         ]);
     }
 

@@ -2,22 +2,19 @@
 
 <div class="row">
     <div class="form-legend">
-        File Caricati
+        <?=_('Uploaded Files')?>
     </div>
-    <!-- Note -->	
     <div class="form-group">
-            <div class="col-sm-12">				
-                   
-				<div 
-					data-ui-uploadify="
-						folder:'Import',
-                        parent: '<?=@$data->user?>',
-						service:'<?=__HOME__?>/contact/files'
-					"
-					>
-				</div>
-				
+        <div class="col-sm-12">
+            <div 
+                data-ui-uploadify="
+                    folder:'Import',
+                    parent: '<?=@$data->user?>',
+                    service:'<?=__HOME__?>/contact/files'
+                "
+                >
             </div>
-            <div style="clear:both"></div>		
+        </div>
+        <div style="clear:both"></div>		
     </div>
 </div>

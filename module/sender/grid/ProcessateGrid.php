@@ -27,13 +27,13 @@ class ProcessateGrid extends Grid
                 'visible' => false,
             ],
             'fullname' => [
-                'label' => 'Nome',
+                'label' => _('Name'),
             ],
             'email' => [
-                'label' => 'Email',
+                'label' => _('Email'),
             ],
             'execute' => [
-                'label' => 'Inviata',
+                'label' => _('Execute'),
             ],
             'note' => [
                 'label' => 'Note',

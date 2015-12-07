@@ -14,46 +14,46 @@ class SenderModule
         ##
         $app->addMenu('navbar', [
             'id'       => 'navbar-mail',
-            'label'    => 'Mail',
+            'label'    => _('Mail'),
         ]);
 
         ##
         $app->addMenu('navbar', [
             'id'       => 'navbar-job',
-            'label'    => 'Job',
+            'label'    => _('Proccesses'),
         ]);
 
         ##
         $app->addMenu('navbar', [
             'parent'       => 'navbar-mail',
-            'label'        => 'Elenco Mail',
+            'label'        => _('List mail'),
             'link'         => __HOME__.'/email/',
         ]);
 
         ##
         $app->addMenu('navbar', [
             'parent'       => 'navbar-mail',
-            'label'        => 'Aggiungi Mail',
+            'label'        => _('Add mail'),
             'link'         => __HOME__.'/email/create',
         ]);
 
         ##
         $app->addMenu('navbar', [
             'parent'       => 'navbar-job',
-            'label'        => 'In Corso',
+            'label'        => _('In progress'),
             'link'         => __HOME__.'/send/',
         ]);
 
         ##
         $app->addMenu('navbar', [
             'parent'       => 'navbar-job',
-            'label'        => 'Nuovo',
+            'label'        => _('New'),
             'link'         => __HOME__.'/send/create',
         ]);
 
         $app->addMenu('navbar', [
             'parent'       => 'navbar-job',
-            'label'        => 'Processate',
+            'label'        => _('Processed'),
             'link'         => __HOME__.'/send/processate',
         ]);
         //ACCESSO RAPIDO
@@ -63,7 +63,7 @@ class SenderModule
             'link'  => __HOME__.'/email/create',
             'type'  => 'default',
             'icon'  => 'glyphicon glyphicon-plus',
-            'label' => 'Crea Nuova Email',
+            'label' => _('Create new email'),
         ]);
 
         ##
@@ -71,7 +71,7 @@ class SenderModule
             'link'  => __HOME__.'/send/create',
             'type'  => 'default',
             'icon'  => 'glyphicon glyphicon-plus',
-            'label' => 'Aggiungi a Coda',
+            'label' => _('Add queue'),
         ]);
 
         ##
@@ -79,7 +79,7 @@ class SenderModule
             'link'  => __HOME__.'/send/live',
             'type'  => 'success',
             'icon'  => 'glyphicon glyphicon-plus',
-            'label' => 'Live Process',
+            'label' => _('Live process'),
         ]);
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-## define base dir
 define('__BASE__', __DIR__);
 
 ## required base library
@@ -50,6 +49,7 @@ if ($config['install'] == 0) {
 Liberty::debug($config['debug']);
 
 $lang = isset($config['lang']) && $config['lang'] != '' ? $config['lang'] : 'en';
+$locale = isset($config['locale']) && $config['locale'] != '' ? $config['locale'] : 'en_EN';
 $email = isset($config['mail']) && $config['mail'] != '' ? $config['mail'] : 'local@local.host';
 
 ## other constants
@@ -59,3 +59,14 @@ define('__PUBLIC__', __URL__.'/public');
 define('__VERSION__', rtrim($config['version']));
 define('__LANG__', $lang);
 define('__EMAIL__', $email);
+
+/*
+ * Multi Language Support
+ */
+define ('__T_DOMAIN__',"mailctlr"); //Translation domain for gettext
+
+putenv("LC_ALL=$locale");
+setlocale(LC_ALL, $locale);
+bindtextdomain(__T_DOMAIN__, __BASE__."/lang"); 
+bind_textdomain_codeset(__T_DOMAIN__, 'UTF-8');
+textdomain(__T_DOMAIN__);

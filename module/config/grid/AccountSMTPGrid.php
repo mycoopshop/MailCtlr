@@ -12,33 +12,33 @@ class AccountSMTPGrid extends Grid
 
         $this->columns = [
             'id' => [
-                    'visible' => false,
+                'visible' => false,
             ],
             'code' => [
-                    'label' => 'Server Code',
+                'label' => _('Server Code'),
             ],
             'created' => [
-                'label' => 'Creato il',
+                'label' => _('Created'),
             ],
             'name' => [
-                'label' => 'Nome',
+                'label' => _('Name'),
             ],
             'max_mail' => [
-                'label' => 'Limite',
+                'label' => _('Limit'),
             ],
             'ever' => [
-                'label' => 'Ogni',
+                'label' => _('Ever'),
             ],
             'active' => [
-                'label' => 'Active',
+                'label' => _('Active'),
             ],
             'command' => [
-                'label'    => 'Command',
+                'label'    => _('Command'),
                 'field'    => 'id',
                 'sortable' => false,
-                'html'     => '<a href="'.__HOME__.'/accountSMTP/detail/id/{?}" class="btn btn-xs btn-success"> View</a> '.
-                    '<a href="'.__HOME__.'/accountSMTP/modify/id/{?}" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-pencil"></i> Edit</a> '.
-                    '<button class="btn btn-xs btn-danger" type="button" data-toggle="modal" data-target="#modal-delete" data-delete-url="'.__HOME__.'/accountSMTP/delete/id/{?}"><i class="glyphicon glyphicon-trash"></i> Delete</button>',
+                'html'     => '<a href="'.__HOME__.'/accountSMTP/detail/id/{?}" class="btn btn-xs btn-success">'._('View').'</a> '.
+                            '<a href="'.__HOME__.'/accountSMTP/modify/id/{?}" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-pencil"></i> '._('Edit').'</a> '.
+                            '<button class="btn btn-xs btn-danger" type="button" data-toggle="modal" data-target="#modal-delete" data-delete-url="'.__HOME__.'/accountSMTP/delete/id/{?}"><i class="glyphicon glyphicon-trash"></i> '._('Delete').'</button>',
             ],
         ];
         $this->events = [

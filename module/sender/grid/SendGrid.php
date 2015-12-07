@@ -29,7 +29,7 @@ class SendGrid extends Grid
                 'visible' => false,
             ],
             'fullname' => [
-                'label' => 'Nome',
+                'label' => _('Name'),
             ],
             'email' => [
                 'label' => 'Email',

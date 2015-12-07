@@ -31,9 +31,9 @@ class UserGrid extends Grid
             'command' => [
                 'label' => _('Command'),
                 'field' => 'id',
-                'html'  => '<a href="'.__HOME__.'/user/detail/id/{?}" class="btn btn-xs btn-success"> '._('View').'</a> '.
-                    '<a href="'.__HOME__.'/user/modify/id/{?}" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-pencil"></i> '._('Edit').'</a> '.
-                    '<a href="'.__HOME__.'/user/delete/id/{?}" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> '._('Delete').'</a>',
+                'html'  => '<a href="'.__HOME__.'/user/detail/id/{?}" class="btn btn-xs btn-success">'._('View').'</a> '.
+                    '<a href="'.__HOME__.'/user/modify/id/{?}" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-pencil"></i>'._('Edit').'</a> '.
+                    '<a href="'.__HOME__.'/user/delete/id/{?}" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i>'._('Delete').'</a>',
             ],
         ];
 

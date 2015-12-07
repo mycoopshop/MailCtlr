@@ -2,13 +2,12 @@
 	<div id="t_general" class="tab">
 		<div class="form-group">
 			<div class="col-sm-12">
-				<legend>Crea coda di invio</legend>                    
+				<legend><?=_('Create the send queue')?></legend>                    
 			</div>
 		</div>
-        
         <div class="form-group">
             <div class="col-sm-6" class="form-control">
-                <label>Send to (LISTA)</label>
+                <label><?=_('Send to [list]')?></label>
                 <div class="input-group">
                     <input 
                         type="text"
@@ -44,11 +43,10 @@
                         layout:'{nome}',
                         "
                     value="<?=@$data->item->lista?>" 
-                /> 
-                
+                />
             </div>
             <div class="col-sm-6" class="form-control">
-                <label>Email to send (EMAIL)</label>
+                <label><?=_('Email to send ')?></label>
                 <div class="input-group">
                     <input 
                         type="text"
@@ -84,11 +82,9 @@
                         layout:'{oggetto}',
                         "
                     value="<?=@$data->item->email?>" 
-                /> 
-                
+                />
             </div>
         </div>
-        
 	</div>
 </div>
 

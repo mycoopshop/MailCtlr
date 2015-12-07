@@ -36,14 +36,6 @@ class DashboardController
 
     ##
 
-    public function testAction()
-    {
-        $app = App::getInstance();
-        $app->render();
-    }
-
-    ##
-
     public function licenseAction()
     {
         $app = App::getInstance();

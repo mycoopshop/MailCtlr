@@ -15,7 +15,7 @@ class EmailController
         $app = App::getInstance();
         $grid = new EmailGrid();
         $app->render([
-            'title'        => 'Lista Email',
+            'title'        => _('Email list'),
             'createUrl'    => __HOME__.'/email/create',
             'grid'         => $grid->html(),
         ]);
@@ -31,7 +31,7 @@ class EmailController
         $item->messaggio_text = '';
         $item->created = MYSQL_NOW();
         $app->render([
-            'title'        => 'Nuova Email',
+            'title'        => _('New email'),
             'closeUrl'     => __HOME__.'/email',
             'item'         => $item,
         ]);
@@ -45,7 +45,7 @@ class EmailController
         $id = (int) $app->getUrlParam('id');
         $item = Email::load($id);
         $app->render([
-            'title'     => 'Dettaglio Email',
+            'title'     => _('Email detail'),
             'modifyUrl' => __HOME__.'/email/modify/id/'.$id,
             'item'      => $item,
         ]);
@@ -70,7 +70,7 @@ class EmailController
         $item = Email::load($id);
         $item->created = MYSQL_NOW();
         $app->render([
-            'title'   => 'Modifica Email',
+            'title'   => _('Edit email'),
             'item'    => $item,
         ]);
     }

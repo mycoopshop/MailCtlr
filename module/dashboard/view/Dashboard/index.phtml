@@ -24,7 +24,6 @@
 	<?php if ($i>0 && $i % 2 == 0) echo "</div> <div class='row'>";
     } ?>
 </div>-->
-
 <div class="row">
     <?php foreach($app->getMenu('dashboard-button') as $i => $button) { ?>
             <div class="col-md-3 col-sm-3">
@@ -33,31 +32,30 @@
     <?php if ($i>0 && $i % 3 == 0) echo "</div> <div class='row'>";
     } ?>    
 </div>
-
 <div class="row">
     <div class="col-md-6" id="" >
         <div class="panel panel-default">
             <div class="panel-heading">
-                System info
+                <?=_('System info')?>
             </div>
             <div class="panel-body">
-                Informazioni rapide sullo stato del sistema.<br />
-                * Numero di email inviabili giornalmente<br />
-                * Numero di email inviate dall'inizio <br />
-                * Numero di email rimanenti da inviare oggi.<br />
+                <?=_('Quick information about system status.')?><br />
+                <?=_('* Number of e-mail can be sent daily')?><br />
+                <?=_('* Number of emails sent from the start')?><br />
+                <?=_('* Remaining number of emails to be sent today.')?><br />
             </div>
             <ul class="list-group">
                 <li class="list-group-item">
                   <span class="badge"><?=$data->max_mail;?></span>
-                  Send Mail for Day
+                  <?=_('Send Mail for Day')?>
                 </li>
                 <li class="list-group-item">
                   <span class="badge"><?=$data->remain?></span>
-                  Remain Mail for Day
+                  <?=_('Remain Mail for Day')?>
                 </li>
                 <li class="list-group-item">
                   <span class="badge"><?=$data->tosend?></span>
-                  In coda d'invio                  
+                  <?=_('In the send queue')?>
                 </li>
             </ul>
         </div>
@@ -65,23 +63,23 @@
     <div class="col-md-6" id="" >
         <div class="panel panel-default">
             <div class="panel-heading">
-                Contact Info
+                <?=_('Contact Info')?>
             </div>
             <div class="panel-body">
-                Informazioni rapide sui contatti inserite all'interno del sistema <b>MailCtlr</b>
+                <?=sprintf(_('Quick information about contacts entered into the system <b>%s</b>',$app->name))?>
             </div>
             <ul class="list-group">
                 <li class="list-group-item">
                   <span class="badge"><?=$data->contatti?></span>
-                  Total Contact
+                  <?=_('Total Contact')?>
                 </li>
                 <li class="list-group-item">
                   <span class="badge"><?=$data->liste?></span>
-                  Total List
+                  <?=_('Total List')?>
                 </li>
                 <li class="list-group-item">
                   <span class="badge"><?=$data->total?></span>
-                  Total Send Mail
+                  <?=_('Total Send Mail')?>
                 </li>                
             </ul>
         </div>

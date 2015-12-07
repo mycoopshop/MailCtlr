@@ -28,21 +28,21 @@ class IscrizioniGrid extends Grid
                 'label' => 'ID',
             ],
             'nome' => [
-                'label' => 'Descrizione',
+                'label' => _('Description'),
             ],
             'creata' => [
-                'label' => 'Creata il',
+                'label' => _('Created'),
             ],
             'num_iscritti' => [
-                'label' => 'Iscritti',
+                'label' => _('Members'),
             ],
 
             'command' => [
-                'label'    => 'Command',
+                'label'    => _('Command'),
                 'field'    => 'id',
                 'sortable' => false,
-                'html'     => '<a href="'.__HOME__.'/iscrizioni/dettaglio/id/{?}" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-th-list"></i> Iscritti</a> '.
-                    '<a href="'.__HOME__.'/iscrizioni/formIscrizione/id/{?}" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-th-list"></i> Raccogli iscrizioni</a> ',
+                'html'     => '<a href="'.__HOME__.'/iscrizioni/dettaglio/id/{?}" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-th-list"></i>'._('Members').'</a> '.
+                    '<a href="'.__HOME__.'/iscrizioni/formIscrizione/id/{?}" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-th-list"></i>'._('Collect subscriptions').'</a> ',
             ],
 
         ];

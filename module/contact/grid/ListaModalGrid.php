@@ -19,20 +19,20 @@ class ListaModalGrid extends Grid
                 'label' => 'ID',
             ],
             'nome' => [
-                'label' => 'Nome',
+                'label' => _('Name'),
             ],
             'descrizione' => [
-                'label' => 'Descrizione',
+                'label' => _('Description'),
             ],
             'creata' => [
-                'label' => 'Creata il',
+                'label' => _('Created'),
             ],
 
             'command' => [
-                'label'    => 'Command',
+                'label'    => _('Command'),
                 'field'    => 'id',
                 'sortable' => false,
-                'html'     => '<button data-select-id="{?}" class="btn btn-xs btn-primary" type="button">Seleziona</button>',
+                'html'     => '<button data-select-id="{?}" class="btn btn-xs btn-primary" type="button">'._('Select').'</button>',
             ],
         ];
         $this->events = [

@@ -9,7 +9,7 @@
 	<input type="hidden" name="created" value="<?=$data->item->created?>">
     
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="#tab1" data-toggle="tab">Generale</a></li>
+		<li class="active"><a href="#tab1" data-toggle="tab"><?=_('General')?></a></li>
 	</ul>
 
 	<div class="tab-content border-light">
@@ -17,6 +17,6 @@
 		<div style="clear:both;"></div>
 	</div>
 				
-	<div class="alert alert-info mt20px">(*) Campi obbligatori</div>
+	<div class="alert alert-info mt20px">(*) <?=_('Required field')?></div>
 	
 </form>

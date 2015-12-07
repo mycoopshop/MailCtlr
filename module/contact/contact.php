@@ -14,69 +14,61 @@ class ContactModule
         ##
         $app->addMenu('navbar', [
             'id'       => 'navbar-contact',
-            'label'    => 'Contatti',
+            'label'    => _('Contact'),
         ]);
 
         ##
         $app->addMenu('navbar', [
             'id'       => 'navbar-list',
-            'label'    => 'Liste',
+            'label'    => _('List'),
         ]);
 
         ##
         $app->addMenu('navbar', [
             'parent'       => 'navbar-contact',
-            'label'        => 'Tutti i Contatti',
+            'label'        => _('List Contact'),
             'link'         => __HOME__.'/contact/',
         ]);
 
         ##
-        /*
-        $app->addMenu('navbar',array(
-            'parent'	=> 'navbar-contact',
-            'label'		=> 'Contatti Verificati',
-            'link'		=> __HOME__.'/contact/checkedOk'
-        ));
-        */
-        ##
         $app->addMenu('navbar', [
             'parent'       => 'navbar-contact',
-            'label'        => 'Aggiungi Contatti',
+            'label'        => _('Add contact'),
             'link'         => __HOME__.'/contact/create',
         ]);
 
         ##
         $app->addMenu('navbar', [
             'parent'       => 'navbar-contact',
-            'label'        => 'Importa Contatti',
+            'label'        => _('Import contact'),
             'link'         => __HOME__.'/contact/import',
         ]);
 
         ##
         $app->addMenu('navbar', [
             'parent'       => 'navbar-contact',
-            'label'        => 'Pulisci Contatti',
+            'label'        => _('Clear contact'),
             'link'         => __HOME__.'/contact/liveCheck',
         ]);
 
         ##
         $app->addMenu('navbar', [
             'parent'       => 'navbar-list',
-            'label'        => 'Elenco Liste',
+            'label'        => _('List'),
             'link'         => __HOME__.'/lista/',
         ]);
 
         ##
         $app->addMenu('navbar', [
             'parent'       => 'navbar-list',
-            'label'        => 'Aggiungi Liste',
+            'label'        => _('Add list'),
             'link'         => __HOME__.'/lista/create',
         ]);
 
         ##
         $app->addMenu('navbar', [
             'parent'       => 'navbar-list',
-            'label'        => 'Iscrizioni',
+            'label'        => _('Subscribers'),
             'link'         => __HOME__.'/iscrizioni/',
         ]);
 
@@ -85,7 +77,7 @@ class ContactModule
             'link'  => __HOME__.'/lista/create',
             'type'  => 'default',
             'icon'  => 'glyphicon glyphicon-plus',
-            'label' => 'Nuova Lista',
+            'label' => _('New list'),
         ]);
 
         ##
@@ -93,7 +85,7 @@ class ContactModule
             'link'  => __HOME__.'/contact/create',
             'type'  => 'default',
             'icon'  => 'glyphicon glyphicon-plus',
-            'label' => 'Nuovo Contatto',
+            'label' => _('New contact'),
         ]);
     }
 }

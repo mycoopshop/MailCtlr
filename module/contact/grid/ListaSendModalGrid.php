@@ -28,20 +28,20 @@ class ListaSendModalGrid extends Grid
                 'label' => 'ID',
             ],
             'nome' => [
-                'label' => 'Descrizione',
+                'label' => _('Description'),
             ],
             'creata' => [
-                'label' => 'Creata il',
+                'label' => _('Created'),
             ],
             'num_iscritti' => [
-                'label' => 'Iscritti',
+                'label' => _('Members'),
             ],
 
             'command' => [
-                'label'    => 'Command',
+                'label'    => _('Command'),
                 'field'    => 'id',
                 'sortable' => false,
-                'html'     => '<button data-select-id="{?}" class="btn btn-xs btn-primary" type="button">Seleziona</button>',
+                'html'     => '<button data-select-id="{?}" class="btn btn-xs btn-primary" type="button">'._('Select').'</button>',
             ],
         ];
         $this->events = [

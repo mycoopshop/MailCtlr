@@ -17,20 +17,20 @@ class ContactModalGrid extends Grid
                 'visible' => false,
             ],
             'azienda' => [
-                'label' => 'Azienda',
+                'label' => _('Company'),
             ],
             'cognome' => [
-                'label' => 'Cognome',
+                'label' => _('Surname'),
             ],
             'email' => [
-                'label' => 'Email',
+                'label' => _('Email'),
             ],
             'command' => [
-                'label'    => 'Command',
+                'label'    => _('Command'),
                 'field'    => 'id',
                 'width'    => '10%',
                 'sortable' => false,
-                'html'     => '<button data-select-id="{?}" class="btn btn-xs btn-primary" type="button">Seleziona</button>',
+                'html'     => '<button data-select-id="{?}" class="btn btn-xs btn-primary" type="button">'._('Select').'</button>',
             ],
         ];
         $this->events = [
