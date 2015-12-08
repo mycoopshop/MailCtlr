@@ -30,6 +30,7 @@ class DashboardController
             'remain'          => $remain,
             'liste'           => $liste,
             'contatti'        => $contatti,
+            'name'            => $app->name,
             ]
         );
     }

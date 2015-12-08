@@ -16,33 +16,40 @@ class ChangelogController
             'current'      => __VERSION__,
         ]);
     }
-
+    
     /*
-     * Check update from remote repository
-     *      function to review
+     * Check current version from release server
     */
     ##
-
-    public function updateChangelogAction()
+    
+    public function checkVersionAction()
     {
-        $json = file_get_contents(__HOME__.'/changelog/changelogJson');
+        $json = file_get_contents('http://www.mailctlr.org/current/info.php');
         $data = json_decode($json);
-        $i = 1;
-        foreach ($data as $changelog) {
+        if (__VERSION__!=$data->version_numb){
             $cl = new Changelog();
-            $cl->store($changelog);
-            $i++;
+            $cl->store($data);
+            $data->update = 1;
         }
-        echo "Inseriti {$i} cambiamenti!";
+        return $data;
     }
-
-    /*
-     * Function for get all change in json
-    */
+    
     ##
-
-    public function changelogJsonAction()
+    
+    public function updateAction($v = "latest")
     {
-        echo json_encode(Changelog::all());
+        $u = __BASE__."/$v.zip";
+        file_put_contents($u, fopen("http://www.mailctlr.org/current/latest.zip", 'r'));
+        $f = new ZipArchive;
+        if ($f->open($u) === TRUE) {
+            $f->extractTo(__BASE__."../");
+            $f->close();
+            echo "estrazione file completata! vai al processo di aggiornamento del database! se richiesto.";
+        } else {
+            echo "estrazione file fallita!Applicazione corrotta?";
+        }
+        
     }
+    
+    
 }

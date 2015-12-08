@@ -10,6 +10,13 @@ Using different SMTP server can send free mail to all the contacts you want at n
 * Insert all request date and click "Install" 
 * Now you can use MailCtlr... Enjoy!
 
+# MailCtlr Translation
+
+Now you can translate MailCtlr in your language!
+
+* By using the following link: http://www.mailctlr.org/translate/ [ask an account to info@mailctlr.org to start translating]
+* Translating using the po file that you find in the folder /lang/en_EN/LC_MESSAGES/mailctlr.po
+
 # MailCtlr License 
 MailCtlr is licensed GNU AFFERO GENERAL PUBLIC LICENSE http://www.gnu.org/licenses/agpl-3.0.html 
 
@@ -20,8 +27,10 @@ MailCtlr is licensed GNU AFFERO GENERAL PUBLIC LICENSE http://www.gnu.org/licens
  - Statistics on sending: email receipts, open (opening number), deleted
  - Autoresponders for default actions: registration, cancellation, modification, (you can also create your actions)
  - Website for Application
- - Translate Platform
- - [DONE!] Support Multilanguage
+ - Automatic update system
+ - Best email editor
+ - Other features suggested by users! ... Make your suggestions
+ - [DONE!] Support Multilanguage & Translate Platform
  - [DONE!] Import contact from a .csv file 
  - [DONE!] Clean contact (SMTP check exist mail, email format check)
  - [DONE!] Form for remote subscription

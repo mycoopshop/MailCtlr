@@ -1,65 +1,64 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: MailCtlr\n"
-"POT-Creation-Date: 2015-12-08 12:19+0100\n"
-"PO-Revision-Date: 2015-12-08 12:20+0100\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2015-12-08 12:24+0100\n"
+"PO-Revision-Date: 2015-12-08 13:00+0100\n"
 "Last-Translator: Vincenzo La Rosa <vincenzo@ctlr.it>\n"
-"Language-Team: Vincenzo La Rosa <vincenzo@ctlr.it>\n"
-"Language: it_IT\n"
+"Language-Team: \n"
+"Language: en_150\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.6\n"
-"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-Basepath: ../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: public\n"
 
 #: module/changelog/controller/ChangelogController.php:14
 msgid "List application release"
-msgstr "Versioni dell'applicazione"
+msgstr ""
 
 #: module/config/controller/AccountSMTPController.php:15
 msgid "Server SMTP"
-msgstr "Server SMTP"
+msgstr ""
 
 #: module/config/controller/AccountSMTPController.php:30
 msgid "Add Server SMTP"
-msgstr "Aggiungi Server SMTP"
+msgstr ""
 
 #: module/config/controller/AccountSMTPController.php:44
 msgid "Detail Server SMTP"
-msgstr "Dettagli Server SMTP"
+msgstr ""
 
 #: module/config/controller/AccountSMTPController.php:58
 msgid "Edit Server SMTP"
-msgstr "Modifica Server SMTP"
+msgstr ""
 
 #: module/config/controller/AccountSMTPController.php:127
 msgid "Connection Failed"
-msgstr "Connessione fallita"
+msgstr ""
 
 #: module/config/controller/OptionsController.php:15
 msgid "Setting"
-msgstr "Impostazioni"
+msgstr ""
 
 #: module/config/controller/OptionsController.php:30
 msgid "New Setting"
-msgstr "Nuova impostazione"
+msgstr ""
 
 #: module/config/controller/OptionsController.php:44
 msgid "Setting Detail"
-msgstr "Dettaglio iscrizione"
+msgstr ""
 
 #: module/config/controller/OptionsController.php:58
 msgid "Edit Setting"
-msgstr "Modifica impostazioni"
+msgstr ""
 
 #: module/config/grid/AccountSMTPGrid.php:18
 #: module/config/view/AccountSMTP/form-tab1.phtml:10
 msgid "Server Code"
-msgstr "Codice Server"
+msgstr ""
 
 #: module/config/grid/AccountSMTPGrid.php:21
 #: module/contact/grid/IscrizioniGrid.php:34
@@ -70,7 +69,7 @@ msgstr "Codice Server"
 #: module/contact/view/Iscrizioni/form-tab1.phtml:100
 #: module/contact/view/Lista/form-tab1.phtml:14
 msgid "Created"
-msgstr "Creato"
+msgstr ""
 
 #: module/config/grid/AccountSMTPGrid.php:24
 #: module/config/grid/OptionsGrid.php:18
@@ -86,21 +85,21 @@ msgstr "Creato"
 #: module/install/view/Install/form.phtml:87
 #: module/userrole/view/User/form.phtml:24
 msgid "Name"
-msgstr "Nome"
+msgstr ""
 
 #: module/config/grid/AccountSMTPGrid.php:27
 msgid "Limit"
-msgstr "Limite"
+msgstr ""
 
 #: module/config/grid/AccountSMTPGrid.php:30
 #: module/config/view/AccountSMTP/form-tab1.phtml:49
 msgid "Ever"
-msgstr "Ogni"
+msgstr ""
 
 #: module/config/grid/AccountSMTPGrid.php:33
 #: module/contact/view/Iscrizioni/form-tab1.phtml:92
 msgid "Active"
-msgstr "Attivo"
+msgstr ""
 
 #: module/config/grid/AccountSMTPGrid.php:36
 #: module/contact/grid/ContactCheckedGrid.php:46
@@ -114,7 +113,7 @@ msgstr "Attivo"
 #: module/sender/grid/EmailGrid.php:28 module/sender/grid/EmailModalGrid.php:28
 #: module/userrole/grid/UserGrid.php:32
 msgid "Command"
-msgstr "Comandi"
+msgstr ""
 
 #: module/config/grid/AccountSMTPGrid.php:39
 #: module/contact/grid/ContactCheckedGrid.php:49
@@ -123,7 +122,7 @@ msgstr "Comandi"
 #: module/contact/grid/ListaGrid.php:31 module/sender/grid/EmailGrid.php:31
 #: module/userrole/grid/UserGrid.php:34
 msgid "View"
-msgstr "Mostra"
+msgstr ""
 
 #: module/config/grid/AccountSMTPGrid.php:40
 #: module/contact/grid/ContactCheckedGrid.php:50
@@ -132,7 +131,7 @@ msgstr "Mostra"
 #: module/contact/grid/ListaGrid.php:32 module/sender/grid/EmailGrid.php:32
 #: module/userrole/grid/UserGrid.php:35 theme/default/nav-detail.phtml:32
 msgid "Edit"
-msgstr "Modifica"
+msgstr ""
 
 #: module/config/grid/AccountSMTPGrid.php:41
 #: module/contact/grid/ContactCheckedGrid.php:51
@@ -141,7 +140,7 @@ msgstr "Modifica"
 #: module/contact/grid/ListaGrid.php:33 module/sender/grid/EmailGrid.php:33
 #: module/userrole/grid/UserGrid.php:36 theme/default/modal/delete.phtml:16
 msgid "Delete"
-msgstr "Elimina"
+msgstr ""
 
 #: module/config/grid/OptionsGrid.php:21
 #: module/contact/grid/IscrizioniGrid.php:31
@@ -149,117 +148,117 @@ msgstr "Elimina"
 #: module/contact/grid/ListaModalGrid.php:25
 #: module/contact/grid/ListaSendModalGrid.php:31
 msgid "Description"
-msgstr "Nuova sottoscrizione"
+msgstr ""
 
 #: module/config/grid/OptionsGrid.php:24
 msgid "Value"
-msgstr "Valore"
+msgstr ""
 
 #: module/contact/contact.php:17
 #: module/contact/controller/ContactController.php:23
 #: module/contact/view/Iscrizioni/form-tab1.phtml:49
 msgid "Contact"
-msgstr "Contatti"
+msgstr ""
 
 #: module/contact/contact.php:23 module/contact/contact.php:57
 #: module/contact/controller/ListaController.php:19
 #: module/contact/view/Iscrizioni/form-tab1.phtml:10
 msgid "List"
-msgstr "Liste"
+msgstr ""
 
 #: module/contact/contact.php:29
 msgid "List Contact"
-msgstr "Modifica Contatto"
+msgstr ""
 
 #: module/contact/contact.php:36
 msgid "Add contact"
-msgstr "Modifica Contatto"
+msgstr ""
 
 #: module/contact/contact.php:43
 msgid "Import contact"
-msgstr "Modifica Contatto"
+msgstr ""
 
 #: module/contact/contact.php:50
 msgid "Clear contact"
-msgstr "Nuovo Contatto"
+msgstr ""
 
 #: module/contact/contact.php:64
 msgid "Add list"
-msgstr "Modifica lista"
+msgstr ""
 
 #: module/contact/contact.php:71
 msgid "Subscribers"
-msgstr "Iscrizioni"
+msgstr ""
 
 #: module/contact/contact.php:80
 #: module/contact/controller/ListaController.php:34
 msgid "New list"
-msgstr "Nuova lista"
+msgstr ""
 
 #: module/contact/contact.php:88
 #: module/contact/controller/ContactController.php:62
 msgid "New contact"
-msgstr "Nuovo Contatto"
+msgstr ""
 
 #: module/contact/controller/ContactController.php:37
 msgid "Verified Contact"
-msgstr "Contatti Verificati"
+msgstr ""
 
 #: module/contact/controller/ContactController.php:76
 #: module/userrole/controller/UserController.php:39
 msgid "User detail"
-msgstr "Dettaglio utente"
+msgstr ""
 
 #: module/contact/controller/ContactController.php:91
 msgid "Edit contact"
-msgstr "Modifica Contatto"
+msgstr ""
 
 #: module/contact/controller/ContactController.php:148
 msgid "Import contact form csv file"
-msgstr "Importa contatto da CSV"
+msgstr ""
 
 #: module/contact/controller/IscrizioniController.php:18
 msgid "Subscribtion"
-msgstr "Iscrizioni"
+msgstr ""
 
 #: module/contact/controller/IscrizioniController.php:36
 msgid "New subscription"
-msgstr "Nuova sottoscrizione"
+msgstr ""
 
 #: module/contact/controller/IscrizioniController.php:50
 msgid "Subscribtion detail"
-msgstr "Dettaglio iscrizione"
+msgstr ""
 
 #: module/contact/controller/IscrizioniController.php:64
 msgid "Edit subscription"
-msgstr "Modifica iscrizione"
+msgstr ""
 
 #: module/contact/controller/IscrizioniController.php:111
 msgid "Web Form for collection mail"
-msgstr "Web form per la raccolta email"
+msgstr ""
 
 #: module/contact/controller/IscrizioniController.php:124
 msgid "List detail"
-msgstr "Dettaglio lista"
+msgstr ""
 
 #: module/contact/controller/ListaController.php:48
 msgid "Detail list"
-msgstr "Dettaglio lista"
+msgstr ""
 
 #: module/contact/controller/ListaController.php:62
 msgid "Edit list"
-msgstr "Modifica lista"
+msgstr ""
 
 #: module/contact/files/ContactFiles.php:71
 msgid "Import"
-msgstr "Importa contatto da CSV"
+msgstr ""
 
 #: module/contact/grid/ContactCheckedGrid.php:25
 #: module/contact/grid/ContactGrid.php:18
 #: module/contact/grid/ContactModalGrid.php:20
 #: module/contact/grid/DettaglioGrid.php:26
 msgid "Company"
-msgstr "Azienda"
+msgstr ""
 
 #: module/contact/grid/ContactCheckedGrid.php:31
 #: module/contact/grid/ContactGrid.php:24
@@ -269,7 +268,7 @@ msgstr "Azienda"
 #: module/install/view/Install/form.phtml:91
 #: module/userrole/view/User/form.phtml:28
 msgid "Surname"
-msgstr "Cognome"
+msgstr ""
 
 #: module/contact/grid/ContactCheckedGrid.php:34
 #: module/contact/grid/ContactGrid.php:27
@@ -279,67 +278,67 @@ msgstr "Cognome"
 #: module/install/view/Install/form.phtml:98
 #: module/userrole/view/User/form.phtml:32
 msgid "Email"
-msgstr "Email"
+msgstr ""
 
 #: module/contact/grid/ContactCheckedGrid.php:37
 #: module/contact/grid/ContactGrid.php:30
 #: module/contact/grid/DettaglioGrid.php:38
 msgid "State"
-msgstr "Stato"
+msgstr ""
 
 #: module/contact/grid/ContactCheckedGrid.php:40
 #: module/contact/grid/ContactGrid.php:33
 #: module/contact/grid/DettaglioGrid.php:41
 #: module/changelog/view/Changelog/index.phtml:47
 msgid "Type"
-msgstr "Tipo"
+msgstr ""
 
 #: module/contact/grid/ContactCheckedGrid.php:43
 #: module/contact/grid/ContactGrid.php:36
 #: module/contact/grid/DettaglioGrid.php:44
 msgid "Last edit"
-msgstr "Ultima modifica"
+msgstr ""
 
 #: module/contact/grid/ContactModalGrid.php:33
 #: module/contact/grid/ListaModalGrid.php:35
 #: module/contact/grid/ListaSendModalGrid.php:44
 #: module/sender/grid/EmailModalGrid.php:31
 msgid "Select"
-msgstr "Seleziona"
+msgstr ""
 
 #: module/contact/grid/IscrizioniGrid.php:37
 #: module/contact/grid/IscrizioniGrid.php:44
 #: module/contact/grid/ListaSendModalGrid.php:37
 msgid "Members"
-msgstr "Membri"
+msgstr ""
 
 #: module/contact/grid/IscrizioniGrid.php:45
 msgid "Collect subscriptions"
-msgstr "Nuova sottoscrizione"
+msgstr ""
 
 #: module/contact/grid/ListaGrid.php:34
 msgid "Remove all"
-msgstr "Rimuovi tutto"
+msgstr ""
 
 #: module/dashboard/dashboard.php:15
 msgid "License"
-msgstr "Licenza"
+msgstr ""
 
 #: module/sender/controller/EmailController.php:18
 msgid "Email list"
-msgstr "Dettaglio lista"
+msgstr ""
 
 #: module/sender/controller/EmailController.php:34
 msgid "New email"
-msgstr "Crea nuova email"
+msgstr ""
 
 #: module/sender/controller/EmailController.php:48
 msgid "Email detail"
-msgstr "Dettaglio lista"
+msgstr ""
 
 #: module/sender/controller/EmailController.php:73
 msgid "Edit email"
-msgstr "Lista mail"
+msgstr ""
 
 #: module/sender/controller/SendController.php:26
 msgid "Queue Send by Email"
@@ -347,44 +346,44 @@ msgstr ""
 
 #: module/sender/controller/SendController.php:45
 msgid "Email sent"
-msgstr "Email da inviare oggi"
+msgstr ""
 
 #: module/sender/controller/SendController.php:63
 msgid "Sending email in real time"
-msgstr "Invia email in real time"
+msgstr ""
 
 #: module/sender/controller/SendController.php:77
 msgid "New process"
-msgstr "Nuovo procresso"
+msgstr ""
 
 #: module/sender/grid/EmailGrid.php:18 module/sender/grid/EmailModalGrid.php:18
 #: module/sender/view/Email/form-tab1.phtml:11
 msgid "Subject"
-msgstr "Oggetto"
+msgstr ""
 
 #: module/sender/grid/EmailGrid.php:24 module/sender/grid/EmailModalGrid.php:24
 msgid "Execution"
-msgstr "Eseguito"
+msgstr ""
 
 #: module/sender/grid/ProcessateGrid.php:36
 msgid "Execute"
-msgstr "Esegui"
+msgstr ""
 
 #: module/sender/sender.php:17
 msgid "Mail"
-msgstr "Mail"
+msgstr ""
 
 #: module/sender/sender.php:23
 msgid "Proccesses"
-msgstr "Processato"
+msgstr ""
 
 #: module/sender/sender.php:29
 msgid "List mail"
-msgstr "Lista mail"
+msgstr ""
 
 #: module/sender/sender.php:36
 msgid "Add mail"
-msgstr "Aggiungi mail"
+msgstr ""
 
 #: module/sender/sender.php:43
 msgid "In progress"
@@ -394,15 +393,15 @@ msgstr ""
 #: theme/default/nav-list-popup.phtml:27
 #: theme/default/nav-list-process.phtml:26 theme/default/nav-list.phtml:27
 msgid "New"
-msgstr "Nuovo"
+msgstr ""
 
 #: module/sender/sender.php:56
 msgid "Processed"
-msgstr "Processate"
+msgstr ""
 
 #: module/sender/sender.php:66
 msgid "Create new email"
-msgstr "Crea nuova email"
+msgstr ""
 
 #: module/sender/sender.php:74
 msgid "Add queue"
@@ -414,42 +413,42 @@ msgstr ""
 
 #: module/userrole/controller/LoginController.php:34
 msgid "Username not valid"
-msgstr "Nome utente non valido"
+msgstr ""
 
 #: module/userrole/controller/UserController.php:13
 msgid "User list"
-msgstr "Lista utenti"
+msgstr ""
 
 #: module/userrole/controller/UserController.php:25
 msgid "New user"
-msgstr "Nuovo utente"
+msgstr ""
 
 #: module/userrole/controller/UserController.php:64
 msgid "Edit user"
-msgstr "Modifica utente"
+msgstr ""
 
 #: module/userrole/grid/UserGrid.php:20
 #: module/config/view/AccountSMTP/form-tab1.phtml:37
 #: module/install/view/Install/form.phtml:76
 #: module/userrole/view/User/form.phtml:4 theme/default/login.phtml:32
 msgid "Username"
-msgstr "Nome utente"
+msgstr ""
 
 #: module/userrole/grid/UserGrid.php:29
 msgid "Role"
-msgstr "Ruolo"
+msgstr ""
 
 #: module/changelog/view/Changelog/index.phtml:20
 msgid "Current version"
-msgstr "Versione corrente"
+msgstr ""
 
 #: module/changelog/view/Changelog/index.phtml:39
 msgid "Update"
-msgstr "Aggiorna"
+msgstr ""
 
 #: module/changelog/view/Changelog/index.phtml:46
 msgid "Version"
-msgstr "Versione"
+msgstr ""
 
 #: module/changelog/view/Changelog/index.phtml:49
 msgid "Release date"
@@ -459,77 +458,77 @@ msgstr ""
 #: module/contact/view/Iscrizioni/form-tab1.phtml:5
 #: module/contact/view/Lista/form-tab1.phtml:5
 msgid "General date"
-msgstr "Dati generali"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form-tab1.phtml:14
 msgid "Server Name"
-msgstr "Nome del server"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form-tab1.phtml:22
 msgid "Server Host"
-msgstr "Host del server"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form-tab1.phtml:26
 msgid "Server Port"
-msgstr "Porta del server"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form-tab1.phtml:30
 msgid "Server Connetction Type"
-msgstr "Tipo connessione al server"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form-tab1.phtml:41
 #: module/install/view/Install/form.phtml:80
 #: module/userrole/view/User/form.phtml:14 theme/default/login.phtml:33
 msgid "Password"
-msgstr "Password"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form-tab1.phtml:51
 msgid "Choose"
-msgstr "Scegli"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form-tab1.phtml:52
 msgid "Day"
-msgstr "Giorno"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form-tab1.phtml:53
 msgid "Week"
-msgstr "Settimana"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form-tab1.phtml:54
 msgid "Month"
-msgstr "Mese"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form-tab1.phtml:55
 msgid "Year"
-msgstr "Anno"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form-tab1.phtml:56
 msgid "One Time"
-msgstr "In tempo reale"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form-tab1.phtml:62
 msgid "Number"
-msgstr "Numero"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form-tab1.phtml:70
 msgid "Sender Email"
-msgstr "Aggiungi mail"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form-tab1.phtml:74
 msgid "Sender Name"
-msgstr "Nome mittente"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form-tab1.phtml:81
 msgid "Reply to"
-msgstr "Rispondi a"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form-tab1.phtml:88
 msgid "Send"
-msgstr "Totale email inviate"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form-tab1.phtml:92
 msgid "Last send"
-msgstr "Ultimo invio"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form.phtml:12
 #: module/config/view/Options/form.phtml:12
@@ -538,7 +537,7 @@ msgstr "Ultimo invio"
 #: module/contact/view/Lista/form.phtml:11
 #: module/sender/view/Email/form.phtml:13 module/sender/view/Send/form.phtml:11
 msgid "General"
-msgstr "Generale"
+msgstr ""
 
 #: module/config/view/AccountSMTP/form.phtml:20
 #: module/config/view/Options/form.phtml:20
@@ -547,15 +546,15 @@ msgstr "Generale"
 #: module/contact/view/Lista/form.phtml:19
 #: module/sender/view/Email/form.phtml:21 module/sender/view/Send/form.phtml:19
 msgid "Required field"
-msgstr "Richiesto"
+msgstr ""
 
 #: module/contact/view/Contact/import.phtml:5
 msgid "Uploaded Files"
-msgstr "File caricati"
+msgstr ""
 
 #: module/contact/view/Contact/livecheck.phtml:2
 msgid "Press the START button to begin the process of cleaning the contacts!"
-msgstr "Premi il tasto Inizia per avviare il processo d'invio"
+msgstr ""
 
 #: module/contact/view/Contact/livecheck.phtml:3
 #, php-format
@@ -566,27 +565,27 @@ msgstr ""
 
 #: module/contact/view/Contact/livecheck.phtml:7
 msgid "Delete duplicate"
-msgstr "Elimina duplicati"
+msgstr ""
 
 #: module/contact/view/Contact/livecheck.phtml:9
 #: module/contact/view/Contact/livecheck.phtml:17
 #: module/contact/view/Contact/livecheck.phtml:37
 msgid "Yes"
-msgstr "Si"
+msgstr ""
 
 #: module/contact/view/Contact/livecheck.phtml:10
 #: module/contact/view/Contact/livecheck.phtml:16
 #: module/contact/view/Contact/livecheck.phtml:36
 msgid "No"
-msgstr "No"
+msgstr ""
 
 #: module/contact/view/Contact/livecheck.phtml:14
 msgid "Delete inactive"
-msgstr "Elimina non attivi"
+msgstr ""
 
 #: module/contact/view/Contact/livecheck.phtml:21
 msgid "Process for time"
-msgstr "Processate"
+msgstr ""
 
 #: module/contact/view/Contact/livecheck.phtml:25
 msgid "Enter in"
@@ -599,24 +598,24 @@ msgstr ""
 
 #: module/contact/view/Contact/livecheck.phtml:34
 msgid "Request privacy"
-msgstr "Richiedi privacy"
+msgstr ""
 
 #: module/contact/view/Contact/livecheck.phtml:61
 #: module/sender/view/Send/index.phtml:12 module/sender/view/Send/live.phtml:14
 #: theme/default/nav-live.phtml:28
 msgid "Start"
-msgstr "Inizia"
+msgstr ""
 
 #: module/contact/view/Contact/livecheck.phtml:71
 #: module/sender/view/Send/index.phtml:13 module/sender/view/Send/live.phtml:24
 #: theme/default/nav-live.phtml:39
 msgid "Stop"
-msgstr "Ferma"
+msgstr ""
 
 #: module/contact/view/Contact/livecheck.phtml:85
 #: module/sender/view/Send/live.phtml:35
 msgid "Complete"
-msgstr "Completo"
+msgstr ""
 
 #: module/contact/view/Iscrizioni/formiscrizione.phtml:6
 #, php-format
@@ -627,31 +626,31 @@ msgstr ""
 
 #: module/contact/view/Iscrizioni/formiscrizione.phtml:12
 msgid "Enter your email"
-msgstr "Inserisci la tua email"
+msgstr ""
 
 #: module/contact/view/Iscrizioni/formiscrizione.phtml:13
 msgid "Enter your name"
-msgstr "Inserisci il tuo nome"
+msgstr ""
 
 #: module/contact/view/Iscrizioni/formiscrizione.phtml:14
 msgid "Enter your surname"
-msgstr "Inserisci il tuo cognome"
+msgstr ""
 
 #: module/contact/view/Iscrizioni/formiscrizione.phtml:17
 msgid "Sign Up"
-msgstr "Accedi"
+msgstr ""
 
 #: module/contact/view/Lista/form-tab1.phtml:21
 msgid "List description"
-msgstr "Modifica iscrizione"
+msgstr ""
 
 #: module/contact/view/Lista/form-tab1.phtml:28
 msgid "Url privacy police"
-msgstr "Indirizzo web alla privacy police"
+msgstr ""
 
 #: module/dashboard/view/Dashboard/index.phtml:39
 msgid "System info"
-msgstr "Informazioni sistema"
+msgstr ""
 
 #: module/dashboard/view/Dashboard/index.phtml:42
 msgid "Quick information about system status."
@@ -683,7 +682,7 @@ msgstr ""
 
 #: module/dashboard/view/Dashboard/index.phtml:66
 msgid "Contact Info"
-msgstr "Contatti"
+msgstr ""
 
 #: module/dashboard/view/Dashboard/index.phtml:69
 #, php-format
@@ -692,91 +691,91 @@ msgstr ""
 
 #: module/dashboard/view/Dashboard/index.phtml:74
 msgid "Total Contact"
-msgstr "Contatti"
+msgstr ""
 
 #: module/dashboard/view/Dashboard/index.phtml:78
 msgid "Total List"
-msgstr "Totale liste"
+msgstr ""
 
 #: module/dashboard/view/Dashboard/index.phtml:82
 msgid "Total Send Mail"
-msgstr "Totale email inviate"
+msgstr ""
 
 #: module/dashboard/view/Dashboard/license.phtml:2
 msgid " it is licensed: "
-msgstr "è rilasciato con licenza:"
+msgstr ""
 
 #: module/install/view/Install/form.phtml:9
 msgid "Application information"
-msgstr "Informazioni aggiuntive"
+msgstr ""
 
 #: module/install/view/Install/form.phtml:15
 msgid "Application Name"
-msgstr "Nome applicazione"
+msgstr ""
 
 #: module/install/view/Install/form.phtml:22
 msgid "Language"
-msgstr "Lingua"
+msgstr ""
 
 #: module/install/view/Install/form.phtml:33
 msgid "Database"
-msgstr "Database"
+msgstr ""
 
 #: module/install/view/Install/form.phtml:39
 msgid "DB Host"
-msgstr "Host DB"
+msgstr ""
 
 #: module/install/view/Install/form.phtml:46
 msgid "DB User"
-msgstr "User DB"
+msgstr ""
 
 #: module/install/view/Install/form.phtml:50
 msgid "DB Password"
-msgstr "Password"
+msgstr ""
 
 #: module/install/view/Install/form.phtml:58
 msgid "DB Name"
-msgstr "Nome"
+msgstr ""
 
 #: module/install/view/Install/form.phtml:62
 msgid "Prefix"
-msgstr "Prefisso"
+msgstr ""
 
 #: module/install/view/Install/form.phtml:70
 msgid "Admin user data"
-msgstr "Dati utenti amministratore"
+msgstr ""
 
 #: module/install/view/Install/form.phtml:102
 msgid "Newsletter"
-msgstr "Newsletter"
+msgstr ""
 
 #: module/install/view/Install/form.phtml:111
 msgid "Install"
-msgstr "Installa"
+msgstr ""
 
 #: module/install/view/Install/index.phtml:30
 msgid "Installer"
-msgstr "Installer"
+msgstr ""
 
 #: module/install/view/Install/index.phtml:43
 msgid "Stay Updated"
-msgstr "Resta aggiornato"
+msgstr ""
 
 #: module/sender/view/Email/form-tab1.phtml:5
 msgid "Create new mail"
-msgstr "Crea nuova email"
+msgstr ""
 
 #: module/sender/view/Email/form-tab1.phtml:15
 msgid "Email of test"
-msgstr "Email di test"
+msgstr ""
 
 #: module/sender/view/Email/form-tab1.phtml:27
 msgid "Message (HTML)"
-msgstr "Messaggio versione HTML"
+msgstr ""
 
 #: module/sender/view/Email/form-tab1.phtml:34
 msgid "Message (TEXT)"
-msgstr "Messaggio versione Testuale"
+msgstr ""
 
 #: module/sender/view/Send/form-tab1.phtml:5
 msgid "Create the send queue"
@@ -784,11 +783,11 @@ msgstr ""
 
 #: module/sender/view/Send/form-tab1.phtml:10
 msgid "Send to [list]"
-msgstr "Modifica lista"
+msgstr ""
 
 #: module/sender/view/Send/form-tab1.phtml:49
 msgid "Email to send "
-msgstr "Email da inviare oggi"
+msgstr ""
 
 #: module/sender/view/Send/index.phtml:9
 msgid "Processing the send queue"
@@ -796,117 +795,111 @@ msgstr ""
 
 #: module/sender/view/Send/index.phtml:18
 msgid "Close"
-msgstr "Chiudi"
+msgstr ""
 
 #: module/sender/view/Send/live.phtml:2
 msgid "Press Start to start the process of sending real-time!"
-msgstr "Premi il tasto Inizia per avviare il processo d'invio"
+msgstr ""
 
 #: module/sender/view/Send/live.phtml:3
 msgid "Email sent today"
-msgstr "Email da inviare oggi"
+msgstr ""
 
 #: module/sender/view/Send/live.phtml:3
 msgid "of"
-msgstr "di"
+msgstr ""
 
 #: module/userrole/view/User/form.phtml:7
 msgid "Username is required!"
-msgstr "Il nome utente è richiesto!"
+msgstr ""
 
 #: module/userrole/view/User/form.phtml:10
 #: module/userrole/view/User/form.phtml:20
 msgid "Min lengh is 3"
-msgstr "La lunghezza minima è 3 caratteri"
+msgstr ""
 
 #: module/userrole/view/User/form.phtml:17
 msgid "Password is required!"
-msgstr "La password è richiesta"
+msgstr ""
 
 #: module/userrole/view/User/form.phtml:36
 msgid "Phone"
-msgstr "Telefono"
+msgstr ""
 
 #: module/userrole/view/User/form.phtml:40
 msgid "Mobile phone"
-msgstr "Cellulare"
+msgstr ""
 
 #: module/userrole/view/User/form.phtml:44
 msgid "Mobile phone 2"
-msgstr "Cellulare 2"
+msgstr ""
 
 #: module/userrole/view/User/form.phtml:52
 msgid "Required"
-msgstr "Richiesto"
+msgstr ""
 
 #: theme/default/login.phtml:38
 msgid "Sign In"
-msgstr "Accedi"
+msgstr ""
 
 #: theme/default/modal/create.phtml:14
 msgid "Add"
-msgstr "Aggiungi"
+msgstr ""
 
 #: theme/default/modal/delete.phtml:6
 msgid "Attenction..."
-msgstr "Attenzione..."
+msgstr ""
 
 #: theme/default/modal/delete.phtml:10
 msgid "Do you really want to delete this record?"
-msgstr "Vuoi eliminare questo elemento?"
+msgstr ""
 
 #: theme/default/modal/info.phtml:6
 msgid "Addictional Information"
-msgstr "Informazioni aggiuntive"
+msgstr ""
 
 #: theme/default/modal/search.phtml:14
 msgid "Search"
-msgstr "Cerca"
+msgstr ""
 
 #: theme/default/nav-create.phtml:25 theme/default/nav-detail.phtml:24
 #: theme/default/nav-list-simple.phtml:25 theme/default/nav-modify.phtml:22
 #: theme/default/nav-modify.phtml:26
 msgid "Go back"
-msgstr "Ritorna indietro"
+msgstr ""
 
 #: theme/default/nav-create.phtml:33 theme/default/nav-modify.phtml:35
 msgid "Save"
-msgstr "Salva"
+msgstr ""
 
 #: theme/default/nav-list-import.phtml:36
 msgid "Import csv file"
-msgstr "Importa CSV"
+msgstr ""
 
 #: theme/default/nav-list-process.phtml:36
 msgid "Process queue"
-msgstr "Processa coda"
+msgstr ""
 
 #: theme/default/nav-list-process.phtml:46
 msgid "Real Time"
-msgstr "In tempo reale"
+msgstr ""
 
 #: theme/default/nav-list.phtml:24
 msgid "Create new item"
-msgstr "Crea un nuovo elemento"
+msgstr ""
 
 #: theme/default/nav-live.phtml:25
 msgid "Start send process"
-msgstr "Inizia processo d'invio"
+msgstr ""
 
 #: theme/default/nav-live.phtml:36
 msgid "Stop send process"
-msgstr "Ferma processo d'invio"
+msgstr ""
 
 #: theme/default/nav-modify.phtml:33
 msgid "Save currtent item"
-msgstr "Salva l'elemento corrente"
+msgstr ""
 
 #: theme/default/navbar.phtml:67
 msgid "Exit"
-msgstr "Esci"
-
-#~ msgid "'"
-#~ msgstr "'"
-
-#~ msgid "Go Back"
-#~ msgstr "Ritorna indietro"
+msgstr ""
