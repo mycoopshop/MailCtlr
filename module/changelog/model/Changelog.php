@@ -13,9 +13,9 @@ class Changelog extends Storable
     public $version_name = '';
     public $version_type = '';
     public $description = MYSQL_TEXT;
-    
+
     public $updated = 0;
-    
+
     ##
 
     public static function current()

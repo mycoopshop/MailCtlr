@@ -592,7 +592,7 @@ class schemadb
 
             ##
             case 'primary_key':
-                return null;
+                return;
 
             ##
             case 'string':
@@ -608,11 +608,11 @@ class schemadb
 
             ##
             case 'class':
-                return null;
+                return;
 
             ##
             case 'array':
-                return null;
+                return;
 
             ##
             case 'date':
@@ -624,7 +624,7 @@ class schemadb
 
             ##
             case 'column':
-                return null;
+                return;
 
             ##
             default:
@@ -1587,7 +1587,7 @@ class schemadb_ezSQLcore
         $this->last_error = $err_str;
 
         // Capture all errors to an error array no matter what happens
-        $this->captured_errors[] = 
+        $this->captured_errors[] =
         [
             'error_str' => $err_str,
             'query'     => $this->last_query,
@@ -1777,7 +1777,7 @@ class schemadb_ezSQLcore
                 $this->show_errors ? trigger_error("Could not open cache dir: $this->cache_dir", E_USER_WARNING) : null;
             } else {
                 // Cache all result values
-                $result_cache = 
+                $result_cache =
                 [
                     'col_info'     => $this->col_info,
                     'last_result'  => $this->last_result,
@@ -2004,7 +2004,7 @@ class schemadb_ezSQLcore
     public function timer_update_global($timer_name)
     {
         if ($this->do_profile) {
-            $this->profile_times[] = 
+            $this->profile_times[] =
             [
                 'query' => $this->last_query,
                 'time'  => $this->timer_elapsed($timer_name),
@@ -2076,7 +2076,7 @@ class schemadb_ezSQLcore
 
 global $ezsql_mysql_str;
 
-$ezsql_mysql_str = 
+$ezsql_mysql_str =
 [
     1 => 'Require $dbuser and $dbpassword to connect to a database server',
     2 => 'Error establishing mySQL database connection. Correct user/password? Correct hostname? Database server running?',

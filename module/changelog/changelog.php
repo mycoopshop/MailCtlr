@@ -12,10 +12,8 @@ class ChangelogModule
          * Check update
         */
         self::checkVersion();
-        
-        
     }
-    
+
     /*
      * Check current version from release server
      *      don't work at now!!
@@ -31,7 +29,7 @@ class ChangelogModule
             $a = get_object_vars($data);
             $cl = Changelog::submit($a);
         }
+
         return $data;
     }
-    
 }

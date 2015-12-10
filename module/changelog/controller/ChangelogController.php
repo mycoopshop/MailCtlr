@@ -4,7 +4,6 @@ require_once __BASE__.'/module/changelog/model/Changelog.php';
 
 class ChangelogController
 {
-
     ##
 
     public function indexAction()
@@ -17,7 +16,7 @@ class ChangelogController
             'current'      => __VERSION__,
         ]);
     }
-    
+
     ##
 
     public function updateAction($v = 'latest')

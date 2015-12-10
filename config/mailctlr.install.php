@@ -8,7 +8,7 @@ define('YEAR', 365);
 
 return  [
   'name' => 'MailCtlr',
-  'db'   =>  [
+  'db'   => [
     'host' => 'localhost',
     'user' => 'c1beta',
     'pass' => 'bgba#EM21T',
