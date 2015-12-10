@@ -1,5 +1,6 @@
 # MailCtlr 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ctlr/MailCtlr/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ctlr/MailCtlr/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/ctlr/MailCtlr/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ctlr/MailCtlr/build-status/master) [![StyleCI](https://styleci.io/repos/44605780/shield)](https://styleci.io/repos/44605780) 
+
+[![Build Status](https://travis-ci.org/ctlr/MailCtlr.svg?branch=master)](https://travis-ci.org/ctlr/MailCtlr) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ctlr/MailCtlr/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ctlr/MailCtlr/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/ctlr/MailCtlr/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ctlr/MailCtlr/build-status/master) [![StyleCI](https://styleci.io/repos/44605780/shield)](https://styleci.io/repos/44605780) 
 
 MailCtlr is a new system for the management of your advertising campaigns based on email, it allows you to send all the emails you want for free. 
 Using different SMTP server can send free mail to all the contacts you want at no cost or almost.
@@ -15,7 +16,7 @@ Using different SMTP server can send free mail to all the contacts you want at n
 
 Now you can translate MailCtlr in your language!
 
-* By using the following link: http://www.mailctlr.org/translate/ [ask an account to info@mailctlr.org to start translating]
+* By using the following link: http://www.ctlr.it/translate/ [ask an account to info@mailctlr.org to start translating]
 * Translating using the po file that you find in the folder /lang/en_EN/LC_MESSAGES/mailctlr.po
 
 # MailCtlr License
