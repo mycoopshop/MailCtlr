@@ -97,7 +97,7 @@ class RemoteController
      * Function to review and optimize
     */
     ##
-    
+
     public function cleanContactAction()
     {
         $app = App::getInstance();
@@ -176,7 +176,7 @@ class RemoteController
     ##
 
     public static function activeServerAction()
-    { 
+    {
         /*
          * Active and check daily all server
          */
@@ -328,13 +328,13 @@ class RemoteController
                 continue;
             }
             $dest->token = Coda::makeToken($dest->created);
-            
+
             $mail2 = clone $mail;
             $mail2->addAddress($contact->email, $contact->nome.' '.$contact->cognome);
             $mail2->isHTML(true);
             $email = Email::load($dest->email_id);
 
-            $find = ['{name}', '{surname}', '{privacyURL}', '{deleteContact}','{company}','{phone}','{mobile}','{email}','{address}','{city}'];
+            $find = ['{name}', '{surname}', '{privacyURL}', '{deleteContact}', '{company}', '{phone}', '{mobile}', '{email}', '{address}', '{city}'];
             $change = [
                 $contact->nome,
                 $contact->cognome,
@@ -346,19 +346,19 @@ class RemoteController
                 $contact->indirizzo,
                 $contact->citta,
             ];
-            
+
             /*
             $append_html = "se vuoi cancellarti dalle nostre banche dati clicca il link nel tuo browser <a href='".__HOME__."/remote/deActive/token/{$contact->token}' target='_blank'>".__HOME__."/remote/deActive/token/{$contact->token}</a>";
             $append_text = "se vuoi cancellarti dalle nostre banche dati copia e incolla il link nel tuo browser ".__HOME__."/remote/deActive/token/{$contact->token}";
             */
             $html = str_replace($find, $change, $email->messaggio_html);
             $text = str_replace($find, $change, $email->messaggio_text);
-            
+
             /*
              * Start track open email
             */
-            $track = "<img style='display:none;' src='".__HOME__."/remote/getImage/token/".$dest->token."' width='20px'/>";
-            
+            $track = "<img style='display:none;' src='".__HOME__.'/remote/getImage/token/'.$dest->token."' width='20px'/>";
+
             $mail2->Subject = $email->oggetto;
             $mail2->Body = $html.$track;
             $mail2->AltBody = $text;
@@ -373,7 +373,7 @@ class RemoteController
                 $dest->note = 'Invio OK';
                 $dest->execute = MYSQL_NOW();
                 $dest->server_id = $server->id;
-                $dest->processato = 1;                
+                $dest->processato = 1;
                 $email->execute = MYSQL_NOW();
                 $server->send++;
                 $server->total_send++;
@@ -418,34 +418,31 @@ class RemoteController
         ];
         echo json_encode($json);
     }
-    
+
     /*
      * Get image first image in email 
      *      and count opening email by unique contact token
     */
     ##
-    
+
     public function getImageAction()
     {
         $app = App::getInstance();
         $token = $app->getUrlParam('token');
-        $c = Coda::loadby($token,'token');
-        
-        if ($c->open == 0){
+        $c = Coda::loadby($token, 'token');
+
+        if ($c->open == 0) {
             $c->first_open = MYSQL_NOW();
         }
-        
+
         $c->open++;
         $c->last_open = MYSQL_NOW();
         $c->store();
-        
+
         $file = __HOME__.'/store/mailctlr/ctlr.png';
         $type = 'image/png';
         header('Content-Type:'.$type);
-        header('Content-Length: ' . filesize($file));
+        header('Content-Length: '.filesize($file));
         readfile($file);
-        
     }
-    
-    
 }

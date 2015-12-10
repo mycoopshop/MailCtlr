@@ -66,15 +66,15 @@ class AccountSMTPController
     {
         $app = App::getInstance();
         $item = AccountSMTP::build($_POST);
-        
+
         /*
          * If replyTo is empy reply to equal sender name
         */
-        
-        $item->replyTo = isset($item->replyTo) && $item->replyTo != "" ? $item->replyTo : $item->sender_name;
-        
+
+        $item->replyTo = isset($item->replyTo) && $item->replyTo != '' ? $item->replyTo : $item->sender_name;
+
         $item->last_edit = MYSQL_NOW();
-        
+
         switch ($item->ever) {
             case 'day':     $item->max_mail_day = $item->max_mail / DAY; break;
             case 'month':   $item->max_mail_day = $item->max_mail / MONTH; break;

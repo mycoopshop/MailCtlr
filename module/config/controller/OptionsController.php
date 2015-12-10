@@ -88,6 +88,4 @@ class OptionsController
         Options::delete($id);
         $app->redirect(__HOME__.'/options/');
     }
-    
-    
 }

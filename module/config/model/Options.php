@@ -12,7 +12,6 @@ class Options extends Storable
     public $type = ['dev', 'alpha', 'beta', 'stable'];
     public $last_edit = MYSQL_DATETIME;
 
-    
     public static function getOptions($type = 'stable')
     {
         $opts = self::query(['type' => $type]);
@@ -27,7 +26,5 @@ class Options extends Storable
 
         return $opt_p;
     }
-    
-    
 }
 Options::schemadb_update();

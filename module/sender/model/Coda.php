@@ -21,10 +21,10 @@ class Coda extends Storable
 
     public $first_open = MYSQL_DATETIME;
     public $last_open = MYSQL_DATETIME;
-    
+
     public $open = 0;
-    public $token = "";
-    
+    public $token = '';
+
     ##
 
     public static function addCode($lista = '', $email = '')
@@ -73,20 +73,20 @@ class Coda extends Storable
 
         return $res['totale'];
     }
-    
+
     ##
-    
+
     public static function makeToken($created)
     {
         $t = time();
         /*$c = self::load($id);
         $c->token = md5('mailctlr_'.$c->id.$t.$c->execute.$c->created);
         $c->store();*/
-        
+
         return md5('mailctlr_'.$t.$created);
     }
-    
-    public static function loadby($id,$k='primary')
+
+    public static function loadby($id, $k = 'primary')
     {
         ##
         $t = static::table();
@@ -94,8 +94,8 @@ class Coda extends Storable
         $s = "SELECT * FROM {$t} WHERE {$k}='{$id}' LIMIT 1";
         $r = schemadb::execute('row', $s);
         $o = static::build($r);
+
         return $o;
     }
-    
 }
 Coda::schemadb_update();

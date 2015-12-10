@@ -1,4 +1,5 @@
-<?php 
+<?php
+
  define('__NAME__', 'mailctlr');
  define('__MODE__', 'install');
  require_once 'bootstrap.php';
