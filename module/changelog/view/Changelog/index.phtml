@@ -36,7 +36,7 @@
             <h3 class="panel-title"><?=$changelog->title;?></h3>
             <?php 
             if ($changelog->version_numb > __VERSION__)
-                echo _('Update');
+                echo "<a href='".__HOME__."/changelog/update'>"._('Update')."</a>";
             ?>
         </div>
         <div class="panel-body">

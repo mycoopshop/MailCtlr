@@ -93,7 +93,7 @@ class InstallController
             'role'     => 'superadmin',
             'lastedit' => MYSQL_NOW(),
         ]);
-
+        
         $optdb = [
             'debug'      => 'false',
             'version'    => '0.1.2',

@@ -1,8 +1,25 @@
 language: php
+
 php:
   - 7.0
   - 5.6
   - 5.5
   - 5.4
   - 5.3
-  
+  - hhvm
+ 
+script: phpunit
+
+matrix:
+  allow_failures:
+    - php: 7.0
+    - php: 5.6
+    - php: 5.5
+    - php: 5.4
+    - php: 5.3
+    - php: hhvm
+  fast_finish: true
+
+notifications:
+    on_success: never
+    on_failure: always

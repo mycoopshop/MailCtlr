@@ -39,13 +39,13 @@ class ConfigModule
         ##
         /*$app->addMenu('navbar',array(
             'id'	=> 'navbar-report',
-            'label'	=> 'Report',
+            'label'	=> _('Statistics'),
         ));*/
 
         ##
         $app->addMenu('navbar', [
             'id'       => 'navbar-config',
-            'label'    => 'Configurazioni',
+            'label'    => _('Configuration'),
         ]);
 
         ##
@@ -56,7 +56,7 @@ class ConfigModule
         if ($app->testAcl('menu-admin', $this->acl)) {
             $app->addMenu('navbar', [
                 'parent'       => 'navbar-config',
-                'label'        => 'Gestione Server SMTP',
+                'label'        => _('Manager server SMTP'),
                 'link'         => __HOME__.'/accountSMTP/',
             ]);
 
@@ -65,12 +65,12 @@ class ConfigModule
                 'link'  => __HOME__.'/accountSMTP',
                 'type'  => 'success',
                 'icon'  => 'glyphicon glyphicon-plus',
-                'label' => 'Server SMTP',
+                'label' => _('Server SMTP'),
             ]);
 
             $app->addMenu('navbar', [
                 'parent'       => 'navbar-config',
-                'label'        => 'Opzioni',
+                'label'        => _('Setting'),
                 'link'         => __HOME__.'/options/',
             ]);
         }
@@ -81,7 +81,7 @@ class ConfigModule
             ##
             $app->addMenu('navbar', [
                 'parent'       => 'navbar-config',
-                'label'        => 'Gestione Utenti',
+                'label'        => _('User Manager'),
                 'link'         => __HOME__.'/user/',
             ]);
         }

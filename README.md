@@ -1,4 +1,5 @@
-# MailCtlr [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ctlr/MailCtlr/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ctlr/MailCtlr/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/ctlr/MailCtlr/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ctlr/MailCtlr/build-status/master) [![StyleCI](https://styleci.io/repos/44605780/shield)](https://styleci.io/repos/44605780) 
+# MailCtlr 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ctlr/MailCtlr/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ctlr/MailCtlr/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/ctlr/MailCtlr/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ctlr/MailCtlr/build-status/master) [![StyleCI](https://styleci.io/repos/44605780/shield)](https://styleci.io/repos/44605780) 
 
 MailCtlr is a new system for the management of your advertising campaigns based on email, it allows you to send all the emails you want for free. 
 Using different SMTP server can send free mail to all the contacts you want at no cost or almost.
@@ -17,10 +18,11 @@ Now you can translate MailCtlr in your language!
 * By using the following link: http://www.mailctlr.org/translate/ [ask an account to info@mailctlr.org to start translating]
 * Translating using the po file that you find in the folder /lang/en_EN/LC_MESSAGES/mailctlr.po
 
-# MailCtlr License 
+# MailCtlr License
+
 MailCtlr is licensed GNU AFFERO GENERAL PUBLIC LICENSE http://www.gnu.org/licenses/agpl-3.0.html 
 
-# Roadmap
+# MailCtlr Roadmap 
  
  - Multiple role for user (superadmin,admin,user)
  - Automatic upgrade to the new version
@@ -30,6 +32,7 @@ MailCtlr is licensed GNU AFFERO GENERAL PUBLIC LICENSE http://www.gnu.org/licens
  - Automatic update system
  - Best email editor
  - Other features suggested by users! ... Make your suggestions
+
  - [DONE!] Support Multilanguage & Translate Platform
  - [DONE!] Import contact from a .csv file 
  - [DONE!] Clean contact (SMTP check exist mail, email format check)

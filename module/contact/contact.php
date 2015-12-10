@@ -29,7 +29,7 @@ class ContactModule
             'label'        => _('List Contact'),
             'link'         => __HOME__.'/contact/',
         ]);
-
+ 
         ##
         $app->addMenu('navbar', [
             'parent'       => 'navbar-contact',
