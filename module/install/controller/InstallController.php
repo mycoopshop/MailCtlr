@@ -39,30 +39,6 @@ class InstallController
 
         $date = $_POST;
 
-        ##iscrivi su ctlr
-        if ($date['news'] == 1) {
-            $url = 'http://www.ctlr.it/mailctlr/remote/subscribe/';
-            $fields = [
-                'email'   => urlencode($_POST['email']),
-                'nome'    => urlencode($_POST['nome']),
-                'cognome' => urlencode($_POST['cognome']),
-                'privacy' => urlencode(1),
-                'lista'   => urlencode(1),
-
-            ];
-            $fields_string = '';
-            foreach ($fields as $key => $value) {
-                $fields_string .= $key.'='.$value.'&';
-            }
-            rtrim($fields_string, '&');
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_POST, count($fields));
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
-            $result = curl_exec($ch);
-            curl_close($ch);
-        }
-
         $opt['name'] = $date['nome_app'];
         $opt['db'] = [
             'host' => $date['host'],
